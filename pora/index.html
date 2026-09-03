@@ -20,13 +20,20 @@
       --etec-red:#b5121b;
       --etec-red-dark:#8e0d14;
       --etec-red-soft:#f9e9eb;
+
+      --blue:#2563eb;
+      --blue-dark:#1d4ed8;
+      --blue-soft:#eff6ff;
+
+      --green:#237a42;
+      --green-bg:#eaf7ef;
+
       --text:#222831;
       --muted:#667085;
       --line:#e7e9ee;
       --bg:#f6f7f9;
       --white:#ffffff;
-      --green:#237a42;
-      --green-bg:#eaf7ef;
+
       --shadow:0 10px 30px rgba(30,38,50,.08);
     }
 
@@ -56,11 +63,15 @@
       margin:0 auto;
     }
 
+    /* =========================
+       TOPO
+       ========================= */
+
     .topbar{
       position:sticky;
       top:0;
       z-index:40;
-      background:rgba(255,255,255,.96);
+      background:rgba(255,255,255,.97);
       border-bottom:1px solid var(--line);
     }
 
@@ -94,8 +105,8 @@
     }
 
     .brand-dot{
-      width:44px;
-      height:34px;
+      width:48px;
+      height:36px;
       border-radius:10px;
       display:grid;
       place-items:center;
@@ -104,6 +115,10 @@
       font-size:.72rem;
       font-weight:900;
     }
+
+    /* =========================
+       HERO
+       ========================= */
 
     .hero{
       position:relative;
@@ -212,6 +227,10 @@
       font-size:.86rem;
     }
 
+    /* =========================
+       NAVEGAÇÃO
+       ========================= */
+
     .quicknav-wrap{
       background:#fff;
       border-bottom:1px solid var(--line);
@@ -245,6 +264,10 @@
       color:#fff;
       border-color:var(--etec-red);
     }
+
+    /* =========================
+       SEÇÕES
+       ========================= */
 
     .section{
       padding:38px 0;
@@ -315,6 +338,74 @@
       font-size:1.05rem;
     }
 
+    /* =========================
+       ATIVIDADE
+       ========================= */
+
+    .activity-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      display:grid;
+      grid-template-columns:62px 1fr auto;
+      gap:17px;
+      align-items:center;
+    }
+
+    .activity-icon{
+      width:58px;
+      height:58px;
+      display:grid;
+      place-items:center;
+      border-radius:16px;
+      background:var(--blue-soft);
+      font-size:1.4rem;
+    }
+
+    .activity-main h4{
+      margin:0;
+      font-size:1.05rem;
+    }
+
+    .activity-main p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:11px;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:26px;
+      padding:0 9px;
+      border-radius:999px;
+      font-size:.73rem;
+      font-weight:900;
+    }
+
+    .tag-open{
+      color:var(--green);
+      background:var(--green-bg);
+    }
+
+    .tag-neutral{
+      color:#475467;
+      background:#f2f4f7;
+    }
+
+    /* =========================
+       AVISO
+       ========================= */
+
     .notice{
       padding:18px 20px;
       display:flex;
@@ -346,87 +437,9 @@
       font-size:.86rem;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:44px;
-      padding:0 15px;
-      border-radius:12px;
-      font-weight:850;
-      border:1px solid transparent;
-      cursor:pointer;
-      transition:.15s ease;
-    }
-
-    .btn-primary{
-      background:var(--etec-red);
-      color:#fff;
-    }
-
-    .btn-primary:hover{
-      background:var(--etec-red-dark);
-    }
-
-    .activity-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:20px;
-      display:grid;
-      grid-template-columns:58px 1fr auto;
-      align-items:center;
-      gap:17px;
-    }
-
-    .activity-icon{
-      width:58px;
-      height:58px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:var(--etec-red-soft);
-      font-size:1.4rem;
-    }
-
-    .activity-main h4{
-      margin:0;
-      font-size:1.05rem;
-    }
-
-    .activity-main p{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-size:.9rem;
-    }
-
-    .meta{
-      margin-top:11px;
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      min-height:27px;
-      padding:0 9px;
-      border-radius:999px;
-      font-size:.74rem;
-      font-weight:900;
-    }
-
-    .tag-open{
-      background:var(--green-bg);
-      color:var(--green);
-    }
-
-    .tag-neutral{
-      background:#f0f2f5;
-      color:#5f6874;
-    }
+    /* =========================
+       MATERIAIS
+       ========================= */
 
     .material-item{
       padding:18px 20px;
@@ -466,9 +479,40 @@
       font-size:.86rem;
     }
 
+    /* =========================
+       BOTÕES
+       ========================= */
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 15px;
+      border-radius:12px;
+      font-weight:850;
+      border:1px solid transparent;
+      transition:.15s ease;
+    }
+
+    .btn-primary{
+      color:#fff;
+      background:var(--blue);
+      border-color:var(--blue);
+    }
+
+    .btn-primary:hover{
+      background:var(--blue-dark);
+      border-color:var(--blue-dark);
+    }
+
     .material-content .btn{
       margin-top:12px;
     }
+
+    /* =========================
+       RODAPÉ
+       ========================= */
 
     footer{
       margin-top:28px;
@@ -487,6 +531,10 @@
       padding:15px 0;
     }
 
+    /* =========================
+       RESPONSIVO
+       ========================= */
+
     @media(max-width:900px){
       .hero-inner{
         grid-template-columns:1fr;
@@ -498,6 +546,7 @@
     }
 
     @media(max-width:700px){
+
       .shell{
         width:min(100% - 22px,1160px);
       }
@@ -524,6 +573,7 @@
     }
 
     @media(max-width:480px){
+
       .profile-card{
         grid-template-columns:78px 1fr;
       }
@@ -541,6 +591,10 @@
 </head>
 
 <body>
+
+  <!-- =========================
+       TOPO
+       ========================= -->
 
   <header class="topbar">
 
@@ -569,7 +623,9 @@
 
   <main>
 
-    <!-- CAPA -->
+    <!-- =========================
+         CAPA
+         ========================= -->
 
     <section class="hero" id="inicio">
 
@@ -592,8 +648,7 @@
           <p>
             Espaço destinado às atividades, avisos, orientações
             e materiais do componente Processos Organizacionais
-            e Rotinas Administrativas. Os conteúdos ficarão
-            organizados para facilitar o acompanhamento dos alunos.
+            e Rotinas Administrativas.
           </p>
 
         </div>
@@ -631,13 +686,18 @@
     </section>
 
 
-    <!-- MENU -->
+    <!-- =========================
+         NAVEGAÇÃO
+         ========================= -->
 
     <div class="quicknav-wrap">
 
       <nav class="shell quicknav">
 
-        <a class="active" href="#atividades">
+        <a
+          class="active"
+          href="#atividades"
+        >
           Atividades
         </a>
 
@@ -654,9 +714,14 @@
     </div>
 
 
-    <!-- ATIVIDADES -->
+    <!-- =========================
+         ATIVIDADES
+         ========================= -->
 
-    <section class="section" id="atividades">
+    <section
+      class="section"
+      id="atividades"
+    >
 
       <div class="shell">
 
@@ -673,8 +738,8 @@
             </h3>
 
             <p>
-              Atividades do componente Processos Organizacionais
-              e Rotinas Administrativas.
+              Atividades propostas no componente
+              Processos Organizacionais e Rotinas Administrativas.
             </p>
 
           </div>
@@ -700,9 +765,9 @@
             </h4>
 
             <p>
-              Questionário de perfis comportamentais baseado nos perfis
-              Rei, Guerreiro, Mago e Amante.
-              Responda às 20 questões e receba sua devolutiva individual.
+              Questionário destinado à identificação e análise
+              dos perfis Rei, Guerreiro, Mago e Amante.
+              Responda às 20 questões e obtenha seu resultado individual.
             </p>
 
             <div class="meta">
@@ -734,7 +799,9 @@
     </section>
 
 
-    <!-- AVISOS E MATERIAIS -->
+    <!-- =========================
+         AVISOS E MATERIAIS
+         ========================= -->
 
     <section class="section">
 
@@ -743,7 +810,10 @@
 
         <!-- AVISOS -->
 
-        <section class="panel" id="avisos">
+        <section
+          class="panel"
+          id="avisos"
+        >
 
           <div class="panel-head">
 
@@ -783,9 +853,14 @@
         </section>
 
 
-        <!-- MATERIAIS -->
+        <!-- =========================
+             MATERIAIS
+             ========================= -->
 
-        <section class="panel" id="materiais">
+        <section
+          class="panel"
+          id="materiais"
+        >
 
           <div class="panel-head">
 
@@ -815,8 +890,8 @@
               </strong>
 
               <p>
-                Apresentação inicial do componente,
-                orientações do semestre e acolhimento da turma.
+                Recepção da turma, apresentação do componente
+                e orientações iniciais para o semestre.
               </p>
 
             </div>
@@ -839,9 +914,8 @@
               </strong>
 
               <p>
-                Conteúdo sobre características,
-                responsabilidades, comportamento e atuação
-                profissional na área administrativa.
+                Características, responsabilidades, comportamento,
+                atitudes e atuação profissional do Técnico em Administração.
               </p>
 
               <a
@@ -850,7 +924,7 @@
                 rel="noopener noreferrer"
                 class="btn btn-primary"
               >
-                Abrir apostila
+                📄 Abrir apostila
               </a>
 
             </div>
@@ -869,19 +943,20 @@
             <div class="material-content">
 
               <strong>
-                Aula 03 — Questionário dos Perfis
+                Aula 03 — Questionário de Perfis
               </strong>
 
               <p>
-                Questionário de autoconhecimento baseado nos perfis
-                Rei, Guerreiro, Mago e Amante.
+                Atividade destinada à identificação e análise
+                dos diferentes perfis comportamentais,
+                com base nos perfis Rei, Guerreiro, Mago e Amante.
               </p>
 
               <a
                 href="atividades/atd1-quem-sou-eu/index.html"
                 class="btn btn-primary"
               >
-                Responder questionário
+                📝 Responder questionário
               </a>
 
             </div>
@@ -904,7 +979,8 @@
               </strong>
 
               <p>
-                Aula destinada à participação em palestra.
+                Encontro destinado à participação dos alunos
+                em palestra realizada durante o período de aula.
               </p>
 
             </div>
@@ -923,12 +999,12 @@
             <div class="material-content">
 
               <strong>
-                Aula 05 — Revisão Geral
+                Aula 05 — Revisão Geral para Calouros e Veteranos
               </strong>
 
               <p>
-                Revisão geral dos conteúdos trabalhados
-                com alunos calouros e veteranos.
+                Revisão dos conteúdos trabalhados e integração
+                entre alunos calouros e veteranos.
               </p>
 
             </div>
@@ -951,8 +1027,8 @@
               </strong>
 
               <p>
-                Material utilizado na Aula 06 do componente
-                Processos Organizacionais e Rotinas Administrativas.
+                Conteúdo referente ao atendimento ao cliente
+                interno e externo e às práticas administrativas.
               </p>
 
               <a
@@ -961,7 +1037,7 @@
                 rel="noopener noreferrer"
                 class="btn btn-primary"
               >
-                Abrir slides
+                📊 Abrir slides
               </a>
 
             </div>
@@ -978,7 +1054,9 @@
   </main>
 
 
-  <!-- RODAPÉ -->
+  <!-- =========================
+       RODAPÉ
+       ========================= -->
 
   <footer>
 
