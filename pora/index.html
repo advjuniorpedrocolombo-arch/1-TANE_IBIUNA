@@ -355,6 +355,8 @@
       border-radius:12px;
       font-weight:850;
       border:1px solid transparent;
+      cursor:pointer;
+      transition:.15s ease;
     }
 
     .btn-primary{
@@ -364,6 +366,66 @@
 
     .btn-primary:hover{
       background:var(--etec-red-dark);
+    }
+
+    .activity-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:20px;
+      display:grid;
+      grid-template-columns:58px 1fr auto;
+      align-items:center;
+      gap:17px;
+    }
+
+    .activity-icon{
+      width:58px;
+      height:58px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:var(--etec-red-soft);
+      font-size:1.4rem;
+    }
+
+    .activity-main h4{
+      margin:0;
+      font-size:1.05rem;
+    }
+
+    .activity-main p{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    .meta{
+      margin-top:11px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:27px;
+      padding:0 9px;
+      border-radius:999px;
+      font-size:.74rem;
+      font-weight:900;
+    }
+
+    .tag-open{
+      background:var(--green-bg);
+      color:var(--green);
+    }
+
+    .tag-neutral{
+      background:#f0f2f5;
+      color:#5f6874;
     }
 
     .material-item{
@@ -440,6 +502,16 @@
         width:min(100% - 22px,1160px);
       }
 
+      .activity-card{
+        grid-template-columns:58px 1fr;
+        align-items:start;
+      }
+
+      .activity-card .btn{
+        grid-column:1 / -1;
+        width:100%;
+      }
+
       .section-head{
         flex-direction:column;
         align-items:flex-start;
@@ -496,6 +568,8 @@
 
 
   <main>
+
+    <!-- CAPA -->
 
     <section class="hero" id="inicio">
 
@@ -557,6 +631,8 @@
     </section>
 
 
+    <!-- MENU -->
+
     <div class="quicknav-wrap">
 
       <nav class="shell quicknav">
@@ -578,6 +654,8 @@
     </div>
 
 
+    <!-- ATIVIDADES -->
+
     <section class="section" id="atividades">
 
       <div class="shell">
@@ -595,51 +673,73 @@
             </h3>
 
             <p>
-              As atividades de Processos Organizacionais
-              e Rotinas Administrativas serão publicadas
-              nesta área durante o semestre.
+              Atividades do componente Processos Organizacionais
+              e Rotinas Administrativas.
             </p>
 
           </div>
 
           <span class="count-pill">
-            0
+            1
           </span>
 
         </div>
 
-        <div class="panel">
 
-          <div class="notice">
+        <article class="activity-card">
 
-            <div class="notice-icon">
-              📋
-            </div>
+          <div class="activity-icon">
+            🧩
+          </div>
 
-            <div>
 
-              <strong>
-                Nenhuma atividade publicada no momento
-              </strong>
+          <div class="activity-main">
 
-              <p>
-                Quando houver uma nova atividade, ela aparecerá nesta área.
-              </p>
+            <h4>
+              ATD1 — Questionário “Quem sou eu?”
+            </h4>
+
+            <p>
+              Questionário de perfis comportamentais baseado nos perfis
+              Rei, Guerreiro, Mago e Amante.
+              Responda às 20 questões e receba sua devolutiva individual.
+            </p>
+
+            <div class="meta">
+
+              <span class="tag tag-open">
+                ✓ Disponível
+              </span>
+
+              <span class="tag tag-neutral">
+                ATD1
+              </span>
 
             </div>
 
           </div>
 
-        </div>
+
+          <a
+            class="btn btn-primary"
+            href="atividades/atd1-quem-sou-eu/index.html"
+          >
+            Acessar atividade
+          </a>
+
+        </article>
 
       </div>
 
     </section>
 
 
+    <!-- AVISOS E MATERIAIS -->
+
     <section class="section">
 
       <div class="shell layout-two">
+
 
         <!-- AVISOS -->
 
@@ -656,6 +756,7 @@
             </span>
 
           </div>
+
 
           <div class="notice">
 
@@ -693,11 +794,149 @@
             </h4>
 
             <span class="count-pill">
-              1
+              6
             </span>
 
           </div>
 
+
+          <!-- AULA 01 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              👋
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 01 — Boas-vindas
+              </strong>
+
+              <p>
+                Apresentação inicial do componente,
+                orientações do semestre e acolhimento da turma.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- AULA 02 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              👔
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 02 — Perfil do Administrador
+              </strong>
+
+              <p>
+                Conteúdo sobre características,
+                responsabilidades, comportamento e atuação
+                profissional na área administrativa.
+              </p>
+
+              <a
+                href="materiais/aula-02-perfil-administrador.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                Abrir apostila
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- AULA 03 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              🧩
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 03 — Questionário dos Perfis
+              </strong>
+
+              <p>
+                Questionário de autoconhecimento baseado nos perfis
+                Rei, Guerreiro, Mago e Amante.
+              </p>
+
+              <a
+                href="atividades/atd1-quem-sou-eu/index.html"
+                class="btn btn-primary"
+              >
+                Responder questionário
+              </a>
+
+            </div>
+
+          </div>
+
+
+          <!-- AULA 04 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              🎤
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 04 — Palestra
+              </strong>
+
+              <p>
+                Aula destinada à participação em palestra.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- AULA 05 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              🔎
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 05 — Revisão Geral
+              </strong>
+
+              <p>
+                Revisão geral dos conteúdos trabalhados
+                com alunos calouros e veteranos.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- AULA 06 -->
 
           <div class="material-item">
 
@@ -708,16 +947,16 @@
             <div class="material-content">
 
               <strong>
-                Aula 06 — PORA
+                Aula 06 — Atendimento ao Cliente
               </strong>
 
               <p>
-                Slides utilizados na Aula 06 do componente
+                Material utilizado na Aula 06 do componente
                 Processos Organizacionais e Rotinas Administrativas.
               </p>
 
               <a
-                href="aula-06-pora.pdf"
+                href="materiais/aula-06-atendimento-cliente.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn btn-primary"
@@ -729,6 +968,7 @@
 
           </div>
 
+
         </section>
 
       </div>
@@ -737,6 +977,8 @@
 
   </main>
 
+
+  <!-- RODAPÉ -->
 
   <footer>
 
