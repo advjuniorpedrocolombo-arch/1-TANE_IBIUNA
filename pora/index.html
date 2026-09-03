@@ -346,11 +346,66 @@
       font-size:.86rem;
     }
 
-    .empty{
-      padding:26px 20px;
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 15px;
+      border-radius:12px;
+      font-weight:850;
+      border:1px solid transparent;
+    }
+
+    .btn-primary{
+      background:var(--etec-red);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--etec-red-dark);
+    }
+
+    .material-item{
+      padding:18px 20px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border-top:1px solid var(--line);
+    }
+
+    .material-item:first-of-type{
+      border-top:0;
+    }
+
+    .material-icon{
+      width:46px;
+      height:46px;
+      flex:0 0 auto;
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      background:var(--etec-red-soft);
+      font-size:1.15rem;
+    }
+
+    .material-content{
+      width:100%;
+    }
+
+    .material-content strong{
+      display:block;
+      font-size:.96rem;
+    }
+
+    .material-content p{
+      margin:5px 0 0;
       color:var(--muted);
-      font-size:.9rem;
-      text-align:center;
+      font-size:.86rem;
+    }
+
+    .material-content .btn{
+      margin-top:12px;
     }
 
     footer{
@@ -419,10 +474,7 @@
 
     <div class="shell topbar-inner">
 
-      <a
-        class="back-link"
-        href="../index.html"
-      >
+      <a class="back-link" href="../index.html">
         ← Voltar ao Portal
       </a>
 
@@ -445,10 +497,7 @@
 
   <main>
 
-    <section
-      class="hero"
-      id="inicio"
-    >
+    <section class="hero" id="inicio">
 
       <div class="shell hero-inner">
 
@@ -512,10 +561,7 @@
 
       <nav class="shell quicknav">
 
-        <a
-          class="active"
-          href="#atividades"
-        >
+        <a class="active" href="#atividades">
           Atividades
         </a>
 
@@ -532,10 +578,7 @@
     </div>
 
 
-    <section
-      class="section"
-      id="atividades"
-    >
+    <section class="section" id="atividades">
 
       <div class="shell">
 
@@ -565,11 +608,26 @@
 
         </div>
 
-
         <div class="panel">
 
-          <div class="empty">
-            Nenhuma atividade publicada no momento.
+          <div class="notice">
+
+            <div class="notice-icon">
+              📋
+            </div>
+
+            <div>
+
+              <strong>
+                Nenhuma atividade publicada no momento
+              </strong>
+
+              <p>
+                Quando houver uma nova atividade, ela aparecerá nesta área.
+              </p>
+
+            </div>
+
           </div>
 
         </div>
@@ -583,10 +641,9 @@
 
       <div class="shell layout-two">
 
-        <section
-          class="panel"
-          id="avisos"
-        >
+        <!-- AVISOS -->
+
+        <section class="panel" id="avisos">
 
           <div class="panel-head">
 
@@ -599,7 +656,6 @@
             </span>
 
           </div>
-
 
           <div class="notice">
 
@@ -626,10 +682,9 @@
         </section>
 
 
-        <section
-          class="panel"
-          id="materiais"
-        >
+        <!-- MATERIAIS -->
+
+        <section class="panel" id="materiais">
 
           <div class="panel-head">
 
@@ -637,10 +692,41 @@
               Materiais de apoio
             </h4>
 
+            <span class="count-pill">
+              1
+            </span>
+
           </div>
 
-          <div class="empty">
-            Nenhum material publicado no momento.
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📊
+            </div>
+
+            <div class="material-content">
+
+              <strong>
+                Aula 06 — PORA
+              </strong>
+
+              <p>
+                Slides utilizados na Aula 06 do componente
+                Processos Organizacionais e Rotinas Administrativas.
+              </p>
+
+              <a
+                href="aula-06-pora.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                Abrir slides
+              </a>
+
+            </div>
+
           </div>
 
         </section>
@@ -661,8 +747,7 @@
       </span>
 
       <span>
-        1º TANE — Extensão Ibiúna •
-        Prof. Junior P. Colombo
+        1º TANE — Extensão Ibiúna • Prof. Junior P. Colombo
       </span>
 
     </div>
