@@ -1,1 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="PORA — Processos Organizacionais e Rotinas Administrativas | 1º TANE — Extensão Ibiúna"
+  >
+
+  <title>PORA — Processos Organizacionais e Rotinas Administrativas</title>
+
+  <style>
+    :root{
+      --etec-red:#b5121b;
+      --etec-red-dark:#8e0d14;
+      --etec-red-soft:#f9e9eb;
+      --text:#222831;
+      --muted:#667085;
+      --line:#e7e9ee;
+      --bg:#f6f7f9;
+      --white:#ffffff;
+      --green:#237a42;
+      --green-bg:#eaf7ef;
+      --shadow:0 10px 30px rgba(30,38,50,.08);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .shell{
+      width:min(1160px,calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:#4d5561;
+    }
+
+    .back-link:hover{
+      color:var(--etec-red);
+    }
+
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-size:.86rem;
+      font-weight:700;
+    }
+
+    .brand-dot{
+      width:44px;
+      height:34px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:var(--etec-red);
+      font-size:.72rem;
+      font-weight:900;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(
+          135deg,
+          #fff 0%,
+          #fafafa 60%,
+          #f7e8ea 60%,
+          #fff 76%
+        );
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-175px;
+      bottom:-250px;
+      width:500px;
+      height:500px;
+      background:var(--etec-red);
+      border-radius:50%;
+      opacity:.96;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,420px);
+      gap:34px;
+      align-items:center;
+      padding:48px 0 52px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--etec-red);
+      font-size:.75rem;
+      font-weight:900;
+    }
+
+    .hero h1{
+      margin:8px 0 4px;
+      font-size:clamp(2.2rem,5vw,4.2rem);
+      line-height:1;
+      letter-spacing:-.045em;
+    }
+
+    .hero h2{
+      margin:8px 0 16px;
+      font-size:clamp(1.45rem,3vw,2.15rem);
+      color:var(--etec-red);
+    }
+
+    .hero p{
+      max-width:720px;
+      margin:0;
+      color:#596273;
+      font-size:1rem;
+    }
+
+    .profile-card{
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:0 18px 48px rgba(28,35,45,.13);
+      border-radius:22px;
+      padding:20px;
+      display:grid;
+      grid-template-columns:100px 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .portrait{
+      width:100px;
+      height:100px;
+      object-fit:cover;
+      border-radius:50%;
+      border:4px solid white;
+      outline:2px solid #f1c7cb;
+      box-shadow:0 8px 22px rgba(181,18,27,.12);
+    }
+
+    .profile-card small{
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .profile-card strong{
+      display:block;
+      margin-top:3px;
+      font-size:1.12rem;
+    }
+
+    .profile-card span{
+      display:block;
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .quicknav-wrap{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+
+    .quicknav{
+      display:flex;
+      gap:10px;
+      padding:14px 0;
+      overflow-x:auto;
+    }
+
+    .quicknav a{
+      white-space:nowrap;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:800;
+      font-size:.9rem;
+      color:#4d5561;
+    }
+
+    .quicknav a:hover{
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+    }
+
+    .quicknav a.active{
+      background:var(--etec-red);
+      color:#fff;
+      border-color:var(--etec-red);
+    }
+
+    .section{
+      padding:38px 0;
+    }
+
+    .section + .section{
+      padding-top:10px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
+      margin-bottom:18px;
+    }
+
+    .section-head h3{
+      margin:4px 0 0;
+      font-size:1.55rem;
+    }
+
+    .section-head p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .count-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:38px;
+      height:32px;
+      padding:0 10px;
+      border-radius:999px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      font-size:.82rem;
+      font-weight:900;
+    }
+
+    .layout-two{
+      display:grid;
+      grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
+      gap:18px;
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-head{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .panel-head h4{
+      margin:0;
+      font-size:1.05rem;
+    }
+
+    .notice{
+      padding:18px 20px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .notice-icon{
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      font-size:1.05rem;
+      font-weight:900;
+    }
+
+    .notice strong{
+      display:block;
+      font-size:.94rem;
+    }
+
+    .notice p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .empty{
+      padding:26px 20px;
+      color:var(--muted);
+      font-size:.9rem;
+      text-align:center;
+    }
+
+    footer{
+      margin-top:28px;
+      background:#fff;
+      border-top:1px solid var(--line);
+    }
+
+    .footer-inner{
+      min-height:70px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      color:var(--muted);
+      font-size:.84rem;
+      padding:15px 0;
+    }
+
+    @media(max-width:900px){
+      .hero-inner{
+        grid-template-columns:1fr;
+      }
+
+      .layout-two{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:700px){
+      .shell{
+        width:min(100% - 22px,1160px);
+      }
+
+      .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+
+    @media(max-width:480px){
+      .profile-card{
+        grid-template-columns:78px 1fr;
+      }
+
+      .portrait{
+        width:78px;
+        height:78px;
+      }
+
+      .profile-card span{
+        display:none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+
+    <div class="shell topbar-inner">
+
+      <a
+        class="back-link"
+        href="../index.html"
+      >
+        ← Voltar ao Portal
+      </a>
+
+      <div class="brand-mini">
+
+        <div class="brand-dot">
+          PORA
+        </div>
+
+        <span>
+          1º TANE — Extensão Ibiúna
+        </span>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main>
+
+    <section
+      class="hero"
+      id="inicio"
+    >
+
+      <div class="shell hero-inner">
+
+        <div>
+
+          <div class="eyebrow">
+            Componente curricular
+          </div>
+
+          <h1>
+            PORA
+          </h1>
+
+          <h2>
+            Processos Organizacionais e Rotinas Administrativas
+          </h2>
+
+          <p>
+            Espaço destinado às atividades, avisos, orientações
+            e materiais do componente Processos Organizacionais
+            e Rotinas Administrativas. Os conteúdos ficarão
+            organizados para facilitar o acompanhamento dos alunos.
+          </p>
+
+        </div>
+
+
+        <aside class="profile-card">
+
+          <img
+            class="portrait"
+            src="foto-professor.png"
+            alt="Prof. Junior P. Colombo"
+          >
+
+          <div>
+
+            <small>
+              Professor responsável
+            </small>
+
+            <strong>
+              Prof. Junior P. Colombo
+            </strong>
+
+            <span>
+              Processos Organizacionais e Rotinas Administrativas •
+              1º TANE — Extensão Ibiúna
+            </span>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <div class="quicknav-wrap">
+
+      <nav class="shell quicknav">
+
+        <a
+          class="active"
+          href="#atividades"
+        >
+          Atividades
+        </a>
+
+        <a href="#avisos">
+          Avisos
+        </a>
+
+        <a href="#materiais">
+          Materiais
+        </a>
+
+      </nav>
+
+    </div>
+
+
+    <section
+      class="section"
+      id="atividades"
+    >
+
+      <div class="shell">
+
+        <div class="section-head">
+
+          <div>
+
+            <div class="eyebrow">
+              Atividades
+            </div>
+
+            <h3>
+              Atividades disponíveis
+            </h3>
+
+            <p>
+              As atividades de Processos Organizacionais
+              e Rotinas Administrativas serão publicadas
+              nesta área durante o semestre.
+            </p>
+
+          </div>
+
+          <span class="count-pill">
+            0
+          </span>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="empty">
+            Nenhuma atividade publicada no momento.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="section">
+
+      <div class="shell layout-two">
+
+        <section
+          class="panel"
+          id="avisos"
+        >
+
+          <div class="panel-head">
+
+            <h4>
+              Avisos do componente
+            </h4>
+
+            <span class="count-pill">
+              1
+            </span>
+
+          </div>
+
+
+          <div class="notice">
+
+            <div class="notice-icon">
+              !
+            </div>
+
+            <div>
+
+              <strong>
+                Bem-vindo à área de PORA
+              </strong>
+
+              <p>
+                Os avisos específicos do componente
+                Processos Organizacionais e Rotinas Administrativas
+                serão publicados nesta seção.
+              </p>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section
+          class="panel"
+          id="materiais"
+        >
+
+          <div class="panel-head">
+
+            <h4>
+              Materiais de apoio
+            </h4>
+
+          </div>
+
+          <div class="empty">
+            Nenhum material publicado no momento.
+          </div>
+
+        </section>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <div class="shell footer-inner">
+
+      <span>
+        PORA — Processos Organizacionais e Rotinas Administrativas
+      </span>
+
+      <span>
+        1º TANE — Extensão Ibiúna •
+        Prof. Junior P. Colombo
+      </span>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
