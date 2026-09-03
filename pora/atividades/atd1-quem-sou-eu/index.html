@@ -1,1 +1,1886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ATD1 — Quem sou eu?</title>
+
+  <style>
+    :root{
+      --bg:#f4f1ea;
+      --card:#ffffff;
+      --navy:#172033;
+      --navy2:#263a5c;
+      --text:#242a35;
+      --muted:#667085;
+      --line:#e5e7eb;
+
+      --rei:#d4a017;
+      --guerreiro:#a84335;
+      --mago:#5b4b8a;
+      --amante:#b84a6a;
+
+      --primary:#b5121b;
+      --primary-dark:#8e0d14;
+
+      --success:#237a42;
+      --danger:#b42318;
+
+      --shadow:0 12px 36px rgba(23,32,51,.10);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.5;
+    }
+
+    button,
+    input,
+    select{
+      font:inherit;
+    }
+
+    .page{
+      width:min(980px,calc(100% - 28px));
+      margin:24px auto 50px;
+    }
+
+    /* TOPO */
+
+    .top-link{
+      margin-bottom:14px;
+    }
+
+    .top-link a{
+      color:#475467;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .top-link a:hover{
+      color:var(--primary);
+    }
+
+    /* HERO */
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(135deg,var(--navy),var(--navy2));
+      color:#fff;
+      border-radius:24px;
+      padding:34px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:250px;
+      height:250px;
+      border-radius:50%;
+      background:rgba(255,255,255,.06);
+      right:-70px;
+      top:-80px;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      font-size:.75rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .hero h1{
+      margin:12px 0 5px;
+      font-size:clamp(2rem,6vw,3.6rem);
+      line-height:1;
+    }
+
+    .hero h2{
+      margin:0 0 15px;
+      font-size:1.15rem;
+      font-weight:500;
+      opacity:.9;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:760px;
+      color:#e6eaf1;
+    }
+
+    .authors{
+      margin-top:18px;
+      font-size:.83rem;
+      color:#cbd3df;
+    }
+
+    /* ÍCONES PERFIS */
+
+    .profile-row{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:25px;
+    }
+
+    .mini-profile{
+      border-radius:15px;
+      background:rgba(255,255,255,.09);
+      padding:13px;
+      text-align:center;
+      font-weight:800;
+      backdrop-filter:blur(3px);
+    }
+
+    .mini-profile span{
+      display:block;
+      font-size:1.5rem;
+      margin-bottom:4px;
+    }
+
+    /* CARDS */
+
+    .card{
+      margin-top:20px;
+      background:var(--card);
+      border-radius:20px;
+      border:1px solid rgba(0,0,0,.05);
+      box-shadow:var(--shadow);
+      padding:26px;
+    }
+
+    .card h2{
+      margin:0 0 5px;
+    }
+
+    .subtitle{
+      margin:0 0 22px;
+      color:var(--muted);
+    }
+
+    /* IDENTIFICAÇÃO */
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:17px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    label{
+      font-weight:800;
+      font-size:.9rem;
+    }
+
+    input,
+    select{
+      width:100%;
+      padding:13px 14px;
+      border:1px solid #d0d5dd;
+      border-radius:12px;
+      background:#fff;
+      outline:none;
+    }
+
+    input:focus,
+    select:focus{
+      border-color:#667085;
+      box-shadow:0 0 0 3px rgba(102,112,133,.10);
+    }
+
+    /* BOTÕES */
+
+    .actions{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:24px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      border:0;
+      border-radius:12px;
+      min-height:46px;
+      padding:0 18px;
+      cursor:pointer;
+      font-weight:800;
+      transition:.15s ease;
+    }
+
+    .btn-primary{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--primary-dark);
+    }
+
+    .btn-secondary{
+      background:#eef1f5;
+      color:#344054;
+    }
+
+    .btn-secondary:hover{
+      background:#e3e7ed;
+    }
+
+    .btn:disabled{
+      opacity:.5;
+      cursor:not-allowed;
+    }
+
+    /* QUESTIONÁRIO */
+
+    #questionario{
+      display:none;
+    }
+
+    .progress-wrap{
+      margin-bottom:22px;
+    }
+
+    .progress-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:8px;
+      font-size:.86rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .progress-track{
+      height:10px;
+      background:#e8ebef;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .progress-bar{
+      width:5%;
+      height:100%;
+      background:var(--primary);
+      transition:width .25s ease;
+    }
+
+    .question-number{
+      color:var(--primary);
+      font-size:.78rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:8px;
+    }
+
+    .question-title{
+      margin:0 0 20px;
+      font-size:1.3rem;
+      line-height:1.35;
+    }
+
+    .options{
+      display:grid;
+      gap:11px;
+    }
+
+    .option{
+      display:grid;
+      grid-template-columns:42px 1fr;
+      gap:12px;
+      align-items:center;
+      padding:14px;
+      border:2px solid #e6e8ec;
+      border-radius:14px;
+      cursor:pointer;
+      background:#fff;
+      transition:.15s ease;
+    }
+
+    .option:hover{
+      border-color:#bdc2ca;
+      transform:translateY(-1px);
+    }
+
+    .option.selected{
+      border-color:var(--primary);
+      background:#fff6f6;
+    }
+
+    .letter{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:#f2f4f7;
+      font-weight:900;
+    }
+
+    .option.selected .letter{
+      background:var(--primary);
+      color:#fff;
+    }
+
+    /* MENSAGEM */
+
+    .message{
+      display:none;
+      margin-top:16px;
+      padding:13px 15px;
+      border-radius:12px;
+      font-weight:700;
+    }
+
+    .message.error{
+      display:block;
+      color:#912018;
+      background:#fff1ef;
+      border:1px solid #f5c5bf;
+    }
+
+    .message.success{
+      display:block;
+      color:#1c6538;
+      background:#edf9f1;
+      border:1px solid #b9e4c8;
+    }
+
+    /* RESULTADO */
+
+    #resultado{
+      display:none;
+    }
+
+    .result-head{
+      text-align:center;
+      margin-bottom:25px;
+    }
+
+    .result-head h2{
+      font-size:1.8rem;
+      margin-bottom:5px;
+    }
+
+    .dominant{
+      color:var(--muted);
+      margin:0;
+    }
+
+    .result-grid{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .chart-box{
+      text-align:center;
+    }
+
+    .pie{
+      width:230px;
+      height:230px;
+      margin:0 auto;
+      border-radius:50%;
+      box-shadow:inset 0 0 0 8px #fff,0 8px 25px rgba(0,0,0,.10);
+      position:relative;
+    }
+
+    .pie::after{
+      content:"";
+      position:absolute;
+      inset:62px;
+      background:#fff;
+      border-radius:50%;
+      box-shadow:0 0 0 1px rgba(0,0,0,.04);
+    }
+
+    .chart-label{
+      margin-top:14px;
+      font-weight:800;
+      color:#475467;
+    }
+
+    .profiles-results{
+      display:grid;
+      gap:16px;
+    }
+
+    .result-profile{
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius:14px;
+    }
+
+    .result-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:8px;
+      font-weight:800;
+    }
+
+    .result-percent{
+      font-size:1.15rem;
+    }
+
+    .track{
+      height:12px;
+      border-radius:999px;
+      background:#e9ecf1;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:999px;
+      width:0;
+      transition:width .6s ease;
+    }
+
+    .rei .fill{background:var(--rei);}
+    .guerreiro .fill{background:var(--guerreiro);}
+    .mago .fill{background:var(--mago);}
+    .amante .fill{background:var(--amante);}
+
+    .analysis-box{
+      margin-top:24px;
+      padding:20px;
+      border-radius:16px;
+      background:#f8fafc;
+      border:1px solid #e4e7ec;
+    }
+
+    .analysis-box h3{
+      margin:0 0 10px;
+    }
+
+    .analysis-box p{
+      color:#475467;
+      margin:0;
+    }
+
+    .send-status{
+      margin-top:18px;
+      padding:14px;
+      border-radius:12px;
+      background:#f0fdf4;
+      color:#216e3a;
+      font-weight:700;
+    }
+
+    .footnote{
+      margin-top:22px;
+      color:#667085;
+      font-size:.83rem;
+      border-top:1px solid var(--line);
+      padding-top:15px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:760px){
+
+      .page{
+        width:min(100% - 18px,980px);
+        margin-top:10px;
+      }
+
+      .hero,
+      .card{
+        border-radius:16px;
+      }
+
+      .hero{
+        padding:25px 20px;
+      }
+
+      .profile-row{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .field.full{
+        grid-column:auto;
+      }
+
+      .result-grid{
+        grid-template-columns:1fr;
+      }
+
+      .option{
+        grid-template-columns:38px 1fr;
+        padding:12px;
+      }
+    }
+
+    @media(max-width:430px){
+
+      .card{
+        padding:19px 15px;
+      }
+
+      .hero h1{
+        font-size:2.35rem;
+      }
+
+      .pie{
+        width:205px;
+        height:205px;
+      }
+
+      .pie::after{
+        inset:56px;
+      }
+
+      .actions{
+        flex-direction:column;
+      }
+
+      .actions .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="top-link">
+      <a href="../../index.html">
+        ← Voltar para PORA
+      </a>
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <span class="hero-badge">
+        PORA • ATD1
+      </span>
+
+      <h1>
+        Quem sou eu?
+      </h1>
+
+      <h2>
+        Questionário de Perfis Comportamentais
+      </h2>
+
+      <p>
+        Responda às 20 questões de acordo com a alternativa que
+        mais representa sua forma de pensar, agir e se relacionar.
+        Ao final, você conhecerá a distribuição dos seus perfis.
+      </p>
+
+      <div class="profile-row">
+
+        <div class="mini-profile">
+          <span>♔</span>
+          Rei
+        </div>
+
+        <div class="mini-profile">
+          <span>⚔</span>
+          Guerreiro
+        </div>
+
+        <div class="mini-profile">
+          <span>✦</span>
+          Mago
+        </div>
+
+        <div class="mini-profile">
+          <span>♥</span>
+          Amante
+        </div>
+
+      </div>
+
+      <div class="authors">
+        Professor: Junior P. Colombo<br>
+        Autores do questionário: Gustavo G. Boog e Magdalena Boog
+      </div>
+
+    </section>
+
+
+    <!-- IDENTIFICAÇÃO -->
+
+    <section class="card" id="identificacao">
+
+      <h2>
+        Identificação do aluno
+      </h2>
+
+      <p class="subtitle">
+        Preencha seus dados antes de iniciar o questionário.
+      </p>
+
+      <div class="form-grid">
+
+        <div class="field full">
+          <label for="nome">
+            Nome completo
+          </label>
+
+          <input
+            id="nome"
+            type="text"
+            placeholder="Digite seu nome completo"
+            autocomplete="name"
+          >
+        </div>
+
+
+        <div class="field">
+          <label for="turma">
+            Turma
+          </label>
+
+          <select id="turma">
+            <option value="">Selecione</option>
+            <option value="1º TANE - Extensão Ibiúna">
+              1º TANE - Extensão Ibiúna
+            </option>
+          </select>
+        </div>
+
+
+        <div class="field">
+          <label for="cidade">
+            Cidade
+          </label>
+
+          <input
+            id="cidade"
+            type="text"
+            value="Ibiúna"
+            placeholder="Cidade"
+          >
+        </div>
+
+
+        <div class="field full">
+          <label for="email">
+            E-mail para receber a devolutiva
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="seuemail@exemplo.com"
+            autocomplete="email"
+          >
+        </div>
+
+
+        <div class="field full">
+          <label for="componente">
+            Componente
+          </label>
+
+          <input
+            id="componente"
+            type="text"
+            value="Processos Organizacionais e Rotinas Administrativas"
+            readonly
+          >
+        </div>
+
+      </div>
+
+      <div id="identificacaoMensagem" class="message"></div>
+
+      <div class="actions">
+
+        <div></div>
+
+        <button
+          class="btn btn-primary"
+          type="button"
+          onclick="iniciarQuestionario()"
+        >
+          Iniciar questionário
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUESTIONÁRIO -->
+
+    <section class="card" id="questionario">
+
+      <div class="progress-wrap">
+
+        <div class="progress-top">
+
+          <span id="progressText">
+            Questão 1 de 20
+          </span>
+
+          <span id="progressPercent">
+            5%
+          </span>
+
+        </div>
+
+        <div class="progress-track">
+          <div
+            class="progress-bar"
+            id="progressBar"
+          ></div>
+        </div>
+
+      </div>
+
+
+      <div
+        class="question-number"
+        id="questionNumber"
+      >
+        Questão 01
+      </div>
+
+      <h2
+        class="question-title"
+        id="questionTitle"
+      ></h2>
+
+      <div
+        class="options"
+        id="options"
+      ></div>
+
+      <div
+        id="questionMessage"
+        class="message"
+      ></div>
+
+
+      <div class="actions">
+
+        <button
+          class="btn btn-secondary"
+          id="prevBtn"
+          type="button"
+          onclick="voltarQuestao()"
+        >
+          ← Anterior
+        </button>
+
+        <button
+          class="btn btn-primary"
+          id="nextBtn"
+          type="button"
+          onclick="avancarQuestao()"
+        >
+          Próxima →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- RESULTADO -->
+
+    <section
+      class="card"
+      id="resultado"
+    >
+
+      <div class="result-head">
+
+        <h2>
+          Seu resultado
+        </h2>
+
+        <p
+          class="dominant"
+          id="dominantText"
+        ></p>
+
+      </div>
+
+
+      <div class="result-grid">
+
+
+        <div class="chart-box">
+
+          <div
+            class="pie"
+            id="pieChart"
+          ></div>
+
+          <div class="chart-label">
+            Distribuição dos perfis
+          </div>
+
+        </div>
+
+
+        <div class="profiles-results">
+
+
+          <div class="result-profile rei">
+
+            <div class="result-top">
+              <span>♔ Rei</span>
+              <span
+                class="result-percent"
+                id="reiPercent"
+              >
+                0%
+              </span>
+            </div>
+
+            <div class="track">
+              <div
+                class="fill"
+                id="reiBar"
+              ></div>
+            </div>
+
+          </div>
+
+
+          <div class="result-profile guerreiro">
+
+            <div class="result-top">
+              <span>⚔ Guerreiro</span>
+              <span
+                class="result-percent"
+                id="guerreiroPercent"
+              >
+                0%
+              </span>
+            </div>
+
+            <div class="track">
+              <div
+                class="fill"
+                id="guerreiroBar"
+              ></div>
+            </div>
+
+          </div>
+
+
+          <div class="result-profile mago">
+
+            <div class="result-top">
+              <span>✦ Mago</span>
+              <span
+                class="result-percent"
+                id="magoPercent"
+              >
+                0%
+              </span>
+            </div>
+
+            <div class="track">
+              <div
+                class="fill"
+                id="magoBar"
+              ></div>
+            </div>
+
+          </div>
+
+
+          <div class="result-profile amante">
+
+            <div class="result-top">
+              <span>♥ Amante</span>
+              <span
+                class="result-percent"
+                id="amantePercent"
+              >
+                0%
+              </span>
+            </div>
+
+            <div class="track">
+              <div
+                class="fill"
+                id="amanteBar"
+              ></div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="analysis-box">
+
+        <h3>
+          Leitura geral do resultado
+        </h3>
+
+        <p id="generalAnalysis"></p>
+
+      </div>
+
+
+      <div
+        class="send-status"
+        id="sendStatus"
+      >
+        Enviando suas respostas e preparando sua devolutiva...
+      </div>
+
+
+      <div class="actions">
+
+        <button
+          class="btn btn-secondary"
+          type="button"
+          onclick="location.reload()"
+        >
+          Refazer questionário
+        </button>
+
+      </div>
+
+
+      <div class="footnote">
+        <strong>Importante:</strong>
+        os resultados representam tendências comportamentais
+        observadas a partir das respostas ao questionário.
+        Não constituem diagnóstico psicológico nem determinam,
+        de forma absoluta, profissão, carreira ou área de atuação.
+      </div>
+
+    </section>
+
+  </main>
+
+
+<script>
+
+  /* ==========================================================
+     CONFIGURAÇÃO DO GOOGLE APPS SCRIPT
+     ========================================================== */
+
+  const ENDPOINT =
+    'https://script.google.com/macros/s/AKfycbxHoBbQxaUJC1JbZzjg7JM-I2A4znChkscE4ZHihNulXEGGVC4Iho5aLGg-POZO6k-k/exec';
+
+
+  /* ==========================================================
+     QUESTÕES
+     ========================================================== */
+
+  const questoes = [
+
+    {
+      titulo:'A adjetivação com a qual mais me identifico é:',
+      opcoes:{
+        A:'Sou batalhador. Faço o que precisa ser feito.',
+        B:'Sou prestativo. Gosto de ajudar as pessoas.',
+        C:'Sou lógico. Sou muito exigente comigo mesmo e com os outros.',
+        D:'Sou “alto astral”. Gosto de dar ideias novas e criativas.'
+      }
+    },
+
+    {
+      titulo:'Eu me sinto realizado quando:',
+      opcoes:{
+        A:'Proponho ideias criativas que vão gerar resultados futuros.',
+        B:'Estruturo regras e procedimentos que organizam as coisas.',
+        C:'Atinjo as metas e os objetivos no prazo definido.',
+        D:'Consigo um ambiente harmonioso entre as pessoas.'
+      }
+    },
+
+    {
+      titulo:'Fico feliz quando:',
+      opcoes:{
+        A:'Obtenho resultados rápidos.',
+        B:'Posso criar um ambiente informal.',
+        C:'Posso ser exato em minhas análises.',
+        D:'Posso ajudar as pessoas.'
+      }
+    },
+
+    {
+      titulo:'Encontro grande satisfação quando:',
+      opcoes:{
+        A:'Tudo está bem organizado.',
+        B:'As pessoas estão em harmonia.',
+        C:'Lidero tarefas que levam a resultados objetivos.',
+        D:'Tenho inspirações inovadoras.'
+      }
+    },
+
+    {
+      titulo:'Um aspecto de meu desempenho de que gosto muito é quando:',
+      opcoes:{
+        A:'Posso criar um ambiente harmonioso e previsível.',
+        B:'Faço as coisas com rapidez, sem medo de riscos e mudanças.',
+        C:'Posso persuadir as pessoas e ter um trabalho alegre.',
+        D:'Realizo as tarefas com padrões precisos, objetivos e lógicos.'
+      }
+    },
+
+    {
+      titulo:'Os temores que tenho são principalmente devidos a:',
+      opcoes:{
+        A:'Estar errado e ter que improvisar.',
+        B:'Perder a aprovação e o afeto dos outros.',
+        C:'Enfrentar situações de confronto entre as pessoas.',
+        D:'Parecer fraco e perder o controle da situação.'
+      }
+    },
+
+    {
+      titulo:'Acho que meu desempenho seria melhor se eu:',
+      opcoes:{
+        A:'Desse mais atenção aos detalhes.',
+        B:'Delegasse mais e abrisse mais espaço para os outros.',
+        C:'Ficasse menos em “cima do muro”.',
+        D:'Fosse menos rígido e mais descontraído.'
+      }
+    },
+
+    {
+      titulo:'Considero que sou mais eficaz quando:',
+      opcoes:{
+        A:'Expresso o meu descontentamento.',
+        B:'Sou mais flexível com as regras e os regulamentos.',
+        C:'Coloco em prática e termino as muitas ideias que tive.',
+        D:'Sou mais paciente e tolerante com o ritmo dos outros.'
+      }
+    },
+
+    {
+      titulo:'Eu exagero (e isso é ruim) quando:',
+      opcoes:{
+        A:'Tenho pressa para tudo e atropelo os outros.',
+        B:'Prendo-me muito a detalhes e sou exigente demais.',
+        C:'Deixo sempre a vontade dos outros prevalecer.',
+        D:'Faço brincadeiras o tempo todo.'
+      }
+    },
+
+    {
+      titulo:'Como características pessoais eu sou:',
+      opcoes:{
+        A:'Entusiasmado, estimulador, carismático, ambicioso.',
+        B:'Decidido, prático, determinado, dedicado.',
+        C:'Meticuloso, organizado, cuidadoso, persistente.',
+        D:'Calmo, agradável, cordial, respeitador.'
+      }
+    },
+
+    {
+      titulo:'Os apelidos que melhor me identificam são:',
+      opcoes:{
+        A:'Chato, cri-cri, burocrata, dono da verdade, “Senhor Certinho”.',
+        B:'Inovador, sonhador, inventor, tagarela, lunático.',
+        C:'Trator, tocador, lobo solitário, “pau-pra-toda-obra”, mandão.',
+        D:'Liso, sabonetão, político, “em cima do muro”, pai de todos.'
+      }
+    },
+
+    {
+      titulo:'Eu sofro quando:',
+      opcoes:{
+        A:'Falta mais harmonia e espírito de equipe.',
+        B:'Os outros não seguem as regras e não leem as instruções.',
+        C:'Não sou compreendido e não aceitam minhas ideias.',
+        D:'O ritmo das atividades é muito lento.'
+      }
+    },
+
+    {
+      titulo:'Os meus horários são:',
+      opcoes:{
+        A:'Exatos e precisos, conforme estabelecido.',
+        B:'Flexíveis, se for para agradar aos outros.',
+        C:'Tenho dificuldade para cumprir horários combinados.',
+        D:'Primeiro a chegar, último a sair.'
+      }
+    },
+
+    {
+      titulo:'Uma oração que me caracteriza muito bem é:',
+      opcoes:{
+        A:'Senhor, dê-me paciência, mas tem que ser já.',
+        B:'Senhor, faça-me pensar um pouco mais em mim mesmo, claro, se os outros concordarem.',
+        C:'Senhor, ajude-me a me importar menos com pequenos detalhes a partir de amanhã às 13h45min.',
+        D:'Senhor, faça-me aberto às ideias dos outros, mesmo sendo tão erradas como são.'
+      }
+    },
+
+    {
+      titulo:'O provérbio com o qual me identifico é:',
+      opcoes:{
+        A:'A união faz a força.',
+        B:'Quem não arrisca, não petisca.',
+        C:'Manda quem pode, obedece quem tem juízo.',
+        D:'Não se mexe em time que está ganhando.'
+      }
+    },
+
+    {
+      titulo:'O comportamento que melhor me identifica é:',
+      opcoes:{
+        A:'Sou cuidadoso: harmonizo, logo existo.',
+        B:'Sou impulsivo: faço, logo existo.',
+        C:'Sou tempestuoso: crio, logo existo.',
+        D:'Sou persistente: organizo, logo existo.'
+      }
+    },
+
+    {
+      titulo:'Dou preferência a atividades em que eu possa...',
+      opcoes:{
+        A:'Ter a visão geral do projeto. A ideia em si me interessa mais do que colocá-la em prática.',
+        B:'Planejar em vez de fazer. Gosto de analisar as diversas alternativas.',
+        C:'Buscar que todos concordem e sintam-se motivados a fazer. Isso é mais importante que a tarefa em si.',
+        D:'Fazer em vez de planejar. Gosto dos desafios de fazer e não tanto de ficar planejando.'
+      }
+    },
+
+    {
+      titulo:'Meu local de trabalho está geralmente:',
+      opcoes:{
+        A:'Bastante bagunçado, com muitas coisas fora do lugar. Gavetas meio desarrumadas. Gosto de expor fotos de pessoas importantes que estiveram comigo.',
+        B:'Não muito organizado, mas procuro ter as últimas novidades sempre à vista. O ambiente é bastante agradável para receber as pessoas.',
+        C:'Superarrumado e organizado. Só fica fora o material que estou usando naquele momento.',
+        D:'Muito acolhedor. Tenho plantas no local e muitas fotos da família e de amigos.'
+      }
+    },
+
+    {
+      titulo:'Minhas qualidades principais são:',
+      opcoes:{
+        A:'Ordem e disciplina. Perfeição em cada detalhe.',
+        B:'Ser prestativo e tolerante. Harmonia acima de tudo.',
+        C:'Rapidez para agir e coragem de “meter as caras”.',
+        D:'Capacidade de entusiasmar as pessoas e trazer ideias novas.'
+      }
+    },
+
+    {
+      titulo:'Nas minhas atividades, uso mais:',
+      opcoes:{
+        A:'A intuição e a criatividade.',
+        B:'Os dados objetivos e concretos.',
+        C:'Os sentimentos e as emoções.',
+        D:'O pensamento e a lógica.'
+      }
+    }
+
+  ];
+
+
+  /* ==========================================================
+     MAPA DOS PERFIS
+     ========================================================== */
+
+  const mapaPerfis = [
+
+    {A:'Guerreiro', B:'Amante', C:'Mago', D:'Rei'},
+    {A:'Rei', B:'Mago', C:'Guerreiro', D:'Amante'},
+    {A:'Guerreiro', B:'Rei', C:'Mago', D:'Amante'},
+    {A:'Mago', B:'Amante', C:'Guerreiro', D:'Rei'},
+    {A:'Amante', B:'Guerreiro', C:'Rei', D:'Mago'},
+    {A:'Mago', B:'Rei', C:'Amante', D:'Guerreiro'},
+    {A:'Rei', B:'Guerreiro', C:'Amante', D:'Mago'},
+    {A:'Amante', B:'Mago', C:'Rei', D:'Guerreiro'},
+    {A:'Guerreiro', B:'Mago', C:'Amante', D:'Rei'},
+    {A:'Rei', B:'Guerreiro', C:'Mago', D:'Amante'},
+    {A:'Mago', B:'Rei', C:'Guerreiro', D:'Amante'},
+    {A:'Amante', B:'Mago', C:'Rei', D:'Guerreiro'},
+    {A:'Mago', B:'Amante', C:'Rei', D:'Guerreiro'},
+    {A:'Guerreiro', B:'Amante', C:'Mago', D:'Rei'},
+    {A:'Amante', B:'Rei', C:'Guerreiro', D:'Mago'},
+    {A:'Amante', B:'Guerreiro', C:'Rei', D:'Mago'},
+    {A:'Rei', B:'Mago', C:'Amante', D:'Guerreiro'},
+    {A:'Guerreiro', B:'Rei', C:'Mago', D:'Amante'},
+    {A:'Mago', B:'Amante', C:'Guerreiro', D:'Rei'},
+    {A:'Rei', B:'Guerreiro', C:'Amante', D:'Mago'}
+
+  ];
+
+
+  let questaoAtual = 0;
+
+  const respostas =
+    new Array(questoes.length).fill(null);
+
+  let enviado = false;
+
+
+  /* ==========================================================
+     IDENTIFICAÇÃO
+     ========================================================== */
+
+  function iniciarQuestionario(){
+
+    const nome =
+      document.getElementById('nome').value.trim();
+
+    const turma =
+      document.getElementById('turma').value.trim();
+
+    const email =
+      document.getElementById('email').value.trim();
+
+    const cidade =
+      document.getElementById('cidade').value.trim();
+
+    const mensagem =
+      document.getElementById('identificacaoMensagem');
+
+
+    mensagem.className = 'message';
+    mensagem.textContent = '';
+
+
+    if(!nome){
+      mostrarErroIdentificacao(
+        'Digite o nome completo.'
+      );
+      return;
+    }
+
+    if(!turma){
+      mostrarErroIdentificacao(
+        'Selecione a turma.'
+      );
+      return;
+    }
+
+    if(!email || !email.includes('@')){
+      mostrarErroIdentificacao(
+        'Digite um e-mail válido para receber a devolutiva.'
+      );
+      return;
+    }
+
+    if(!cidade){
+      mostrarErroIdentificacao(
+        'Informe a cidade.'
+      );
+      return;
+    }
+
+
+    document.getElementById('identificacao')
+      .style.display = 'none';
+
+    document.getElementById('questionario')
+      .style.display = 'block';
+
+    renderQuestao();
+
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    });
+
+  }
+
+
+  function mostrarErroIdentificacao(texto){
+
+    const mensagem =
+      document.getElementById('identificacaoMensagem');
+
+    mensagem.textContent = texto;
+    mensagem.className = 'message error';
+
+  }
+
+
+  /* ==========================================================
+     RENDERIZAÇÃO
+     ========================================================== */
+
+  function renderQuestao(){
+
+    const questao =
+      questoes[questaoAtual];
+
+    const numero =
+      questaoAtual + 1;
+
+    const percentual =
+      Math.round(
+        (numero / questoes.length) * 100
+      );
+
+
+    document.getElementById('questionNumber')
+      .textContent =
+      'Questão ' +
+      String(numero).padStart(2,'0');
+
+
+    document.getElementById('questionTitle')
+      .textContent =
+      questao.titulo;
+
+
+    document.getElementById('progressText')
+      .textContent =
+      `Questão ${numero} de ${questoes.length}`;
+
+
+    document.getElementById('progressPercent')
+      .textContent =
+      `${percentual}%`;
+
+
+    document.getElementById('progressBar')
+      .style.width =
+      `${percentual}%`;
+
+
+    const container =
+      document.getElementById('options');
+
+
+    container.innerHTML = '';
+
+
+    Object.entries(questao.opcoes)
+      .forEach(([letra,texto])=>{
+
+        const option =
+          document.createElement('div');
+
+        option.className = 'option';
+
+        if(respostas[questaoAtual] === letra){
+          option.classList.add('selected');
+        }
+
+        option.innerHTML = `
+          <div class="letter">${letra}</div>
+          <div>${texto}</div>
+        `;
+
+        option.addEventListener(
+          'click',
+          ()=>{
+            selecionarResposta(letra);
+          }
+        );
+
+        container.appendChild(option);
+
+      });
+
+
+    document.getElementById('prevBtn')
+      .disabled =
+      questaoAtual === 0;
+
+
+    document.getElementById('nextBtn')
+      .textContent =
+      questaoAtual === questoes.length - 1
+      ? 'Finalizar questionário'
+      : 'Próxima →';
+
+
+    const mensagem =
+      document.getElementById('questionMessage');
+
+    mensagem.className = 'message';
+    mensagem.textContent = '';
+
+  }
+
+
+  function selecionarResposta(letra){
+
+    respostas[questaoAtual] = letra;
+
+    document
+      .querySelectorAll('.option')
+      .forEach(
+        el => el.classList.remove('selected')
+      );
+
+    const indice =
+      ['A','B','C','D'].indexOf(letra);
+
+    const options =
+      document.querySelectorAll('.option');
+
+    if(options[indice]){
+      options[indice]
+        .classList.add('selected');
+    }
+
+  }
+
+
+  /* ==========================================================
+     NAVEGAÇÃO
+     ========================================================== */
+
+  function avancarQuestao(){
+
+    if(!respostas[questaoAtual]){
+
+      const mensagem =
+        document.getElementById('questionMessage');
+
+      mensagem.textContent =
+        'Selecione uma alternativa antes de continuar.';
+
+      mensagem.className =
+        'message error';
+
+      return;
+
+    }
+
+
+    if(questaoAtual <
+       questoes.length - 1){
+
+      questaoAtual++;
+
+      renderQuestao();
+
+      document
+        .getElementById('questionario')
+        .scrollIntoView({
+          behavior:'smooth',
+          block:'start'
+        });
+
+      return;
+
+    }
+
+
+    finalizarQuestionario();
+
+  }
+
+
+  function voltarQuestao(){
+
+    if(questaoAtual > 0){
+
+      questaoAtual--;
+
+      renderQuestao();
+
+    }
+
+  }
+
+
+  /* ==========================================================
+     CÁLCULO
+     ========================================================== */
+
+  function calcularResultado(){
+
+    const pontos = {
+      Rei:0,
+      Guerreiro:0,
+      Mago:0,
+      Amante:0
+    };
+
+
+    respostas.forEach(
+      (resposta,index)=>{
+
+        const perfil =
+          mapaPerfis[index][resposta];
+
+        pontos[perfil]++;
+
+      }
+    );
+
+
+    return {
+      Rei:pontos.Rei * 5,
+      Guerreiro:pontos.Guerreiro * 5,
+      Mago:pontos.Mago * 5,
+      Amante:pontos.Amante * 5
+    };
+
+  }
+
+
+  function descobrirPredominante(resultado){
+
+    const maior =
+      Math.max(...Object.values(resultado));
+
+    return Object.keys(resultado)
+      .filter(
+        perfil =>
+        resultado[perfil] === maior
+      );
+
+  }
+
+
+  /* ==========================================================
+     RESULTADO
+     ========================================================== */
+
+  function finalizarQuestionario(){
+
+    if(respostas.some(r => !r)){
+      alert(
+        'Existem questões sem resposta.'
+      );
+      return;
+    }
+
+
+    const resultado =
+      calcularResultado();
+
+    const predominantes =
+      descobrirPredominante(resultado);
+
+
+    document.getElementById('questionario')
+      .style.display = 'none';
+
+    document.getElementById('resultado')
+      .style.display = 'block';
+
+
+    atualizarResultado(
+      resultado,
+      predominantes
+    );
+
+
+    enviarResultado(
+      resultado,
+      predominantes
+    );
+
+
+    document
+      .getElementById('resultado')
+      .scrollIntoView({
+        behavior:'smooth',
+        block:'start'
+      });
+
+  }
+
+
+  function atualizarResultado(
+    resultado,
+    predominantes
+  ){
+
+    setPerfil(
+      'rei',
+      resultado.Rei
+    );
+
+    setPerfil(
+      'guerreiro',
+      resultado.Guerreiro
+    );
+
+    setPerfil(
+      'mago',
+      resultado.Mago
+    );
+
+    setPerfil(
+      'amante',
+      resultado.Amante
+    );
+
+
+    let textoPredominante;
+
+    if(predominantes.length === 1){
+
+      textoPredominante =
+        `Seu perfil predominante é ${predominantes[0]}.`;
+
+    }else{
+
+      textoPredominante =
+        `Há equilíbrio entre os perfis: ${predominantes.join(' e ')}.`;
+
+    }
+
+
+    document.getElementById('dominantText')
+      .textContent =
+      textoPredominante;
+
+
+    document.getElementById('generalAnalysis')
+      .textContent =
+      criarAnaliseGeral(
+        predominantes,
+        resultado
+      );
+
+
+    criarGrafico(resultado);
+
+  }
+
+
+  function setPerfil(
+    id,
+    valor
+  ){
+
+    document
+      .getElementById(id + 'Percent')
+      .textContent =
+      valor + '%';
+
+    setTimeout(()=>{
+
+      document
+        .getElementById(id + 'Bar')
+        .style.width =
+        valor + '%';
+
+    },100);
+
+  }
+
+
+  function criarGrafico(r){
+
+    const a = r.Rei;
+
+    const b =
+      a + r.Guerreiro;
+
+    const c =
+      b + r.Mago;
+
+
+    document
+      .getElementById('pieChart')
+      .style.background =
+      `conic-gradient(
+        var(--rei) 0% ${a}%,
+        var(--guerreiro) ${a}% ${b}%,
+        var(--mago) ${b}% ${c}%,
+        var(--amante) ${c}% 100%
+      )`;
+
+  }
+
+
+  function criarAnaliseGeral(
+    perfis,
+    resultado
+  ){
+
+    if(perfis.length > 1){
+
+      return (
+        'Seu resultado demonstra equilíbrio entre ' +
+        perfis.join(' e ') +
+        '. Isso indica combinação de diferentes formas de agir, ' +
+        'tomar decisões e se relacionar. A devolutiva enviada ao seu ' +
+        'e-mail apresentará uma análise individual mais detalhada.'
+      );
+
+    }
+
+
+    const perfil = perfis[0];
+
+
+    const textos = {
+
+      Rei:
+        'O perfil Rei tende a se destacar pela criatividade, entusiasmo, influência, visão e capacidade de mobilizar pessoas. Pode apresentar afinidade com áreas como Marketing, gestão, liderança, estratégia e empreendedorismo.',
+
+      Guerreiro:
+        'O perfil Guerreiro tende a valorizar ação, objetividade, velocidade, desafios e resultados. Pode apresentar afinidade com áreas como Logística, operações, execução, produtividade e vendas.',
+
+      Mago:
+        'O perfil Mago tende a valorizar organização, análise, precisão, planejamento e controle. Pode apresentar afinidade com Contabilidade, Finanças, Controladoria, tecnologia e atividades analíticas.',
+
+      Amante:
+        'O perfil Amante tende a valorizar cooperação, harmonia, relacionamento, acolhimento e trabalho em equipe. Pode apresentar afinidade com Recursos Humanos, Gestão de Pessoas, atendimento, relacionamento e treinamento.'
+
+    };
+
+
+    return (
+      textos[perfil] +
+      ' Essas características representam tendências e não determinam uma profissão ou área de atuação.'
+    );
+
+  }
+
+
+  /* ==========================================================
+     ENVIO AO GOOGLE APPS SCRIPT
+     ========================================================== */
+
+  async function enviarResultado(
+    resultado,
+    predominantes
+  ){
+
+    if(enviado){
+      return;
+    }
+
+    enviado = true;
+
+
+    const status =
+      document.getElementById('sendStatus');
+
+
+    const payload = {
+
+      nome:
+        document
+          .getElementById('nome')
+          .value
+          .trim(),
+
+      turma:
+        document
+          .getElementById('turma')
+          .value
+          .trim(),
+
+      email:
+        document
+          .getElementById('email')
+          .value
+          .trim(),
+
+      cidade:
+        document
+          .getElementById('cidade')
+          .value
+          .trim(),
+
+      componente:
+        document
+          .getElementById('componente')
+          .value
+          .trim(),
+
+      respostas:
+        [...respostas]
+
+    };
+
+
+    try{
+
+      await fetch(
+        ENDPOINT,
+        {
+          method:'POST',
+
+          mode:'no-cors',
+
+          headers:{
+            'Content-Type':
+              'text/plain;charset=utf-8'
+          },
+
+          body:
+            JSON.stringify(payload)
+        }
+      );
+
+
+      status.textContent =
+        '✓ Respostas encaminhadas. Sua devolutiva individual será enviada para o e-mail informado.';
+
+
+    }catch(erro){
+
+      console.error(erro);
+
+      status.style.background =
+        '#fff1f0';
+
+      status.style.color =
+        '#912018';
+
+      status.textContent =
+        'Não foi possível encaminhar o resultado. Informe o professor antes de fechar esta página.';
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
