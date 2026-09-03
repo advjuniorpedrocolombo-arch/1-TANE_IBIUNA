@@ -27,9 +27,6 @@
       --white:#ffffff;
       --green:#237a42;
       --green-bg:#eaf7ef;
-      --blue:#2563eb;
-      --blue-bg:#eff6ff;
-      --gray-bg:#f2f4f7;
       --shadow:0 10px 30px rgba(30,38,50,.08);
     }
 
@@ -292,9 +289,8 @@
 
     .layout-two{
       display:grid;
-      grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+      grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
       gap:18px;
-      align-items:start;
     }
 
     .panel{
@@ -359,7 +355,6 @@
       border-radius:12px;
       font-weight:850;
       border:1px solid transparent;
-      transition:.2s ease;
     }
 
     .btn-primary{
@@ -369,14 +364,6 @@
 
     .btn-primary:hover{
       background:var(--etec-red-dark);
-      transform:translateY(-1px);
-    }
-
-    .btn-questionario{
-      background:var(--blue-bg);
-      color:var(--blue);
-      border-color:#bfdbfe;
-      cursor:default;
     }
 
     .material-item{
@@ -419,48 +406,6 @@
 
     .material-content .btn{
       margin-top:12px;
-    }
-
-    .material-status{
-      display:inline-flex;
-      align-items:center;
-      gap:7px;
-      margin-top:12px;
-      padding:8px 11px;
-      border-radius:9px;
-      background:var(--gray-bg);
-      color:#667085;
-      font-size:.78rem;
-      font-weight:800;
-    }
-
-    .material-status::before{
-      content:"✓";
-      font-weight:900;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      margin-bottom:6px;
-      padding:4px 8px;
-      border-radius:999px;
-      background:var(--etec-red-soft);
-      color:var(--etec-red);
-      font-size:.68rem;
-      font-weight:900;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-    }
-
-    .tag-today{
-      background:var(--green-bg);
-      color:var(--green);
-    }
-
-    .tag-soon{
-      background:var(--blue-bg);
-      color:var(--blue);
     }
 
     footer{
@@ -519,10 +464,6 @@
       .profile-card span{
         display:none;
       }
-
-      .material-item{
-        padding:16px;
-      }
     }
   </style>
 </head>
@@ -556,8 +497,6 @@
 
   <main>
 
-    <!-- CAPA -->
-
     <section class="hero" id="inicio">
 
       <div class="shell hero-inner">
@@ -579,8 +518,8 @@
           <p>
             Espaço destinado às atividades, avisos, orientações
             e materiais do componente Processos Organizacionais
-            e Rotinas Administrativas. Os conteúdos estão organizados
-            por aula para facilitar o acompanhamento e os estudos.
+            e Rotinas Administrativas. Os conteúdos ficarão
+            organizados para facilitar o acompanhamento dos alunos.
           </p>
 
         </div>
@@ -618,8 +557,6 @@
     </section>
 
 
-    <!-- MENU -->
-
     <div class="quicknav-wrap">
 
       <nav class="shell quicknav">
@@ -640,8 +577,6 @@
 
     </div>
 
-
-    <!-- ATIVIDADES -->
 
     <section class="section" id="atividades">
 
@@ -702,12 +637,9 @@
     </section>
 
 
-    <!-- AVISOS E MATERIAIS -->
-
     <section class="section">
 
       <div class="shell layout-two">
-
 
         <!-- AVISOS -->
 
@@ -734,13 +666,13 @@
             <div>
 
               <strong>
-                Materiais organizados por aula
+                Bem-vindo à área de PORA
               </strong>
 
               <p>
-                Consulte a seção de materiais para acessar as apostilas
-                e conteúdos complementares disponibilizados durante
-                o semestre.
+                Os avisos específicos do componente
+                Processos Organizacionais e Rotinas Administrativas
+                serão publicados nesta seção.
               </p>
 
             </div>
@@ -761,202 +693,41 @@
             </h4>
 
             <span class="count-pill">
-              6
+              1
             </span>
 
           </div>
 
 
-          <!-- AULA 01 -->
-
           <div class="material-item">
 
             <div class="material-icon">
-              👋
+              📊
             </div>
 
             <div class="material-content">
 
               <strong>
-                Aula 01 — Recepção e Boas-vindas
+                Aula 06 — PORA
               </strong>
 
               <p>
-                Apresentação inicial do componente, orientações gerais,
-                organização das aulas e integração com a turma.
-              </p>
-
-              <span class="material-status">
-                Aula realizada — sem apostila
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <!-- AULA 02 -->
-
-          <div class="material-item">
-
-            <div class="material-icon">
-              👔
-            </div>
-
-            <div class="material-content">
-
-              <strong>
-                Aula 02 — Perfil do Administrador
-              </strong>
-
-              <p>
-                Estudo do perfil profissional do administrador,
-                suas competências, habilidades, responsabilidades
-                e atuação nas organizações.
+                Slides utilizados na Aula 06 do componente
+                Processos Organizacionais e Rotinas Administrativas.
               </p>
 
               <a
-                href="materiais/aula-02-perfil-administrador.pdf"
+                href="aula-06-pora.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="btn btn-primary"
               >
-                📄 Abrir apostila
+                Abrir slides
               </a>
 
             </div>
 
           </div>
-
-
-          <!-- AULA 03 -->
-
-          <div class="material-item">
-
-            <div class="material-icon">
-              🧩
-            </div>
-
-            <div class="material-content">
-
-              <span class="tag tag-soon">
-                Em breve
-              </span>
-
-              <strong>
-                Aula 03 — Questionário de Perfis
-              </strong>
-
-              <p>
-                Atividade destinada à identificação e análise
-                dos diferentes perfis comportamentais e profissionais,
-                relacionando características pessoais às áreas
-                administrativas.
-              </p>
-
-              <span class="btn btn-questionario">
-                📝 Questionário em breve
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <!-- AULA 04 -->
-
-          <div class="material-item">
-
-            <div class="material-icon">
-              🎤
-            </div>
-
-            <div class="material-content">
-
-              <strong>
-                Aula 04 — Palestra
-              </strong>
-
-              <p>
-                Aula destinada à participação em palestra e atividade
-                complementar relacionada à formação profissional.
-              </p>
-
-              <span class="material-status">
-                Aula realizada — sem apostila
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <!-- AULA 05 -->
-
-          <div class="material-item">
-
-            <div class="material-icon">
-              🔄
-            </div>
-
-            <div class="material-content">
-
-              <strong>
-                Aula 05 — Revisão Geral
-              </strong>
-
-              <p>
-                Revisão dos conteúdos trabalhados anteriormente,
-                com retomada dos principais conceitos estudados
-                no componente.
-              </p>
-
-              <span class="material-status">
-                Aula realizada — sem apostila
-              </span>
-
-            </div>
-
-          </div>
-
-
-          <!-- AULA 06 -->
-
-          <div class="material-item">
-
-            <div class="material-icon">
-              🤝
-            </div>
-
-            <div class="material-content">
-
-              <span class="tag tag-today">
-                Aula 06
-              </span>
-
-              <strong>
-                Aula 06 — Atendimento ao Cliente Interno e Externo
-              </strong>
-
-              <p>
-                Material de apoio sobre atendimento ao cliente,
-                comunicação, relacionamento profissional e a importância
-                dos clientes internos e externos para as organizações.
-              </p>
-
-              <a
-                href="materiais/aula-06-atendimento-cliente.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-primary"
-              >
-                📄 Abrir apostila
-              </a>
-
-            </div>
-
-          </div>
-
 
         </section>
 
@@ -966,8 +737,6 @@
 
   </main>
 
-
-  <!-- RODAPÉ -->
 
   <footer>
 
