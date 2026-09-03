@@ -2,8 +2,17 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="EM — Economia e Mercado | 1º TANE — Extensão Ibiúna">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="EM — Economia e Mercado | 1º TANE — Extensão Ibiúna"
+  >
+
   <title>EM — Economia e Mercado</title>
 
   <style>
@@ -46,6 +55,8 @@
       width:min(1160px,calc(100% - 32px));
       margin:0 auto;
     }
+
+    /* TOPO */
 
     .topbar{
       position:sticky;
@@ -96,16 +107,19 @@
       font-weight:900;
     }
 
+    /* HERO */
+
     .hero{
       position:relative;
       overflow:hidden;
-      background:linear-gradient(
-        135deg,
-        #fff 0%,
-        #fafafa 60%,
-        #f7e8ea 60%,
-        #fff 76%
-      );
+      background:
+        linear-gradient(
+          135deg,
+          #fff 0%,
+          #fafafa 60%,
+          #f7e8ea 60%,
+          #fff 76%
+        );
       border-bottom:1px solid var(--line);
     }
 
@@ -162,6 +176,8 @@
       font-size:1rem;
     }
 
+    /* PERFIL PROFESSOR */
+
     .profile-card{
       background:rgba(255,255,255,.97);
       border:1px solid rgba(255,255,255,.7);
@@ -202,6 +218,8 @@
       font-size:.86rem;
     }
 
+    /* MENU */
+
     .quicknav-wrap{
       background:#fff;
       border-bottom:1px solid var(--line);
@@ -235,6 +253,8 @@
       color:#fff;
       border-color:var(--etec-red);
     }
+
+    /* SEÇÕES */
 
     .section{
       padding:38px 0;
@@ -276,6 +296,8 @@
       font-size:.82rem;
       font-weight:900;
     }
+
+    /* ATIVIDADE */
 
     .activity-card{
       background:#fff;
@@ -357,6 +379,8 @@
       background:var(--etec-red-dark);
     }
 
+    /* PAINÉIS */
+
     .layout-two{
       display:grid;
       grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
@@ -423,6 +447,8 @@
       text-align:center;
     }
 
+    /* RODAPÉ */
+
     footer{
       margin-top:28px;
       background:#fff;
@@ -440,7 +466,10 @@
       padding:15px 0;
     }
 
+    /* RESPONSIVO */
+
     @media(max-width:900px){
+
       .hero-inner{
         grid-template-columns:1fr;
       }
@@ -448,9 +477,11 @@
       .layout-two{
         grid-template-columns:1fr;
       }
+
     }
 
     @media(max-width:700px){
+
       .shell{
         width:min(100% - 22px,1160px);
       }
@@ -479,9 +510,11 @@
         flex-direction:column;
         text-align:center;
       }
+
     }
 
     @media(max-width:480px){
+
       .profile-card{
         grid-template-columns:78px 1fr;
       }
@@ -494,30 +527,51 @@
       .profile-card span{
         display:none;
       }
+
     }
   </style>
 </head>
 
 <body>
 
+  <!-- TOPO -->
+
   <header class="topbar">
+
     <div class="shell topbar-inner">
 
-      <a class="back-link" href="../index.html">
+      <a
+        class="back-link"
+        href="../index.html"
+      >
         ← Voltar ao Portal
       </a>
 
       <div class="brand-mini">
-        <div class="brand-dot">EM</div>
-        <span>1º TANE — Extensão Ibiúna</span>
+
+        <div class="brand-dot">
+          EM
+        </div>
+
+        <span>
+          1º TANE — Extensão Ibiúna
+        </span>
+
       </div>
 
     </div>
+
   </header>
+
 
   <main>
 
-    <section class="hero" id="inicio">
+    <!-- CAPA -->
+
+    <section
+      class="hero"
+      id="inicio"
+    >
 
       <div class="shell hero-inner">
 
@@ -527,23 +581,31 @@
             Componente curricular
           </div>
 
-          <h1>EM</h1>
+          <h1>
+            EM
+          </h1>
 
-          <h2>Economia e Mercado</h2>
+          <h2>
+            Economia e Mercado
+          </h2>
 
           <p>
-            Espaço destinado às atividades, avisos, orientações e materiais
-            do componente Economia e Mercado. Todo o conteúdo ficará
-            organizado para facilitar o acesso dos alunos.
+            Espaço destinado às atividades, avisos, orientações e
+            materiais do componente Economia e Mercado.
+            Todo o conteúdo ficará organizado para facilitar
+            o acesso dos alunos.
           </p>
 
         </div>
+
+
+        <!-- PROFESSOR -->
 
         <aside class="profile-card">
 
           <img
             class="portrait"
-           src="../foto-professor.png"
+            src="foto-professor.png"
             alt="Prof. Junior P. Colombo"
           >
 
@@ -569,11 +631,17 @@
 
     </section>
 
+
+    <!-- MENU INTERNO -->
+
     <div class="quicknav-wrap">
 
       <nav class="shell quicknav">
 
-        <a class="active" href="#atividades">
+        <a
+          class="active"
+          href="#atividades"
+        >
           Atividades
         </a>
 
@@ -589,7 +657,13 @@
 
     </div>
 
-    <section class="section" id="atividades">
+
+    <!-- ATIVIDADES -->
+
+    <section
+      class="section"
+      id="atividades"
+    >
 
       <div class="shell">
 
@@ -606,7 +680,8 @@
             </h3>
 
             <p>
-              Novas atividades serão adicionadas nesta área durante o semestre.
+              Novas atividades serão adicionadas
+              nesta área durante o semestre.
             </p>
 
           </div>
@@ -616,6 +691,9 @@
           </span>
 
         </div>
+
+
+        <!-- ATIVIDADE 01 -->
 
         <article class="activity-card">
 
@@ -630,8 +708,9 @@
             </h4>
 
             <p>
-              Primeira atividade do componente com questões sobre fundamentos
-              econômicos, demanda, oferta e equilíbrio de mercado.
+              Primeira atividade do componente com questões
+              sobre fundamentos econômicos, demanda,
+              oferta e equilíbrio de mercado.
             </p>
 
             <div class="meta">
@@ -661,11 +740,19 @@
 
     </section>
 
+
+    <!-- AVISOS E MATERIAIS -->
+
     <section class="section">
 
       <div class="shell layout-two">
 
-        <section class="panel" id="avisos">
+        <!-- AVISOS -->
+
+        <section
+          class="panel"
+          id="avisos"
+        >
 
           <div class="panel-head">
 
@@ -692,7 +779,8 @@
               </strong>
 
               <p>
-                Os avisos específicos deste componente serão publicados aqui.
+                Os avisos específicos deste componente
+                serão publicados aqui.
               </p>
 
             </div>
@@ -701,7 +789,13 @@
 
         </section>
 
-        <section class="panel" id="materiais">
+
+        <!-- MATERIAIS -->
+
+        <section
+          class="panel"
+          id="materiais"
+        >
 
           <div class="panel-head">
 
@@ -723,6 +817,9 @@
 
   </main>
 
+
+  <!-- RODAPÉ -->
+
   <footer>
 
     <div class="shell footer-inner">
@@ -732,7 +829,8 @@
       </span>
 
       <span>
-        1º TANE — Extensão Ibiúna • Prof. Junior P. Colombo
+        1º TANE — Extensão Ibiúna •
+        Prof. Junior P. Colombo
       </span>
 
     </div>
