@@ -1,3614 +1,989 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color"
-content="#172033">
-
-<title>
-ATD1 – Quem sou eu? | Perfis Comportamentais
-</title>
-
-
-<style>
-
-:root{
-
---bg:#f4f1ea;
---surface:#ffffff;
---soft:#faf8f3;
-
---text:#1f2937;
---muted:#6b7280;
---line:#e5e0d5;
-
---accent:#263a5c;
---accent2:#172033;
---accent-soft:#e9eef6;
-
---rei:#d4a017;
---guerreiro:#a84335;
---mago:#5b4b8a;
---amante:#b84a6a;
-
---success:#1f7a4d;
---success-bg:#e9f7ef;
-
---error:#a83232;
---error-bg:#fdecec;
-
---shadow:
-0 16px 40px rgba(28,37,54,.08);
-
---radius:22px;
-
-}
-
-
-*{
-box-sizing:border-box;
-}
-
-
-html{
-scroll-behavior:smooth;
-}
-
-
-body{
-
-margin:0;
-
-min-height:100vh;
-
-background:
-
-radial-gradient(
-circle at top left,
-rgba(212,160,23,.09),
-transparent 34%
-),
-
-radial-gradient(
-circle at bottom right,
-rgba(91,75,138,.09),
-transparent 36%
-),
-
-var(--bg);
-
-color:var(--text);
-
-font-family:
-Inter,
-ui-sans-serif,
-system-ui,
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-sans-serif;
-
-}
-
-
-button,
-input{
-font:inherit;
-}
-
-
-.app{
-
-width:min(
-940px,
-calc(100% - 28px)
-);
-
-margin:
-28px auto 56px;
-
-}
-
-
-/****************************************
- HERO
-****************************************/
-
-.hero{
-
-background:
-linear-gradient(
-135deg,
-#172033,
-#263a5c
-);
-
-color:white;
-
-border-radius:28px;
-
-padding:30px;
-
-box-shadow:
-var(--shadow);
-
-overflow:hidden;
-
-position:relative;
-
-}
-
-
-.hero::after{
-
-content:"";
-
-position:absolute;
-
-width:250px;
-height:250px;
-
-border-radius:50%;
-
-right:-95px;
-top:-95px;
-
-background:
-rgba(255,255,255,.07);
-
-}
-
-
-.eyebrow{
-
-display:inline-flex;
-
-gap:8px;
-
-align-items:center;
-
-font-size:.84rem;
-
-font-weight:800;
-
-letter-spacing:.08em;
-
-text-transform:uppercase;
-
-color:#f5d775;
-
-margin-bottom:9px;
-
-}
-
-
-.hero h1{
-
-margin:0;
-
-font-family:
-Georgia,
-"Times New Roman",
-serif;
-
-font-size:
-clamp(
-2rem,
-5vw,
-3.5rem
-);
-
-line-height:1.03;
-
-max-width:700px;
-
-}
-
-
-.hero p{
-
-margin:
-14px 0 0;
-
-max-width:760px;
-
-color:
-rgba(
-255,
-255,
-255,
-.82
-);
-
-font-size:1.03rem;
-
-line-height:1.5;
-
-}
-
-
-.professor{
-
-margin-top:12px;
-
-font-size:.9rem;
-
-color:
-rgba(
-255,
-255,
-255,
-.72
-);
-
-}
-
-
-.archetypes{
-
-display:grid;
-
-grid-template-columns:
-repeat(
-4,
-1fr
-);
-
-gap:10px;
-
-margin-top:25px;
-
-position:relative;
-
-z-index:1;
-
-}
-
-
-.mini{
-
-display:flex;
-
-align-items:center;
-
-gap:9px;
-
-background:
-rgba(
-255,
-255,
-255,
-.1
-);
-
-border:
-1px solid
-rgba(
-255,
-255,
-255,
-.13
-);
-
-border-radius:14px;
-
-padding:
-10px 12px;
-
-font-weight:700;
-
-font-size:.92rem;
-
-}
-
-
-.icon{
-font-size:1.45rem;
-}
-
-
-/****************************************
- PAINEL
-****************************************/
-
-.panel{
-
-background:
-var(--surface);
-
-border:
-1px solid
-var(--line);
-
-border-radius:
-var(--radius);
-
-box-shadow:
-var(--shadow);
-
-margin-top:18px;
-
-}
-
-
-/****************************************
- INTRO
-****************************************/
-
-.intro{
-
-padding:25px;
-
-}
-
-
-.intro h2{
-
-margin:
-0 0 6px;
-
-}
-
-
-.intro-description{
-
-color:
-var(--muted);
-
-margin:
-0 0 22px;
-
-line-height:1.5;
-
-}
-
-
-.form-grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(
-2,
-1fr
-);
-
-gap:15px;
-
-}
-
-
-.field{
-
-display:flex;
-
-flex-direction:column;
-
-gap:7px;
-
-}
-
-
-.field.full{
-grid-column:1/-1;
-}
-
-
-.field label{
-
-font-weight:800;
-
-font-size:.92rem;
-
-}
-
-
-.field input{
-
-width:100%;
-
-border:
-1px solid
-var(--line);
-
-border-radius:12px;
-
-padding:
-13px 14px;
-
-background:white;
-
-color:
-var(--text);
-
-outline:none;
-
-}
-
-
-.field input:focus{
-
-border-color:
-var(--accent);
-
-box-shadow:
-0 0 0 4px
-var(--accent-soft);
-
-}
-
-
-.help{
-
-color:
-var(--muted);
-
-font-size:.78rem;
-
-line-height:1.35;
-
-}
-
-
-.instructions{
-
-margin-top:20px;
-
-background:
-var(--soft);
-
-border:
-1px solid
-var(--line);
-
-border-radius:15px;
-
-padding:16px;
-
-}
-
-
-.instructions strong{
-
-display:block;
-
-margin-bottom:6px;
-
-}
-
-
-.instructions p{
-
-margin:0;
-
-color:
-var(--muted);
-
-line-height:1.5;
-
-font-size:.91rem;
-
-}
-
-
-/****************************************
- BOTÕES
-****************************************/
-
-.btn{
-
-border:0;
-
-border-radius:13px;
-
-min-height:46px;
-
-padding:
-0 19px;
-
-font-weight:850;
-
-cursor:pointer;
-
-transition:.15s ease;
-
-}
-
-
-.btn.primary{
-
-background:
-var(--accent);
-
-color:white;
-
-}
-
-
-.btn.primary:hover{
-
-filter:
-brightness(1.08);
-
-}
-
-
-.btn.secondary{
-
-background:#f0ede6;
-
-color:
-var(--text);
-
-}
-
-
-.btn:disabled{
-
-opacity:.45;
-
-cursor:
-not-allowed;
-
-}
-
-
-.start{
-
-width:100%;
-
-margin-top:20px;
-
-}
-
-
-/****************************************
- QUESTIONÁRIO
-****************************************/
-
-.quiz{
-
-display:none;
-
-padding:24px;
-
-}
-
-
-.quiz.active{
-display:block;
-}
-
-
-.progress-row{
-
-display:flex;
-
-justify-content:
-space-between;
-
-gap:12px;
-
-align-items:center;
-
-margin-bottom:10px;
-
-color:
-var(--muted);
-
-font-size:.92rem;
-
-font-weight:700;
-
-}
-
-
-.progress-track{
-
-height:9px;
-
-background:#ece8df;
-
-border-radius:999px;
-
-overflow:hidden;
-
-margin-bottom:24px;
-
-}
-
-
-.progress-bar{
-
-height:100%;
-
-width:0;
-
-background:
-linear-gradient(
-90deg,
-var(--accent),
-#5371a0
-);
-
-border-radius:
-inherit;
-
-transition:
-width .25s ease;
-
-}
-
-
-.question-number{
-
-display:inline-flex;
-
-align-items:center;
-
-justify-content:center;
-
-min-width:38px;
-
-height:38px;
-
-border-radius:12px;
-
-background:
-var(--accent-soft);
-
-color:
-var(--accent);
-
-font-weight:900;
-
-margin-bottom:12px;
-
-}
-
-
-.question h2{
-
-margin:0;
-
-font-size:
-clamp(
-1.2rem,
-3vw,
-1.6rem
-);
-
-line-height:1.35;
-
-}
-
-
-.options{
-
-display:grid;
-
-gap:11px;
-
-margin-top:22px;
-
-}
-
-
-.option{
-
-position:relative;
-
-display:flex;
-
-gap:13px;
-
-align-items:flex-start;
-
-border:
-1.5px solid
-var(--line);
-
-border-radius:15px;
-
-padding:
-15px 16px;
-
-cursor:pointer;
-
-transition:.15s ease;
-
-background:white;
-
-}
-
-
-.option:hover{
-
-border-color:#b7c2d4;
-
-transform:
-translateY(-1px);
-
-}
-
-
-.option.selected{
-
-border-color:
-var(--accent);
-
-background:
-var(--accent-soft);
-
-}
-
-
-.option input{
-
-position:absolute;
-
-opacity:0;
-
-pointer-events:none;
-
-}
-
-
-.letter{
-
-width:30px;
-
-height:30px;
-
-border:
-1px solid #cfd5df;
-
-border-radius:9px;
-
-display:grid;
-
-place-items:center;
-
-flex:0 0 auto;
-
-font-weight:900;
-
-background:white;
-
-}
-
-
-.selected .letter{
-
-background:
-var(--accent);
-
-color:white;
-
-border-color:
-var(--accent);
-
-}
-
-
-.option-text{
-
-padding-top:3px;
-
-line-height:1.42;
-
-}
-
-
-.actions{
-
-display:flex;
-
-justify-content:
-space-between;
-
-gap:12px;
-
-margin-top:24px;
-
-flex-wrap:wrap;
-
-}
-
-
-/****************************************
- RESULTADO
-****************************************/
-
-.result{
-
-display:none;
-
-padding:26px;
-
-}
-
-
-.result.active{
-display:block;
-}
-
-
-.result-header{
-
-text-align:center;
-
-margin-bottom:25px;
-
-}
-
-
-.result-header .kicker{
-
-color:
-var(--muted);
-
-font-size:.82rem;
-
-font-weight:800;
-
-text-transform:
-uppercase;
-
-letter-spacing:.08em;
-
-}
-
-
-.result-header h2{
-
-margin:
-6px 0 8px;
-
-font-family:
-Georgia,
-"Times New Roman",
-serif;
-
-font-size:
-clamp(
-2rem,
-5vw,
-3rem
-);
-
-}
-
-
-.result-header p{
-
-color:
-var(--muted);
-
-margin:
-0 auto;
-
-max-width:660px;
-
-line-height:1.5;
-
-}
-
-
-.result-grid{
-
-display:grid;
-
-grid-template-columns:
-minmax(
-270px,
-.9fr
-)
-minmax(
-300px,
-1.1fr
-);
-
-gap:28px;
-
-align-items:center;
-
-}
-
-
-/****************************************
- GRÁFICO
-****************************************/
-
-.pie-stage{
-
-position:relative;
-
-width:
-min(
-410px,
-100%
-);
-
-aspect-ratio:
-1/1;
-
-margin:auto;
-
-}
-
-
-.pie{
-
-position:absolute;
-
-inset:5%;
-
-border-radius:50%;
-
-background:
-conic-gradient(
-var(--rei)
-0deg 90deg,
-
-var(--guerreiro)
-90deg 180deg,
-
-var(--mago)
-180deg 270deg,
-
-var(--amante)
-270deg 360deg
-);
-
-box-shadow:
-
-inset
-0 0 0 2px
-rgba(
-255,
-255,
-255,
-.8
-),
-
-0 14px 32px
-rgba(
-31,
-41,
-55,
-.16
-);
-
-}
-
-
-.pie::after{
-
-content:"";
-
-position:absolute;
-
-inset:31%;
-
-background:
-var(--surface);
-
-border-radius:50%;
-
-box-shadow:
-0 0 0 1px
-var(--line);
-
-}
-
-
-.center-label{
-
-position:absolute;
-
-inset:38%;
-
-z-index:4;
-
-display:grid;
-
-place-items:center;
-
-text-align:center;
-
-pointer-events:none;
-
-}
-
-
-.center-label strong{
-
-display:block;
-
-font-size:1.05rem;
-
-line-height:1.05;
-
-}
-
-
-.center-label span{
-
-color:
-var(--muted);
-
-font-size:.7rem;
-
-margin-top:4px;
-
-}
-
-
-/****************************************
- RESULTADOS
-****************************************/
-
-.legend{
-
-display:grid;
-
-gap:10px;
-
-}
-
-
-.legend-card{
-
-border:
-1px solid
-var(--line);
-
-border-radius:15px;
-
-padding:
-14px 15px;
-
-background:
-var(--soft);
-
-}
-
-
-.legend-top{
-
-display:flex;
-
-justify-content:
-space-between;
-
-gap:12px;
-
-align-items:center;
-
-}
-
-
-.legend-name{
-
-display:flex;
-
-align-items:center;
-
-gap:9px;
-
-font-weight:900;
-
-}
-
-
-.dot{
-
-width:12px;
-
-height:12px;
-
-border-radius:50%;
-
-}
-
-
-.legend-percent{
-
-font-size:1.35rem;
-
-font-weight:950;
-
-}
-
-
-.legend-desc{
-
-margin-top:5px;
-
-color:
-var(--muted);
-
-font-size:.88rem;
-
-line-height:1.35;
-
-}
-
-
-.dominant{
-
-margin-top:18px;
-
-border-left:
-5px solid
-var(--accent);
-
-background:
-var(--accent-soft);
-
-border-radius:12px;
-
-padding:
-15px 16px;
-
-}
-
-
-.dominant strong{
-
-display:block;
-
-margin-bottom:5px;
-
-}
-
-
-.dominant span{
-
-color:#49556a;
-
-line-height:1.45;
-
-}
-
-
-/****************************************
- STATUS
-****************************************/
-
-.status{
-
-margin-top:22px;
-
-border-radius:14px;
-
-padding:16px;
-
-border:
-1px solid
-var(--line);
-
-}
-
-
-.status.sending{
-
-background:
-#fff8df;
-
-border-color:#ead89a;
-
-}
-
-
-.status.success{
-
-background:
-var(--success-bg);
-
-border-color:#aad5bc;
-
-color:
-var(--success);
-
-}
-
-
-.status.error{
-
-background:
-var(--error-bg);
-
-border-color:#e0aaaa;
-
-color:
-var(--error);
-
-}
-
-
-.status strong{
-
-display:block;
-
-margin-bottom:4px;
-
-}
-
-
-.status span{
-
-line-height:1.45;
-
-font-size:.9rem;
-
-}
-
-
-.result-actions{
-
-display:flex;
-
-justify-content:center;
-
-margin-top:26px;
-
-}
-
-
-.note{
-
-text-align:center;
-
-margin:
-18px 0 0;
-
-color:
-var(--muted);
-
-font-size:.81rem;
-
-line-height:1.4;
-
-}
-
-
-footer{
-
-text-align:center;
-
-padding:
-22px 5px 0;
-
-color:
-var(--muted);
-
-font-size:.78rem;
-
-}
-
-
-/****************************************
- MOBILE
-****************************************/
-
-@media(
-max-width:760px
-){
-
-.archetypes{
-
-grid-template-columns:
-repeat(
-2,
-1fr
-);
-
-}
-
-.form-grid,
-.result-grid{
-
-grid-template-columns:
-1fr;
-
-}
-
-.hero{
-
-padding:
-24px 20px;
-
-}
-
-.panel{
-
-border-radius:18px;
-
-}
-
-.quiz,
-.intro,
-.result{
-
-padding:20px;
-
-}
-
-.pie-stage{
-
-max-width:350px;
-
-}
-
-}
-
-
-@media(
-max-width:430px
-){
-
-.app{
-
-width:
-min(
-100% - 18px,
-940px
-);
-
-margin-top:9px;
-
-}
-
-.archetypes{
-gap:7px;
-}
-
-.mini{
-
-font-size:.82rem;
-
-padding:
-8px 9px;
-
-}
-
-.actions .btn{
-
-flex:
-1 1 100%;
-
-}
-
-}
-
-</style>
-
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="PORA — Processos Organizacionais e Rotinas Administrativas | 1º TANE — Extensão Ibiúna"
+  >
+
+  <title>PORA — Processos Organizacionais e Rotinas Administrativas</title>
+
+  <style>
+    :root{
+      --etec-red:#b5121b;
+      --etec-red-dark:#8e0d14;
+      --etec-red-soft:#f9e9eb;
+      --text:#222831;
+      --muted:#667085;
+      --line:#e7e9ee;
+      --bg:#f6f7f9;
+      --white:#ffffff;
+      --green:#237a42;
+      --green-bg:#eaf7ef;
+      --blue:#2563eb;
+      --blue-bg:#eff6ff;
+      --gray-bg:#f2f4f7;
+      --shadow:0 10px 30px rgba(30,38,50,.08);
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .shell{
+      width:min(1160px,calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:40;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      color:#4d5561;
+    }
+
+    .back-link:hover{
+      color:var(--etec-red);
+    }
+
+    .brand-mini{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:var(--muted);
+      font-size:.86rem;
+      font-weight:700;
+    }
+
+    .brand-dot{
+      width:44px;
+      height:34px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      color:#fff;
+      background:var(--etec-red);
+      font-size:.72rem;
+      font-weight:900;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(
+          135deg,
+          #fff 0%,
+          #fafafa 60%,
+          #f7e8ea 60%,
+          #fff 76%
+        );
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      right:-175px;
+      bottom:-250px;
+      width:500px;
+      height:500px;
+      background:var(--etec-red);
+      border-radius:50%;
+      opacity:.96;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0,1fr) minmax(300px,420px);
+      gap:34px;
+      align-items:center;
+      padding:48px 0 52px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--etec-red);
+      font-size:.75rem;
+      font-weight:900;
+    }
+
+    .hero h1{
+      margin:8px 0 4px;
+      font-size:clamp(2.2rem,5vw,4.2rem);
+      line-height:1;
+      letter-spacing:-.045em;
+    }
+
+    .hero h2{
+      margin:8px 0 16px;
+      font-size:clamp(1.45rem,3vw,2.15rem);
+      color:var(--etec-red);
+    }
+
+    .hero p{
+      max-width:720px;
+      margin:0;
+      color:#596273;
+      font-size:1rem;
+    }
+
+    .profile-card{
+      background:rgba(255,255,255,.97);
+      border:1px solid rgba(255,255,255,.7);
+      box-shadow:0 18px 48px rgba(28,35,45,.13);
+      border-radius:22px;
+      padding:20px;
+      display:grid;
+      grid-template-columns:100px 1fr;
+      gap:16px;
+      align-items:center;
+    }
+
+    .portrait{
+      width:100px;
+      height:100px;
+      object-fit:cover;
+      border-radius:50%;
+      border:4px solid white;
+      outline:2px solid #f1c7cb;
+      box-shadow:0 8px 22px rgba(181,18,27,.12);
+    }
+
+    .profile-card small{
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    .profile-card strong{
+      display:block;
+      margin-top:3px;
+      font-size:1.12rem;
+    }
+
+    .profile-card span{
+      display:block;
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .quicknav-wrap{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+
+    .quicknav{
+      display:flex;
+      gap:10px;
+      padding:14px 0;
+      overflow-x:auto;
+    }
+
+    .quicknav a{
+      white-space:nowrap;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#fff;
+      font-weight:800;
+      font-size:.9rem;
+      color:#4d5561;
+    }
+
+    .quicknav a:hover{
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+    }
+
+    .quicknav a.active{
+      background:var(--etec-red);
+      color:#fff;
+      border-color:var(--etec-red);
+    }
+
+    .section{
+      padding:38px 0;
+    }
+
+    .section + .section{
+      padding-top:10px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
+      margin-bottom:18px;
+    }
+
+    .section-head h3{
+      margin:4px 0 0;
+      font-size:1.55rem;
+    }
+
+    .section-head p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.94rem;
+    }
+
+    .count-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:38px;
+      height:32px;
+      padding:0 10px;
+      border-radius:999px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      font-size:.82rem;
+      font-weight:900;
+    }
+
+    .layout-two{
+      display:grid;
+      grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+      gap:18px;
+      align-items:start;
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-head{
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .panel-head h4{
+      margin:0;
+      font-size:1.05rem;
+    }
+
+    .notice{
+      padding:18px 20px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .notice-icon{
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      font-size:1.05rem;
+      font-weight:900;
+    }
+
+    .notice strong{
+      display:block;
+      font-size:.94rem;
+    }
+
+    .notice p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:0 15px;
+      border-radius:12px;
+      font-weight:850;
+      border:1px solid transparent;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:var(--etec-red);
+      color:#fff;
+    }
+
+    .btn-primary:hover{
+      background:var(--etec-red-dark);
+      transform:translateY(-1px);
+    }
+
+    .btn-questionario{
+      background:var(--blue-bg);
+      color:var(--blue);
+      border-color:#bfdbfe;
+      cursor:default;
+    }
+
+    .material-item{
+      padding:18px 20px;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border-top:1px solid var(--line);
+    }
+
+    .material-item:first-of-type{
+      border-top:0;
+    }
+
+    .material-icon{
+      width:46px;
+      height:46px;
+      flex:0 0 auto;
+      border-radius:13px;
+      display:grid;
+      place-items:center;
+      background:var(--etec-red-soft);
+      font-size:1.15rem;
+    }
+
+    .material-content{
+      width:100%;
+    }
+
+    .material-content strong{
+      display:block;
+      font-size:.96rem;
+    }
+
+    .material-content p{
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    .material-content .btn{
+      margin-top:12px;
+    }
+
+    .material-status{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-top:12px;
+      padding:8px 11px;
+      border-radius:9px;
+      background:var(--gray-bg);
+      color:#667085;
+      font-size:.78rem;
+      font-weight:800;
+    }
+
+    .material-status::before{
+      content:"✓";
+      font-weight:900;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      margin-bottom:6px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      font-size:.68rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .tag-today{
+      background:var(--green-bg);
+      color:var(--green);
+    }
+
+    .tag-soon{
+      background:var(--blue-bg);
+      color:var(--blue);
+    }
+
+    footer{
+      margin-top:28px;
+      background:#fff;
+      border-top:1px solid var(--line);
+    }
+
+    .footer-inner{
+      min-height:70px;
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:center;
+      color:var(--muted);
+      font-size:.84rem;
+      padding:15px 0;
+    }
+
+    @media(max-width:900px){
+      .hero-inner{
+        grid-template-columns:1fr;
+      }
+
+      .layout-two{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:700px){
+      .shell{
+        width:min(100% - 22px,1160px);
+      }
+
+      .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+
+    @media(max-width:480px){
+      .profile-card{
+        grid-template-columns:78px 1fr;
+      }
+
+      .portrait{
+        width:78px;
+        height:78px;
+      }
+
+      .profile-card span{
+        display:none;
+      }
+
+      .material-item{
+        padding:16px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
+  <header class="topbar">
 
-<main class="app">
+    <div class="shell topbar-inner">
 
+      <a class="back-link" href="../index.html">
+        ← Voltar ao Portal
+      </a>
 
-<!-- HERO -->
+      <div class="brand-mini">
 
-<section class="hero">
+        <div class="brand-dot">
+          PORA
+        </div>
 
-<div class="eyebrow">
-✦ ATD1 • Autoconhecimento
-</div>
+        <span>
+          1º TANE — Extensão Ibiúna
+        </span>
 
-<h1>
-Quem sou eu?
-</h1>
+      </div>
 
-<p>
-Descubra como os perfis
-<strong>Rei</strong>,
-<strong>Guerreiro</strong>,
-<strong>Mago</strong>
-e
-<strong>Amante</strong>
-aparecem em sua forma de pensar,
-agir e se relacionar.
-</p>
+    </div>
 
-<div class="professor">
+  </header>
 
-Professor Junior P. Colombo<br>
 
-Autores do instrumento:
-Gustavo G. Boog e Magdalena Boog
+  <main>
 
-</div>
+    <!-- CAPA -->
 
+    <section class="hero" id="inicio">
 
-<div class="archetypes">
+      <div class="shell hero-inner">
 
-<div class="mini">
-<span class="icon">♛</span>
-Rei
-</div>
+        <div>
 
-<div class="mini">
-<span class="icon">⚔</span>
-Guerreiro
-</div>
+          <div class="eyebrow">
+            Componente curricular
+          </div>
 
-<div class="mini">
-<span class="icon">✦</span>
-Mago
-</div>
+          <h1>
+            PORA
+          </h1>
 
-<div class="mini">
-<span class="icon">♥</span>
-Amante
-</div>
+          <h2>
+            Processos Organizacionais e Rotinas Administrativas
+          </h2>
 
-</div>
+          <p>
+            Espaço destinado às atividades, avisos, orientações
+            e materiais do componente Processos Organizacionais
+            e Rotinas Administrativas. Os conteúdos estão organizados
+            por aula para facilitar o acompanhamento e os estudos.
+          </p>
 
-</section>
+        </div>
 
 
+        <aside class="profile-card">
 
-<!-- IDENTIFICAÇÃO -->
+          <img
+            class="portrait"
+            src="foto-professor.png"
+            alt="Prof. Junior P. Colombo"
+          >
 
-<section
-id="intro"
-class="panel intro"
->
+          <div>
 
-<h2>
-Identificação
-</h2>
+            <small>
+              Professor responsável
+            </small>
 
-<p class="intro-description">
+            <strong>
+              Prof. Junior P. Colombo
+            </strong>
 
-Preencha seus dados antes de iniciar.
-Ao concluir as 20 questões,
-seu resultado será registrado
-e você receberá uma devolutiva
-individual em PDF no e-mail informado.
+            <span>
+              Processos Organizacionais e Rotinas Administrativas •
+              1º TANE — Extensão Ibiúna
+            </span>
 
-</p>
+          </div>
 
+        </aside>
 
-<div class="form-grid">
+      </div>
 
+    </section>
 
-<div class="field full">
 
-<label for="nome">
-Nome completo *
-</label>
+    <!-- MENU -->
 
-<input
-id="nome"
-type="text"
-maxlength="120"
-placeholder="Digite seu nome completo"
-required
->
+    <div class="quicknav-wrap">
 
-</div>
+      <nav class="shell quicknav">
 
+        <a class="active" href="#atividades">
+          Atividades
+        </a>
 
-<div class="field">
+        <a href="#avisos">
+          Avisos
+        </a>
 
-<label for="turma">
-Turma *
-</label>
+        <a href="#materiais">
+          Materiais
+        </a>
 
-<input
-id="turma"
-type="text"
-maxlength="80"
-placeholder="Ex.: 1º TANE"
-required
->
+      </nav>
 
-</div>
+    </div>
 
 
-<div class="field">
+    <!-- ATIVIDADES -->
 
-<label for="cidade">
-Cidade *
-</label>
+    <section class="section" id="atividades">
 
-<input
-id="cidade"
-type="text"
-maxlength="80"
-placeholder="Ex.: Ibiúna"
-required
->
+      <div class="shell">
 
-</div>
+        <div class="section-head">
 
+          <div>
 
-<div class="field full">
+            <div class="eyebrow">
+              Atividades
+            </div>
 
-<label for="email">
-E-mail para receber a devolutiva *
-</label>
+            <h3>
+              Atividades disponíveis
+            </h3>
 
-<input
-id="email"
-type="email"
-maxlength="150"
-placeholder="seunome@email.com"
-required
->
+            <p>
+              As atividades de Processos Organizacionais
+              e Rotinas Administrativas serão publicadas
+              nesta área durante o semestre.
+            </p>
 
-<span class="help">
+          </div>
 
-Confira cuidadosamente o endereço.
-O relatório em PDF será enviado para este e-mail.
+          <span class="count-pill">
+            0
+          </span>
 
-</span>
+        </div>
 
-</div>
+        <div class="panel">
 
+          <div class="notice">
 
-<div class="field full">
+            <div class="notice-icon">
+              📋
+            </div>
 
-<label for="componente">
-Componente *
-</label>
+            <div>
 
-<input
-id="componente"
-type="text"
-maxlength="150"
-value="Processos Organizacionais e Rotinas Administrativas"
-required
->
+              <strong>
+                Nenhuma atividade publicada no momento
+              </strong>
 
-</div>
+              <p>
+                Quando houver uma nova atividade, ela aparecerá nesta área.
+              </p>
 
+            </div>
 
-</div>
+          </div>
 
+        </div>
 
-<div class="instructions">
+      </div>
 
-<strong>
-Como responder
-</strong>
+    </section>
 
-<p>
 
-Em cada questão,
-escolha somente a alternativa
-que mais se aproxima de você.
+    <!-- AVISOS E MATERIAIS -->
 
-Não existem respostas certas ou erradas.
+    <section class="section">
 
-Responda pensando em como você
-realmente costuma agir,
-e não em como gostaria de agir.
+      <div class="shell layout-two">
 
-</p>
 
-</div>
+        <!-- AVISOS -->
 
+        <section class="panel" id="avisos">
 
-<button
-id="startBtn"
-class="btn primary start"
-type="button"
->
+          <div class="panel-head">
 
-Começar questionário
+            <h4>
+              Avisos do componente
+            </h4>
 
-</button>
+            <span class="count-pill">
+              1
+            </span>
 
+          </div>
 
-</section>
+          <div class="notice">
 
+            <div class="notice-icon">
+              !
+            </div>
 
+            <div>
 
-<!-- QUESTIONÁRIO -->
+              <strong>
+                Materiais organizados por aula
+              </strong>
 
-<section
-id="quiz"
-class="panel quiz"
-aria-live="polite"
->
+              <p>
+                Consulte a seção de materiais para acessar as apostilas
+                e conteúdos complementares disponibilizados durante
+                o semestre.
+              </p>
 
+            </div>
 
-<div class="progress-row">
+          </div>
 
-<span id="progressText">
-Questão 1 de 20
-</span>
+        </section>
 
-<span id="progressPercent">
-0%
-</span>
 
-</div>
+        <!-- MATERIAIS -->
 
+        <section class="panel" id="materiais">
 
-<div class="progress-track">
+          <div class="panel-head">
 
-<div
-id="progressBar"
-class="progress-bar"
->
-</div>
+            <h4>
+              Materiais de apoio
+            </h4>
 
-</div>
+            <span class="count-pill">
+              6
+            </span>
 
+          </div>
 
-<div class="question">
 
-<div
-id="questionNumber"
-class="question-number"
->
-1
-</div>
+          <!-- AULA 01 -->
 
-<h2 id="questionTitle">
-</h2>
+          <div class="material-item">
 
-<div
-id="options"
-class="options"
->
-</div>
+            <div class="material-icon">
+              👋
+            </div>
 
-</div>
+            <div class="material-content">
 
+              <strong>
+                Aula 01 — Recepção e Boas-vindas
+              </strong>
 
-<div class="actions">
+              <p>
+                Apresentação inicial do componente, orientações gerais,
+                organização das aulas e integração com a turma.
+              </p>
 
-<button
-id="prevBtn"
-type="button"
-class="btn secondary"
->
+              <span class="material-status">
+                Aula realizada — sem apostila
+              </span>
 
-← Anterior
+            </div>
 
-</button>
+          </div>
 
 
-<button
-id="nextBtn"
-type="button"
-class="btn primary"
-disabled
->
+          <!-- AULA 02 -->
 
-Próxima →
+          <div class="material-item">
 
-</button>
+            <div class="material-icon">
+              👔
+            </div>
 
-</div>
+            <div class="material-content">
 
+              <strong>
+                Aula 02 — Perfil do Administrador
+              </strong>
 
-</section>
+              <p>
+                Estudo do perfil profissional do administrador,
+                suas competências, habilidades, responsabilidades
+                e atuação nas organizações.
+              </p>
 
+              <a
+                href="materiais/aula-02-perfil-administrador.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                📄 Abrir apostila
+              </a>
 
+            </div>
 
-<!-- RESULTADO -->
+          </div>
 
-<section
-id="result"
-class="panel result"
-aria-live="polite"
->
 
+          <!-- AULA 03 -->
 
-<header class="result-header">
+          <div class="material-item">
 
-<div class="kicker">
+            <div class="material-icon">
+              🧩
+            </div>
 
-Resultado da ATD1
+            <div class="material-content">
 
-</div>
+              <span class="tag tag-soon">
+                Em breve
+              </span>
 
+              <strong>
+                Aula 03 — Questionário de Perfis
+              </strong>
 
-<h2 id="resultTitle">
+              <p>
+                Atividade destinada à identificação e análise
+                dos diferentes perfis comportamentais e profissionais,
+                relacionando características pessoais às áreas
+                administrativas.
+              </p>
 
-Seu mapa de perfis
+              <span class="btn btn-questionario">
+                📝 Questionário em breve
+              </span>
 
-</h2>
+            </div>
 
+          </div>
 
-<p id="resultSubtitle">
 
-Cada resposta corresponde a 5%
-do resultado total.
+          <!-- AULA 04 -->
 
-</p>
+          <div class="material-item">
 
-</header>
+            <div class="material-icon">
+              🎤
+            </div>
 
+            <div class="material-content">
 
+              <strong>
+                Aula 04 — Palestra
+              </strong>
 
-<div class="result-grid">
+              <p>
+                Aula destinada à participação em palestra e atividade
+                complementar relacionada à formação profissional.
+              </p>
 
+              <span class="material-status">
+                Aula realizada — sem apostila
+              </span>
 
-<div class="pie-stage">
+            </div>
 
-<div
-id="pie"
-class="pie"
->
-</div>
+          </div>
 
 
-<div class="center-label">
+          <!-- AULA 05 -->
 
-<div>
+          <div class="material-item">
 
-<strong id="centerDominant">
+            <div class="material-icon">
+              🔄
+            </div>
 
-Perfil
+            <div class="material-content">
 
-</strong>
+              <strong>
+                Aula 05 — Revisão Geral
+              </strong>
 
-<span>
-predominante
-</span>
+              <p>
+                Revisão dos conteúdos trabalhados anteriormente,
+                com retomada dos principais conceitos estudados
+                no componente.
+              </p>
 
-</div>
+              <span class="material-status">
+                Aula realizada — sem apostila
+              </span>
 
-</div>
+            </div>
 
+          </div>
 
-</div>
 
+          <!-- AULA 06 -->
 
+          <div class="material-item">
 
-<div>
+            <div class="material-icon">
+              🤝
+            </div>
 
+            <div class="material-content">
 
-<div
-id="legend"
-class="legend"
->
-</div>
+              <span class="tag tag-today">
+                Aula 06
+              </span>
 
+              <strong>
+                Aula 06 — Atendimento ao Cliente Interno e Externo
+              </strong>
 
-<div class="dominant">
+              <p>
+                Material de apoio sobre atendimento ao cliente,
+                comunicação, relacionamento profissional e a importância
+                dos clientes internos e externos para as organizações.
+              </p>
 
-<strong id="dominantTitle">
+              <a
+                href="materiais/aula-06-atendimento-cliente.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                📄 Abrir apostila
+              </a>
 
-Perfil predominante
+            </div>
 
-</strong>
+          </div>
 
-<span id="dominantText">
-</span>
 
-</div>
+        </section>
 
+      </div>
 
-</div>
+    </section>
 
+  </main>
 
-</div>
 
+  <!-- RODAPÉ -->
 
+  <footer>
 
-<div
-id="saveStatus"
-class="status sending"
->
+    <div class="shell footer-inner">
 
-<strong>
-Preparando sua devolutiva...
-</strong>
+      <span>
+        PORA — Processos Organizacionais e Rotinas Administrativas
+      </span>
 
-<span>
+      <span>
+        1º TANE — Extensão Ibiúna • Prof. Junior P. Colombo
+      </span>
 
-Suas respostas estão sendo
-registradas e o relatório está
-sendo preparado.
+    </div>
 
-</span>
-
-</div>
-
-
-
-<div class="result-actions">
-
-<button
-id="restartBtn"
-type="button"
-class="btn secondary"
->
-
-Refazer questionário
-
-</button>
-
-</div>
-
-
-<p class="note">
-
-Este instrumento é utilizado
-para fins educacionais,
-autoconhecimento e reflexão comportamental.
-O resultado representa tendências
-e não determina de forma absoluta
-a personalidade ou a profissão do participante.
-
-</p>
-
-
-</section>
-
-
-<footer>
-
-ATD1 – Quem sou eu? •
-Professor Junior P. Colombo
-
-</footer>
-
-
-</main>
-
-
-
-<script>
-
-
-/**************************************************
- * URL DO GOOGLE APPS SCRIPT
- **************************************************/
-
-const ENDPOINT_GOOGLE_APPS_SCRIPT =
-
-'https://script.google.com/macros/s/AKfycbxHoBbQxaUJC1JbZzjg7JM-I2A4znChkscE4ZHihNulXEGGVC4Iho5aLGg-POZO6k-k/exec';
-
-
-
-/**************************************************
- * QUESTÕES
- **************************************************/
-
-const questoes = [
-
-
-{
-
-titulo:
-'A adjetivação com a qual mais me identifico é:',
-
-opcoes:{
-
-A:
-'Sou batalhador. Faço o que precisa ser feito.',
-
-B:
-'Sou prestativo. Gosto de ajudar as pessoas.',
-
-C:
-'Sou lógico. Sou muito exigente comigo mesmo e com os outros.',
-
-D:
-'Sou “alto astral”. Gosto de dar ideias novas e criativas.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Eu me sinto realizado quando:',
-
-opcoes:{
-
-A:
-'Proponho ideias criativas que vão gerar resultados futuros.',
-
-B:
-'Estruturo regras e procedimentos que organizam as coisas.',
-
-C:
-'Atinjo as metas e os objetivos no prazo definido.',
-
-D:
-'Consigo um ambiente harmonioso entre as pessoas.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Fico feliz quando:',
-
-opcoes:{
-
-A:
-'Obtenho resultados rápidos.',
-
-B:
-'Posso criar um ambiente informal.',
-
-C:
-'Posso ser exato em minhas análises.',
-
-D:
-'Posso ajudar as pessoas.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Encontro grande satisfação quando:',
-
-opcoes:{
-
-A:
-'Tudo está bem organizado.',
-
-B:
-'As pessoas estão em harmonia.',
-
-C:
-'Lidero tarefas que levam a resultados objetivos.',
-
-D:
-'Tenho inspirações inovadoras.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Um aspecto de meu desempenho de que gosto muito é quando:',
-
-opcoes:{
-
-A:
-'Posso criar um ambiente harmonioso e previsível.',
-
-B:
-'Faço as coisas com rapidez, sem medo de riscos e mudanças.',
-
-C:
-'Posso persuadir as pessoas e ter um trabalho alegre.',
-
-D:
-'Realizo as tarefas com padrões precisos, objetivos e lógicos.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Os temores que tenho são principalmente devidos a:',
-
-opcoes:{
-
-A:
-'Estar errado e ter que improvisar.',
-
-B:
-'Perder a aprovação e o afeto dos outros.',
-
-C:
-'Enfrentar situações de confronto entre as pessoas.',
-
-D:
-'Parecer fraco e perder o controle da situação.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Acho que meu desempenho seria melhor se eu:',
-
-opcoes:{
-
-A:
-'Desse mais atenção aos detalhes.',
-
-B:
-'Delegasse mais e abrisse mais espaço para os outros.',
-
-C:
-'Ficasse menos em “cima do muro”.',
-
-D:
-'Fosse menos rígido e mais descontraído.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Considero que sou mais eficaz quando:',
-
-opcoes:{
-
-A:
-'Expresso o meu descontentamento.',
-
-B:
-'Sou mais flexível com as regras e os regulamentos.',
-
-C:
-'Coloco em prática e termino as muitas ideias que tive.',
-
-D:
-'Sou mais paciente e tolerante com o ritmo dos outros.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Eu exagero (e isso é ruim) quando:',
-
-opcoes:{
-
-A:
-'Tenho pressa para tudo e atropelo os outros.',
-
-B:
-'Prendo-me muito a detalhes e sou exigente demais.',
-
-C:
-'Deixo sempre a vontade dos outros prevalecer.',
-
-D:
-'Faço brincadeiras o tempo todo.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Como características pessoais eu sou:',
-
-opcoes:{
-
-A:
-'Entusiasmado, estimulador, carismático, ambicioso.',
-
-B:
-'Decidido, prático, determinado, dedicado.',
-
-C:
-'Meticuloso, organizado, cuidadoso, persistente.',
-
-D:
-'Calmo, agradável, cordial, respeitador.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Os apelidos que melhor me identificam são:',
-
-opcoes:{
-
-A:
-'Chato, cri-cri, burocrata, dono da verdade, “Senhor Certinho”.',
-
-B:
-'Inovador, sonhador, inventor, tagarela, lunático.',
-
-C:
-'Trator, tocador, lobo solitário, “pau-pra-toda-obra”, mandão.',
-
-D:
-'Liso, sabonetão, político, “em cima do muro”, pai de todos.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Eu sofro quando:',
-
-opcoes:{
-
-A:
-'Falta mais harmonia e espírito de equipe.',
-
-B:
-'Os outros não seguem as regras e não leem as instruções.',
-
-C:
-'Não sou compreendido e não aceitam minhas ideias.',
-
-D:
-'O ritmo das atividades é muito lento.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Os meus horários são:',
-
-opcoes:{
-
-A:
-'Exatos e precisos, conforme estabelecido.',
-
-B:
-'Flexíveis, se for para agradar aos outros.',
-
-C:
-'Tenho dificuldade para cumprir horários combinados.',
-
-D:
-'Primeiro a chegar, último a sair.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Uma oração que me caracteriza muito bem é:',
-
-opcoes:{
-
-A:
-'Senhor, dê-me paciência, mas tem que ser já.',
-
-B:
-'Senhor, faça-me pensar um pouco mais em mim mesmo, claro, se os outros concordarem.',
-
-C:
-'Senhor, ajude-me a me importar menos com pequenos detalhes a partir de amanhã às 13h45min.',
-
-D:
-'Senhor, faça-me aberto às ideias dos outros, mesmo sendo tão erradas como são.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'O provérbio com o qual me identifico é:',
-
-opcoes:{
-
-A:
-'A união faz a força.',
-
-B:
-'Quem não arrisca, não petisca.',
-
-C:
-'Manda quem pode, obedece quem tem juízo.',
-
-D:
-'Não se mexe em time que está ganhando.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'O comportamento que melhor me identifica é:',
-
-opcoes:{
-
-A:
-'Sou cuidadoso: harmonizo, logo existo.',
-
-B:
-'Sou impulsivo: faço, logo existo.',
-
-C:
-'Sou tempestuoso: crio, logo existo.',
-
-D:
-'Sou persistente: organizo, logo existo.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Dou preferência a atividades em que eu possa...',
-
-opcoes:{
-
-A:
-'Ter a visão geral do projeto. A ideia em si me interessa mais do que colocá-la em prática.',
-
-B:
-'Planejar em vez de fazer. Gosto de analisar as diversas alternativas.',
-
-C:
-'Buscar que todos concordem e sintam-se motivados a fazer. Isso é mais importante que a tarefa em si.',
-
-D:
-'Fazer em vez de planejar. Gosto dos desafios de fazer e não tanto de ficar planejando.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Meu local de trabalho está geralmente:',
-
-opcoes:{
-
-A:
-'Bastante bagunçado, com muitas coisas fora do lugar. Gavetas meio desarrumadas. Gosto de expor fotos de pessoas importantes que estiveram comigo.',
-
-B:
-'Não muito organizado, mas procuro ter as últimas novidades sempre à vista. O ambiente é bastante agradável para receber as pessoas.',
-
-C:
-'Superarrumado e organizado. Só fica fora o material que estou usando naquele momento.',
-
-D:
-'Muito acolhedor. Tenho plantas no local e muitas fotos da família e de amigos.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Minhas qualidades principais são:',
-
-opcoes:{
-
-A:
-'Ordem e disciplina. Perfeição em cada detalhe.',
-
-B:
-'Ser prestativo e tolerante. Harmonia acima de tudo.',
-
-C:
-'Rapidez para agir e coragem de “meter as caras”.',
-
-D:
-'Capacidade de entusiasmar as pessoas e trazer ideias novas.'
-
-}
-
-},
-
-
-{
-
-titulo:
-'Nas minhas atividades, uso mais:',
-
-opcoes:{
-
-A:
-'A intuição e a criatividade.',
-
-B:
-'Os dados objetivos e concretos.',
-
-C:
-'Os sentimentos e as emoções.',
-
-D:
-'O pensamento e a lógica.'
-
-}
-
-}
-
-];
-
-
-
-/**************************************************
- * MAPA DE PERFIS
- **************************************************/
-
-const mapaPerfis = [
-
-{A:'Guerreiro',B:'Amante',C:'Mago',D:'Rei'},
-
-{A:'Rei',B:'Mago',C:'Guerreiro',D:'Amante'},
-
-{A:'Guerreiro',B:'Rei',C:'Mago',D:'Amante'},
-
-{A:'Mago',B:'Amante',C:'Guerreiro',D:'Rei'},
-
-{A:'Amante',B:'Guerreiro',C:'Rei',D:'Mago'},
-
-{A:'Mago',B:'Rei',C:'Amante',D:'Guerreiro'},
-
-{A:'Rei',B:'Guerreiro',C:'Amante',D:'Mago'},
-
-{A:'Amante',B:'Mago',C:'Rei',D:'Guerreiro'},
-
-{A:'Guerreiro',B:'Mago',C:'Amante',D:'Rei'},
-
-{A:'Rei',B:'Guerreiro',C:'Mago',D:'Amante'},
-
-{A:'Mago',B:'Rei',C:'Guerreiro',D:'Amante'},
-
-{A:'Amante',B:'Mago',C:'Rei',D:'Guerreiro'},
-
-{A:'Mago',B:'Amante',C:'Rei',D:'Guerreiro'},
-
-{A:'Guerreiro',B:'Amante',C:'Mago',D:'Rei'},
-
-{A:'Amante',B:'Rei',C:'Guerreiro',D:'Mago'},
-
-{A:'Amante',B:'Guerreiro',C:'Rei',D:'Mago'},
-
-{A:'Rei',B:'Mago',C:'Amante',D:'Guerreiro'},
-
-{A:'Guerreiro',B:'Rei',C:'Mago',D:'Amante'},
-
-{A:'Mago',B:'Amante',C:'Guerreiro',D:'Rei'},
-
-{A:'Rei',B:'Guerreiro',C:'Amante',D:'Mago'}
-
-];
-
-
-
-const perfis = [
-'Rei',
-'Guerreiro',
-'Mago',
-'Amante'
-];
-
-
-const descricoes = {
-
-Rei:
-'Liderança, visão estratégica, criatividade, influência e capacidade de mobilizar pessoas.',
-
-Guerreiro:
-'Ação, decisão, praticidade, disciplina, determinação e foco em resultados.',
-
-Mago:
-'Análise, organização, planejamento, precisão, lógica e atenção aos detalhes.',
-
-Amante:
-'Empatia, cooperação, relacionamento, acolhimento, harmonia e sensibilidade às pessoas.'
-
-};
-
-
-const cores = {
-
-Rei:
-'var(--rei)',
-
-Guerreiro:
-'var(--guerreiro)',
-
-Mago:
-'var(--mago)',
-
-Amante:
-'var(--amante)'
-
-};
-
-
-
-/**************************************************
- * ESTADO
- **************************************************/
-
-const respostas =
-Array(
-questoes.length
-).fill(null);
-
-
-let atual = 0;
-
-let enviado = false;
-
-
-
-/**************************************************
- * ELEMENTOS
- **************************************************/
-
-const intro =
-document.getElementById(
-'intro'
-);
-
-const quiz =
-document.getElementById(
-'quiz'
-);
-
-const result =
-document.getElementById(
-'result'
-);
-
-const startBtn =
-document.getElementById(
-'startBtn'
-);
-
-const prevBtn =
-document.getElementById(
-'prevBtn'
-);
-
-const nextBtn =
-document.getElementById(
-'nextBtn'
-);
-
-const restartBtn =
-document.getElementById(
-'restartBtn'
-);
-
-const questionTitle =
-document.getElementById(
-'questionTitle'
-);
-
-const questionNumber =
-document.getElementById(
-'questionNumber'
-);
-
-const options =
-document.getElementById(
-'options'
-);
-
-const progressText =
-document.getElementById(
-'progressText'
-);
-
-const progressPercent =
-document.getElementById(
-'progressPercent'
-);
-
-const progressBar =
-document.getElementById(
-'progressBar'
-);
-
-
-
-/**************************************************
- * INÍCIO
- **************************************************/
-
-startBtn.addEventListener(
-'click',
-function(){
-
-const nome =
-document
-.getElementById(
-'nome'
-)
-.value
-.trim();
-
-
-const turma =
-document
-.getElementById(
-'turma'
-)
-.value
-.trim();
-
-
-const email =
-document
-.getElementById(
-'email'
-)
-.value
-.trim();
-
-
-const cidade =
-document
-.getElementById(
-'cidade'
-)
-.value
-.trim();
-
-
-const componente =
-document
-.getElementById(
-'componente'
-)
-.value
-.trim();
-
-
-if(
-!nome ||
-!turma ||
-!email ||
-!cidade ||
-!componente
-){
-
-alert(
-'Preencha todos os campos antes de começar.'
-);
-
-return;
-
-}
-
-
-if(
-!validarEmail(
-email
-)
-){
-
-alert(
-'Informe um endereço de e-mail válido.'
-);
-
-return;
-
-}
-
-
-intro.style.display =
-'none';
-
-
-quiz.classList.add(
-'active'
-);
-
-
-renderQuestion();
-
-
-window.scrollTo({
-top:0,
-behavior:'smooth'
-});
-
-
-}
-);
-
-
-
-/**************************************************
- * VOLTAR
- **************************************************/
-
-prevBtn.addEventListener(
-'click',
-function(){
-
-if(
-atual > 0
-){
-
-atual--;
-
-renderQuestion();
-
-}
-
-}
-);
-
-
-
-/**************************************************
- * PRÓXIMA
- **************************************************/
-
-nextBtn.addEventListener(
-'click',
-function(){
-
-if(
-!respostas[
-atual
-]
-){
-
-return;
-
-}
-
-
-if(
-atual <
-questoes.length - 1
-){
-
-atual++;
-
-renderQuestion();
-
-}
-
-else{
-
-showResult();
-
-}
-
-}
-);
-
-
-
-/**************************************************
- * REFAZER
- **************************************************/
-
-restartBtn.addEventListener(
-'click',
-function(){
-
-if(
-enviado
-){
-
-const confirmar =
-confirm(
-'Seu resultado já foi enviado. Deseja realmente iniciar um novo questionário?'
-);
-
-if(
-!confirmar
-){
-
-return;
-
-}
-
-}
-
-
-respostas.fill(
-null
-);
-
-atual = 0;
-
-enviado = false;
-
-
-result.classList.remove(
-'active'
-);
-
-
-intro.style.display =
-'block';
-
-
-window.scrollTo({
-top:0,
-behavior:'smooth'
-});
-
-
-}
-);
-
-
-
-/**************************************************
- * RENDERIZA QUESTÃO
- **************************************************/
-
-function renderQuestion(){
-
-const q =
-questoes[
-atual
-];
-
-
-questionNumber.textContent =
-atual + 1;
-
-
-questionTitle.textContent =
-q.titulo;
-
-
-progressText.textContent =
-`Questão ${atual + 1} de ${questoes.length}`;
-
-
-const concluidas =
-respostas
-.filter(Boolean)
-.length;
-
-
-const pct =
-Math.round(
-(
-concluidas /
-questoes.length
-) * 100
-);
-
-
-progressPercent.textContent =
-`${pct}%`;
-
-
-progressBar.style.width =
-`${pct}%`;
-
-
-options.innerHTML =
-'';
-
-
-Object.entries(
-q.opcoes
-)
-.forEach(
-function(
-[
-letra,
-texto
-]
-){
-
-const label =
-document.createElement(
-'label'
-);
-
-
-label.className =
-'option' +
-(
-respostas[
-atual
-] === letra
-?
-' selected'
-:
-''
-);
-
-
-label.innerHTML = `
-
-<input
-type="radio"
-name="q${atual}"
-value="${letra}"
-${respostas[atual] === letra ? 'checked' : ''}
->
-
-<span class="letter">
-${letra}
-</span>
-
-<span class="option-text">
-${escapeHtml(texto)}
-</span>
-
-`;
-
-
-label.addEventListener(
-'click',
-function(){
-
-respostas[
-atual
-] =
-letra;
-
-
-[
-...options.children
-]
-.forEach(
-function(el){
-
-el
-.classList
-.remove(
-'selected'
-);
-
-}
-);
-
-
-label
-.classList
-.add(
-'selected'
-);
-
-
-label
-.querySelector(
-'input'
-)
-.checked =
-true;
-
-
-nextBtn.disabled =
-false;
-
-
-const novoPct =
-Math.round(
-(
-respostas
-.filter(Boolean)
-.length /
-questoes.length
-) * 100
-);
-
-
-progressPercent.textContent =
-`${novoPct}%`;
-
-
-progressBar.style.width =
-`${novoPct}%`;
-
-
-}
-);
-
-
-options.appendChild(
-label
-);
-
-}
-);
-
-
-prevBtn.disabled =
-atual === 0;
-
-
-nextBtn.disabled =
-!respostas[
-atual
-];
-
-
-nextBtn.textContent =
-
-atual ===
-questoes.length - 1
-
-?
-
-'Finalizar e receber resultado →'
-
-:
-
-'Próxima →';
-
-}
-
-
-
-/**************************************************
- * CALCULA
- **************************************************/
-
-function calculate(){
-
-const pontos = {
-
-Rei:0,
-Guerreiro:0,
-Mago:0,
-Amante:0
-
-};
-
-
-respostas.forEach(
-function(
-letra,
-indice
-){
-
-if(
-letra
-){
-
-const perfil =
-mapaPerfis[
-indice
-][
-letra
-];
-
-
-pontos[
-perfil
-]++;
-
-}
-
-}
-);
-
-
-const percentuais = {};
-
-
-perfis.forEach(
-function(
-perfil
-){
-
-percentuais[
-perfil
-] =
-pontos[
-perfil
-] * 5;
-
-}
-);
-
-
-const maior =
-Math.max(
-...Object.values(
-percentuais
-)
-);
-
-
-const predominantes =
-perfis.filter(
-function(
-perfil
-){
-
-return (
-percentuais[
-perfil
-] === maior
-);
-
-}
-);
-
-
-return {
-
-pontos,
-percentuais,
-predominantes
-
-};
-
-}
-
-
-
-/**************************************************
- * MOSTRA RESULTADO
- **************************************************/
-
-function showResult(){
-
-if(
-respostas
-.some(
-r => !r
-)
-){
-
-alert(
-'Responda todas as questões antes de finalizar.'
-);
-
-return;
-
-}
-
-
-const calc =
-calculate();
-
-
-quiz.classList.remove(
-'active'
-);
-
-
-result.classList.add(
-'active'
-);
-
-
-const nome =
-document
-.getElementById(
-'nome'
-)
-.value
-.trim();
-
-
-document
-.getElementById(
-'resultTitle'
-)
-.textContent =
-
-`${nome}, este é o seu mapa`;
-
-
-document
-.getElementById(
-'resultSubtitle'
-)
-.textContent =
-
-'As 20 respostas formam uma composição de 100% entre os quatro perfis.';
-
-
-renderPie(
-calc.percentuais
-);
-
-
-renderLegend(
-calc.percentuais
-);
-
-
-const dominantTitle =
-document.getElementById(
-'dominantTitle'
-);
-
-
-const dominantText =
-document.getElementById(
-'dominantText'
-);
-
-
-const center =
-document.getElementById(
-'centerDominant'
-);
-
-
-if(
-calc.predominantes.length === 1
-){
-
-const perfil =
-calc.predominantes[
-0
-];
-
-
-dominantTitle.textContent =
-
-`Perfil predominante: ${perfil}`;
-
-
-dominantText.textContent =
-
-descricoes[
-perfil
-];
-
-
-center.textContent =
-perfil;
-
-}
-
-else{
-
-dominantTitle.textContent =
-
-'Equilíbrio entre perfis';
-
-
-dominantText.textContent =
-
-`Seu resultado apresenta equilíbrio entre ${calc.predominantes.join(' e ')}. Isso demonstra presença equivalente dessas tendências em suas respostas.`;
-
-
-center.textContent =
-'Equilíbrio';
-
-}
-
-
-window.scrollTo({
-top:0,
-behavior:'smooth'
-});
-
-
-enviarResultado(
-calc
-);
-
-}
-
-
-
-/**************************************************
- * GRÁFICO
- **************************************************/
-
-function renderPie(
-percentuais
-){
-
-let currentDeg = 0;
-
-const stops = [];
-
-
-perfis.forEach(
-function(
-perfil
-){
-
-const graus =
-percentuais[
-perfil
-] * 3.6;
-
-
-const inicio =
-currentDeg;
-
-
-const fim =
-currentDeg +
-graus;
-
-
-stops.push(
-
-`${cores[perfil]} ${inicio}deg ${fim}deg`
-
-);
-
-
-currentDeg =
-fim;
-
-}
-);
-
-
-document
-.getElementById(
-'pie'
-)
-.style
-.background =
-
-`conic-gradient(${stops.join(',')})`;
-
-}
-
-
-
-/**************************************************
- * LEGENDA
- **************************************************/
-
-function renderLegend(
-percentuais
-){
-
-const legend =
-document.getElementById(
-'legend'
-);
-
-
-legend.innerHTML =
-perfis.map(
-function(
-perfil
-){
-
-return `
-
-<div class="legend-card">
-
-<div class="legend-top">
-
-<div class="legend-name">
-
-<span
-class="dot"
-style="background:${cores[perfil]}"
->
-</span>
-
-${perfil}
-
-</div>
-
-<div class="legend-percent">
-
-${percentuais[perfil]}%
-
-</div>
-
-</div>
-
-<div class="legend-desc">
-
-${descricoes[perfil]}
-
-</div>
-
-</div>
-
-`;
-
-}
-)
-.join('');
-
-}
-
-
-
-/**************************************************
- * ENVIA AO APPS SCRIPT
- **************************************************/
-
-async function enviarResultado(
-calc
-){
-
-const status =
-document.getElementById(
-'saveStatus'
-);
-
-
-status.className =
-'status sending';
-
-
-status.innerHTML = `
-
-<strong>
-Registrando seu resultado...
-</strong>
-
-<span>
-Estamos criando sua devolutiva
-individual em PDF.
-Não feche esta página neste momento.
-</span>
-
-`;
-
-
-const payload = {
-
-nome:
-document
-.getElementById(
-'nome'
-)
-.value
-.trim(),
-
-turma:
-document
-.getElementById(
-'turma'
-)
-.value
-.trim(),
-
-email:
-document
-.getElementById(
-'email'
-)
-.value
-.trim(),
-
-cidade:
-document
-.getElementById(
-'cidade'
-)
-.value
-.trim(),
-
-componente:
-document
-.getElementById(
-'componente'
-)
-.value
-.trim(),
-
-respostas:
-[...respostas]
-
-};
-
-
-try{
-
-
-await fetch(
-
-ENDPOINT_GOOGLE_APPS_SCRIPT,
-
-{
-
-method:
-'POST',
-
-mode:
-'no-cors',
-
-headers:{
-
-'Content-Type':
-'text/plain;charset=utf-8'
-
-},
-
-body:
-JSON.stringify(
-payload
-)
-
-}
-
-);
-
-
-enviado =
-true;
-
-
-status.className =
-'status success';
-
-
-status.innerHTML = `
-
-<strong>
-✓ Atividade enviada com sucesso
-</strong>
-
-<span>
-
-Suas respostas foram encaminhadas
-para registro.
-
-Sua devolutiva individual em PDF
-será enviada para:
-
-<strong>
-${escapeHtml(payload.email)}
-</strong>
-
-<br><br>
-
-Confira também a pasta de spam
-ou lixo eletrônico caso não encontre
-a mensagem na caixa de entrada.
-
-</span>
-
-`;
-
-
-}
-
-catch(
-error
-){
-
-console.error(
-error
-);
-
-
-status.className =
-'status error';
-
-
-status.innerHTML = `
-
-<strong>
-Não foi possível enviar suas respostas
-</strong>
-
-<span>
-
-Verifique sua conexão com a internet
-e tente novamente.
-
-</span>
-
-`;
-
-}
-
-}
-
-
-
-/**************************************************
- * VALIDA E-MAIL
- **************************************************/
-
-function validarEmail(
-email
-){
-
-return (
-
-/^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
-.test(
-email
-)
-
-);
-
-}
-
-
-
-/**************************************************
- * SEGURANÇA DE TEXTO
- **************************************************/
-
-function escapeHtml(
-text
-){
-
-return String(
-text
-)
-
-.replaceAll(
-'&',
-'&amp;'
-)
-
-.replaceAll(
-'<',
-'&lt;'
-)
-
-.replaceAll(
-'>',
-'&gt;'
-)
-
-.replaceAll(
-'"',
-'&quot;'
-)
-
-.replaceAll(
-"'",
-'&#039;'
-);
-
-}
-
-
-</script>
-
+  </footer>
 
 </body>
-
 </html>
