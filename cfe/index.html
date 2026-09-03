@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>CFE - Cálculos Financeiros e Estatísticos</title>
 
   <style>
+    :root {
+      --etec-vermelho: #b5123b;
+      --etec-vermelho-escuro: #8f0e2f;
+      --fundo: #f5f6f8;
+      --texto: #2f343a;
+      --texto-claro: #6d737b;
+      --branco: #ffffff;
+      --verde-bg: #e7f6ec;
+      --verde-texto: #237a3b;
+      --amarelo-bg: #fff3d6;
+      --amarelo-texto: #9a6700;
+      --borda: #e4e7eb;
+      --sombra: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f6f8;
-      color: #263238;
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* TOPO */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      line-height: 1.5;
+    }
+
+    /* =========================
+       CABEÇALHO
+    ========================== */
+
     header {
-      background: linear-gradient(135deg, #8b1538, #b51f45);
-      color: white;
+      background: linear-gradient(
+        135deg,
+        var(--etec-vermelho-escuro),
+        var(--etec-vermelho)
+      );
+      color: var(--branco);
       padding: 32px 20px;
     }
 
     .header-container {
       max-width: 1100px;
-      margin: auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
       gap: 24px;
@@ -39,37 +66,78 @@
       height: 115px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid white;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      border: 5px solid var(--branco);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      flex-shrink: 0;
     }
 
     .header-texto h1 {
       font-size: 30px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .header-texto h2 {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: normal;
       opacity: 0.95;
+      margin-bottom: 8px;
     }
 
     .header-texto p {
-      margin-top: 8px;
       font-size: 15px;
+      opacity: 0.95;
     }
 
-    /* CONTEÚDO */
+    /* =========================
+       NAVEGAÇÃO RÁPIDA
+    ========================== */
+
+    .quicknav-wrapper {
+      background: var(--branco);
+      border-bottom: 1px solid var(--borda);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .quicknav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .quicknav a {
+      text-decoration: none;
+      color: var(--etec-vermelho);
+      background: #f9e9ee;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .quicknav a:hover {
+      background: var(--etec-vermelho);
+      color: var(--branco);
+      transform: translateY(-1px);
+    }
+
+    /* =========================
+       CONTEÚDO PRINCIPAL
+    ========================== */
+
     main {
       max-width: 1100px;
-      margin: 35px auto;
+      margin: 32px auto 50px;
       padding: 0 20px;
     }
 
     .voltar {
       display: inline-block;
-      margin-bottom: 25px;
-      color: #8b1538;
+      margin-bottom: 24px;
+      color: var(--etec-vermelho);
       text-decoration: none;
       font-weight: bold;
     }
@@ -78,118 +146,144 @@
       text-decoration: underline;
     }
 
-    .titulo-secao {
-      margin-bottom: 20px;
+    section {
+      background: var(--branco);
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--sombra);
+      border: 1px solid var(--borda);
+      scroll-margin-top: 20px;
     }
 
-    .titulo-secao h2 {
-      font-size: 25px;
-      color: #8b1538;
-      margin-bottom: 6px;
-    }
-
-    .titulo-secao p {
-      color: #666;
-    }
-
-    /* LISTA DE ATIVIDADES */
-    .lista-atividades {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .atividade {
-      background: white;
-      border-radius: 14px;
-      padding: 24px;
+    .section-title {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-left: 6px solid #8b1538;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
-    .atividade:hover {
+    .section-title h2 {
+      font-size: 24px;
+      color: var(--etec-vermelho);
+    }
+
+    .section-intro {
+      color: var(--texto-claro);
+      margin-bottom: 22px;
+      font-size: 15px;
+    }
+
+    /* =========================
+       CARDS DE ATIVIDADES
+    ========================== */
+
+    .atividades-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .atividade-card {
+      border: 1px solid var(--borda);
+      border-left: 6px solid var(--etec-vermelho);
+      border-radius: 13px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      background: #fff;
+      transition: 0.2s ease;
+    }
+
+    .atividade-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .atividade-card.em-breve {
+      border-left-color: #d7a11d;
     }
 
     .atividade-conteudo {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
     }
 
     .atividade-icone {
-      width: 58px;
-      height: 58px;
-      min-width: 58px;
-      background: #f7e8ed;
-      color: #8b1538;
+      width: 54px;
+      height: 54px;
+      min-width: 54px;
       border-radius: 12px;
+      background: #f9e9ee;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 27px;
+      font-size: 25px;
     }
 
-    .atividade h3 {
-      font-size: 20px;
-      margin-bottom: 7px;
-      color: #263238;
+    .atividade-card.em-breve .atividade-icone {
+      background: #fff4dc;
     }
 
-    .atividade-info {
-      color: #666;
+    .atividade-card h3 {
+      font-size: 19px;
+      margin-bottom: 5px;
+    }
+
+    .atividade-card p {
+      color: var(--texto-claro);
       font-size: 14px;
     }
 
-    /* STATUS */
-    .status-finalizada {
-      background: #e7f6ec;
-      color: #237a3b;
-      padding: 9px 15px;
-      border-radius: 30px;
+    .status {
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: 14px;
       font-weight: bold;
-      font-size: 14px;
       white-space: nowrap;
+    }
+
+    .status-finalizada {
+      background: var(--verde-bg);
+      color: var(--verde-texto);
     }
 
     .status-breve {
-      background: #fff4d6;
-      color: #9a6700;
-      padding: 9px 15px;
-      border-radius: 30px;
-      font-weight: bold;
-      font-size: 14px;
-      white-space: nowrap;
+      background: var(--amarelo-bg);
+      color: var(--amarelo-texto);
     }
 
-    /* ATIVIDADE FUTURA */
-    .atividade-em-breve {
-      border-left-color: #d99b19;
+    /* =========================
+       AVISOS E MATERIAIS
+    ========================== */
+
+    .box-vazio {
+      border: 1px dashed #cfd4da;
+      border-radius: 12px;
+      padding: 20px;
+      color: var(--texto-claro);
+      background: #fafbfc;
     }
 
-    .atividade-em-breve .atividade-icone {
-      background: #fff5dd;
-      color: #b47700;
-    }
+    /* =========================
+       RODAPÉ
+    ========================== */
 
-    /* RODAPÉ */
     footer {
       text-align: center;
-      margin-top: 55px;
-      padding: 25px 20px;
+      padding: 28px 20px 35px;
       color: #777;
       font-size: 13px;
     }
 
-    /* CELULAR */
-    @media (max-width: 700px) {
+    /* =========================
+       RESPONSIVO
+    ========================== */
 
+    @media (max-width: 720px) {
       .header-container {
         flex-direction: column;
         text-align: center;
@@ -199,7 +293,15 @@
         font-size: 25px;
       }
 
-      .atividade {
+      .quicknav {
+        justify-content: center;
+      }
+
+      section {
+        padding: 20px;
+      }
+
+      .atividade-card {
         flex-direction: column;
         align-items: flex-start;
       }
@@ -208,9 +310,8 @@
         align-items: flex-start;
       }
 
-      .status-finalizada,
-      .status-breve {
-        margin-left: 76px;
+      .status {
+        margin-left: 70px;
       }
     }
   </style>
@@ -218,33 +319,37 @@
 
 <body>
 
+  <!-- CABEÇALHO -->
   <header>
-
     <div class="header-container">
 
       <img
         src="foto-professor.png"
         alt="Professor Junior P. Colombo"
         class="foto-professor"
-      >
+      />
 
       <div class="header-texto">
-
         <h1>Cálculos Financeiros e Estatísticos</h1>
-
         <h2>CFE</h2>
-
-        <p>
-          Prof. Junior P. Colombo
-        </p>
-
+        <p>Prof. Junior P. Colombo</p>
       </div>
 
     </div>
-
   </header>
 
 
+  <!-- MENU -->
+  <div class="quicknav-wrapper">
+    <nav class="quicknav">
+      <a href="#atividades">📚 Atividades</a>
+      <a href="#avisos">📢 Avisos</a>
+      <a href="#materiais">📁 Materiais</a>
+    </nav>
+  </div>
+
+
+  <!-- CONTEÚDO -->
   <main>
 
     <a href="../index.html" class="voltar">
@@ -252,89 +357,126 @@
     </a>
 
 
-    <section class="titulo-secao">
+    <!-- =========================
+         ATIVIDADES
+    ========================== -->
+    <section id="atividades">
 
-      <h2>📚 Atividades</h2>
+      <div class="section-title">
+        <span>📚</span>
+        <h2>Atividades</h2>
+      </div>
 
-      <p>
-        Atividades desenvolvidas no componente curricular.
+      <p class="section-intro">
+        Atividades desenvolvidas no componente curricular de
+        Cálculos Financeiros e Estatísticos.
       </p>
+
+
+      <div class="atividades-lista">
+
+        <!-- ATD1 -->
+        <article class="atividade-card">
+
+          <div class="atividade-conteudo">
+
+            <div class="atividade-icone">
+              📊
+            </div>
+
+            <div>
+              <h3>ATD1 – Juros Simples</h3>
+              <p>
+                Realizada em 02/09/2026.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="status status-finalizada">
+            ✓ Finalizada
+          </div>
+
+        </article>
+
+
+        <!-- ATD2 -->
+        <article class="atividade-card em-breve">
+
+          <div class="atividade-conteudo">
+
+            <div class="atividade-icone">
+              💰
+            </div>
+
+            <div>
+              <h3>ATD2 – Juros Compostos</h3>
+              <p>
+                Próxima atividade do componente.
+              </p>
+            </div>
+
+          </div>
+
+          <div class="status status-breve">
+            ⏳ Em breve
+          </div>
+
+        </article>
+
+      </div>
 
     </section>
 
 
-    <div class="lista-atividades">
+    <!-- =========================
+         AVISOS
+    ========================== -->
+    <section id="avisos">
 
-      <!-- ATD1 -->
-      <article class="atividade">
+      <div class="section-title">
+        <span>📢</span>
+        <h2>Avisos</h2>
+      </div>
 
-        <div class="atividade-conteudo">
+      <p class="section-intro">
+        Comunicados e informações importantes do componente.
+      </p>
 
-          <div class="atividade-icone">
-            📊
-          </div>
+      <div class="box-vazio">
+        Nenhum aviso específico cadastrado no momento.
+      </div>
 
-          <div>
-
-            <h3>
-              ATD1 – Juros Simples
-            </h3>
-
-            <div class="atividade-info">
-              📅 02/09/2026
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="status-finalizada">
-          ✓ Finalizada
-        </div>
-
-      </article>
+    </section>
 
 
-      <!-- ATD2 -->
-      <article class="atividade atividade-em-breve">
+    <!-- =========================
+         MATERIAIS
+    ========================== -->
+    <section id="materiais">
 
-        <div class="atividade-conteudo">
+      <div class="section-title">
+        <span>📁</span>
+        <h2>Materiais</h2>
+      </div>
 
-          <div class="atividade-icone">
-            💰
-          </div>
+      <p class="section-intro">
+        Materiais de apoio utilizados nas aulas.
+      </p>
 
-          <div>
+      <div class="box-vazio">
+        Nenhum material disponível no momento.
+      </div>
 
-            <h3>
-              ATD2 – Juros Compostos
-            </h3>
-
-            <div class="atividade-info">
-              Próxima atividade
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="status-breve">
-          ⏳ Em breve
-        </div>
-
-      </article>
-
-    </div>
-
+    </section>
 
   </main>
 
 
+  <!-- RODAPÉ -->
   <footer>
-
-    Etec de Mairinque – Extensão Ibiúna<br>
+    Etec de Mairinque – Extensão Ibiúna<br />
     Prof. Junior P. Colombo
-
   </footer>
 
 </body>
