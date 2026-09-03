@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal acadêmico do 1º TANE — Extensão Ibiúna" />
+  <title>1º TANE — Extensão Ibiúna</title>
+
+  <style>
+    :root{
+      --etec-red:#b5121b;
+      --etec-red-dark:#8f0d14;
+      --etec-red-soft:#f9e9eb;
+      --text:#222831;
+      --muted:#667085;
+      --line:#e8ebef;
+      --bg:#f6f7f9;
+      --white:#ffffff;
+      --green:#238636;
+      --green-bg:#eaf6ed;
+      --shadow:0 10px 30px rgba(30, 38, 50, .08);
+      --radius:20px;
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.5;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    .shell{
+      width:min(1180px, calc(100% - 32px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:saturate(150%) blur(8px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .topbar-inner{
+      min-height:76px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      display:grid;
+      place-items:center;
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      background:var(--etec-red);
+      color:#fff;
+      font-weight:900;
+      letter-spacing:.02em;
+      box-shadow:0 8px 18px rgba(181,18,27,.18);
+      flex:0 0 auto;
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:1rem;
+      line-height:1.2;
+    }
+
+    .brand-text span{
+      display:block;
+      color:var(--muted);
+      font-size:.8rem;
+      margin-top:2px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      padding:10px 13px;
+      border-radius:10px;
+      color:#4b5563;
+      font-weight:700;
+      font-size:.93rem;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible{
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      outline:none;
+    }
+
+    .nav a.active{
+      color:var(--etec-red);
+      background:var(--etec-red-soft);
+    }
+
+    .menu-toggle{
+      display:none;
+      border:1px solid var(--line);
+      background:#fff;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      cursor:pointer;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,.98) 0 13%, transparent 14%),
+        linear-gradient(135deg,#ffffff 0%,#f9fafb 57%,#f5dfe2 57%,#ffffff 72%);
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -150px -220px auto;
+      width:520px;
+      height:520px;
+      background:var(--etec-red);
+      border-radius:50%;
+      opacity:.96;
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);
+      gap:34px;
+      align-items:center;
+      padding:54px 0;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--etec-red);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.74rem;
+    }
+
+    .hero h1{
+      margin:10px 0 0;
+      font-size:clamp(2.1rem, 5vw, 4rem);
+      line-height:1.03;
+      letter-spacing:-.04em;
+    }
+
+    .hero h2{
+      margin:10px 0 18px;
+      color:var(--etec-red);
+      font-size:clamp(1.35rem, 3vw, 2rem);
+      font-weight:800;
+    }
+
+    .hero p{
+      max-width:700px;
+      margin:0;
+      color:#596273;
+      font-size:1.02rem;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:26px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:0 16px;
+      border-radius:12px;
+      border:1px solid transparent;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .btn-primary{
+      background:var(--etec-red);
+      color:#fff;
+    }
+
+    .btn-primary:hover{background:var(--etec-red-dark)}
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--etec-red);
+      border-color:#efd4d7;
+    }
+
+    .btn-secondary:hover{
+      background:var(--etec-red-soft);
+    }
+
+    .profile-card{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:150px 1fr;
+      gap:22px;
+      align-items:center;
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(255,255,255,.65);
+      border-radius:24px;
+      box-shadow:0 18px 50px rgba(40,40,50,.14);
+      padding:22px;
+    }
+
+    .portrait-wrap{
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      padding:5px;
+      background:#fff;
+      border:2px solid #f2c7cb;
+      box-shadow:0 10px 24px rgba(181,18,27,.12);
+      overflow:hidden;
+    }
+
+    .portrait{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit:cover;
+      border-radius:50%;
+    }
+
+    .profile-card small{
+      display:block;
+      color:var(--muted);
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .profile-card h3{
+      margin:0;
+      font-size:1.55rem;
+      line-height:1.15;
+    }
+
+    .profile-card p{
+      margin:10px 0 0;
+      font-size:.95rem;
+      color:var(--muted);
+    }
+
+    .section{
+      padding:42px 0;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      align-items:flex-end;
+      margin-bottom:18px;
+    }
+
+    .section-head h2{
+      margin:3px 0 0;
+      font-size:1.65rem;
+      letter-spacing:-.02em;
+    }
+
+    .section-head p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .components-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .component-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:20px;
+      min-height:225px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .component-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 34px rgba(30,38,50,.12);
+      border-color:#e1c3c6;
+    }
+
+    .icon-badge{
+      width:52px;
+      height:52px;
+      display:grid;
+      place-items:center;
+      border-radius:16px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+      margin-bottom:16px;
+    }
+
+    .icon-badge svg,
+    .mini-icon svg{
+      width:26px;
+      height:26px;
+      stroke:currentColor;
+      fill:none;
+      stroke-width:1.8;
+      stroke-linecap:round;
+      stroke-linejoin:round;
+    }
+
+    .component-card h3{
+      margin:0;
+      color:var(--etec-red);
+      font-size:1.55rem;
+      line-height:1;
+    }
+
+    .component-card .name{
+      margin:8px 0 0;
+      color:#343a46;
+      font-weight:800;
+      min-height:48px;
+      line-height:1.25;
+    }
+
+    .component-card .desc{
+      margin:9px 0 20px;
+      color:var(--muted);
+      font-size:.88rem;
+    }
+
+    .component-card .link{
+      margin-top:auto;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      color:#4f5866;
+      font-weight:750;
+      font-size:.88rem;
+    }
+
+    .component-card .link span:last-child{
+      color:var(--etec-red);
+      font-size:1.2rem;
+    }
+
+    .dashboard{
+      display:grid;
+      grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr);
+      gap:18px;
+    }
+
+    .panel{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 20px;
+      border-bottom:1px solid var(--line);
+    }
+
+    .panel-title h3{
+      margin:0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:1.1rem;
+    }
+
+    .panel-title a{
+      color:var(--etec-red);
+      font-weight:800;
+      font-size:.88rem;
+    }
+
+    .mini-icon{
+      color:var(--etec-red);
+      display:inline-grid;
+      place-items:center;
+    }
+
+    .activity-row{
+      display:grid;
+      grid-template-columns:auto minmax(0,1fr) auto auto;
+      gap:15px;
+      align-items:center;
+      padding:18px 20px;
+    }
+
+    .activity-row + .activity-row{
+      border-top:1px solid var(--line);
+    }
+
+    .activity-file{
+      width:52px;
+      height:52px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+    }
+
+    .activity-main strong{
+      display:block;
+      font-size:1rem;
+    }
+
+    .activity-main span{
+      display:block;
+      color:var(--muted);
+      font-size:.86rem;
+      margin-top:3px;
+    }
+
+    .activity-date{
+      color:var(--muted);
+      font-size:.84rem;
+      min-width:120px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      white-space:nowrap;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      font-weight:850;
+    }
+
+    .badge-open{
+      background:var(--green-bg);
+      color:var(--green);
+    }
+
+    .notice{
+      display:flex;
+      gap:12px;
+      padding:18px 20px;
+    }
+
+    .notice + .notice{
+      border-top:1px solid var(--line);
+    }
+
+    .notice-badge{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:var(--etec-red-soft);
+      color:var(--etec-red);
+    }
+
+    .notice strong{
+      display:block;
+      font-size:.95rem;
+    }
+
+    .notice p{
+      margin:4px 0 0;
+      color:var(--muted);
+      font-size:.84rem;
+    }
+
+    footer{
+      margin-top:20px;
+      background:#fff;
+      border-top:1px solid var(--line);
+    }
+
+    .footer-inner{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:var(--muted);
+      font-size:.84rem;
+      padding:16px 0;
+    }
+
+    @media (max-width: 980px){
+      .components-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+
+      .hero-inner{
+        grid-template-columns:1fr;
+      }
+
+      .profile-card{
+        max-width:620px;
+      }
+
+      .dashboard{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .shell{
+        width:min(100% - 22px, 1180px);
+      }
+
+      .topbar-inner{
+        min-height:68px;
+      }
+
+      .menu-toggle{
+        display:inline-grid;
+        place-items:center;
+      }
+
+      .nav{
+        position:absolute;
+        left:11px;
+        right:11px;
+        top:70px;
+        display:none;
+        background:#fff;
+        border:1px solid var(--line);
+        box-shadow:var(--shadow);
+        border-radius:14px;
+        padding:8px;
+      }
+
+      .nav.open{
+        display:grid;
+      }
+
+      .nav a{
+        width:100%;
+      }
+
+      .hero-inner{
+        padding:36px 0 42px;
+      }
+
+      .hero::after{
+        width:380px;
+        height:380px;
+        right:-230px;
+        bottom:-230px;
+      }
+
+      .profile-card{
+        grid-template-columns:95px 1fr;
+        padding:16px;
+        gap:14px;
+      }
+
+      .portrait-wrap{
+        width:95px;
+        height:95px;
+      }
+
+      .profile-card h3{
+        font-size:1.15rem;
+      }
+
+      .profile-card p{
+        display:none;
+      }
+
+      .components-grid{
+        grid-template-columns:1fr;
+      }
+
+      .activity-row{
+        grid-template-columns:auto 1fr;
+      }
+
+      .activity-date,
+      .activity-row .badge{
+        grid-column:2;
+      }
+
+      .section{
+        padding:32px 0;
+      }
+
+      .section-head{
+        align-items:flex-start;
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width: 420px){
+      .brand-text span{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .profile-card{
+        grid-template-columns:80px 1fr;
+      }
+
+      .portrait-wrap{
+        width:80px;
+        height:80px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a href="#inicio" class="brand" aria-label="Voltar ao início">
+        <div class="brand-mark">ET</div>
+        <div class="brand-text">
+          <strong>1º TANE — Extensão Ibiúna</strong>
+          <span>Portal acadêmico da turma</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <nav class="nav" id="mainNav" aria-label="Navegação principal">
+        <a class="active" href="#inicio">Início</a>
+        <a href="#componentes">Componentes</a>
+        <a href="#atividades">Atividades</a>
+        <a href="#avisos">Avisos</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="shell hero-inner">
+        <div>
+          <div class="eyebrow">Portal da Turma</div>
+          <h1>1º TANE — Extensão Ibiúna</h1>
+          <h2>Organização, atividades e materiais em um só lugar</h2>
+          <p>
+            Bem-vindo ao portal da turma. Aqui você encontra os componentes curriculares,
+            atividades recentes, avisos e os acessos necessários para acompanhar as aulas.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#componentes">Acessar componentes</a>
+            <a class="btn btn-secondary" href="#atividades">Ver atividades recentes</a>
+          </div>
+        </div>
+
+        <aside class="profile-card" aria-label="Professor responsável">
+          <div class="portrait-wrap">
+            <img class="portrait" src="assets/prof-junior-colombo.png" alt="Prof. Junior P. Colombo" />
+          </div>
+          <div>
+            <small>Professor responsável</small>
+            <h3>Prof. Junior P. Colombo</h3>
+            <p>
+              Espaço acadêmico da turma para centralizar atividades, avisos e materiais de cada componente.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="componentes">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">Componentes curriculares</div>
+            <h2>Escolha o componente</h2>
+            <p>Cada área terá suas próprias atividades, avisos e materiais.</p>
+          </div>
+        </div>
+
+        <div class="components-grid">
+          <a class="component-card" href="em/index.html">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19V10"></path><path d="M10 19V5"></path><path d="M16 19v-7"></path><path d="M22 19V2"></path>
+              </svg>
+            </div>
+            <h3>EM</h3>
+            <div class="name">Economia e Mercado</div>
+            <div class="desc">Atividades, avisos, materiais e conteúdos do componente.</div>
+            <div class="link"><span>Acessar componente</span><span>→</span></div>
+          </a>
+
+          <a class="component-card" href="cfe/index.html">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <path d="M8 6h8"></path><path d="M8 10h2"></path><path d="M14 10h2"></path>
+                <path d="M8 14h2"></path><path d="M14 14h2"></path><path d="M8 18h2"></path><path d="M14 18h2"></path>
+              </svg>
+            </div>
+            <h3>CFE</h3>
+            <div class="name">Cálculos Financeiros e Estatísticos</div>
+            <div class="desc">Exercícios, simuladores, atividades e materiais de apoio.</div>
+            <div class="link"><span>Acessar componente</span><span>→</span></div>
+          </a>
+
+          <a class="component-card" href="pora/index.html">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="7" width="18" height="13" rx="2"></rect>
+                <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                <path d="M3 12h18"></path>
+              </svg>
+            </div>
+            <h3>PORA</h3>
+            <div class="name">Processos Organizacionais e Rotinas Administrativas</div>
+            <div class="desc">Atividades práticas, estudos de caso e rotinas administrativas.</div>
+            <div class="link"><span>Acessar componente</span><span>→</span></div>
+          </a>
+
+          <a class="component-card" href="ai/index.html">
+            <div class="icon-badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                <path d="M8 20h8"></path><path d="M12 16v4"></path>
+              </svg>
+            </div>
+            <h3>AI</h3>
+            <div class="name">Aplicativos Informatizados</div>
+            <div class="desc">Práticas de informática, aplicativos e ferramentas digitais.</div>
+            <div class="link"><span>Acessar componente</span><span>→</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="atividades">
+      <div class="shell">
+        <div class="dashboard">
+          <section class="panel">
+            <div class="panel-title">
+              <h3>
+                <span class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4"></path><path d="M16 3v4"></path><path d="M3 10h18"></path></svg>
+                </span>
+                Atividades recentes
+              </h3>
+              <a href="em/index.html">Ver todas</a>
+            </div>
+
+            <a class="activity-row" href="em/index.html">
+              <div class="activity-file" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M6 2h8l4 4v16H6z"></path>
+                  <path d="M14 2v5h5"></path>
+                  <path d="M9 12h6"></path>
+                  <path d="M9 16h6"></path>
+                </svg>
+              </div>
+              <div class="activity-main">
+                <strong>EM — Atividade 01</strong>
+                <span>Economia e Mercado</span>
+              </div>
+              <div class="activity-date">Primeira atividade publicada</div>
+              <div class="badge badge-open">✓ Disponível</div>
+            </a>
+          </section>
+
+          <section class="panel" id="avisos">
+            <div class="panel-title">
+              <h3>
+                <span class="mini-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path><path d="M10 21h4"></path></svg>
+                </span>
+                Avisos
+              </h3>
+            </div>
+
+            <div class="notice">
+              <div class="notice-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 11v2a2 2 0 0 0 2 2h2l4 4V5L7 9H5a2 2 0 0 0-2 2z"></path>
+                  <path d="M16 9a4 4 0 0 1 0 6"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Avisos por componente</strong>
+                <p>Os avisos específicos serão exibidos dentro de EM, CFE, PORA e AI.</p>
+              </div>
+            </div>
+
+            <div class="notice">
+              <div class="notice-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16h.01"></path>
+                </svg>
+              </div>
+              <div>
+                <strong>Portal em construção</strong>
+                <p>Novas atividades e módulos serão adicionados gradualmente.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      1º TANE — Extensão Ibiúna • Prof. Junior P. Colombo • Portal acadêmico da turma
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', () => {
+      const open = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.textContent = open ? '✕' : '☰';
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+  </script>
+</body>
+</html>
