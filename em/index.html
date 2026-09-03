@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -15,103 +17,183 @@
 
   <title>EM — Economia e Mercado</title>
 
+
   <style>
+
     :root{
       --etec-red:#b5121b;
       --etec-red-dark:#8e0d14;
       --etec-red-soft:#f9e9eb;
+
       --text:#222831;
       --muted:#667085;
+
       --line:#e7e9ee;
       --bg:#f6f7f9;
       --white:#ffffff;
+
       --green:#237a42;
       --green-bg:#eaf7ef;
+
+      --yellow:#926100;
+      --yellow-bg:#fff5d8;
+
+      --blue:#245b9e;
+      --blue-bg:#edf4ff;
+
       --shadow:0 10px 30px rgba(30,38,50,.08);
     }
+
 
     *{
       box-sizing:border-box;
     }
 
+
     html{
       scroll-behavior:smooth;
     }
 
+
     body{
       margin:0;
-      font-family:Inter,Arial,Helvetica,sans-serif;
+
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
       background:var(--bg);
       color:var(--text);
+
       line-height:1.5;
     }
+
 
     a{
       color:inherit;
       text-decoration:none;
     }
 
+
     .shell{
-      width:min(1160px,calc(100% - 32px));
+      width:min(
+        1160px,
+        calc(100% - 32px)
+      );
+
       margin:0 auto;
     }
 
-    /* TOPO */
+
+
+    /* ==================================================
+       TOPO
+    ================================================== */
+
 
     .topbar{
+
       position:sticky;
+
       top:0;
+
       z-index:40;
-      background:rgba(255,255,255,.96);
-      border-bottom:1px solid var(--line);
+
+      background:
+        rgba(255,255,255,.96);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
+
     .topbar-inner{
+
       min-height:72px;
+
       display:flex;
+
       align-items:center;
-      justify-content:space-between;
+
+      justify-content:
+        space-between;
+
       gap:18px;
     }
 
+
     .back-link{
+
       display:inline-flex;
+
       align-items:center;
+
       gap:10px;
+
       font-weight:800;
+
       color:#4d5561;
     }
+
 
     .back-link:hover{
       color:var(--etec-red);
     }
 
+
     .brand-mini{
+
       display:flex;
+
       align-items:center;
+
       gap:10px;
+
       color:var(--muted);
+
       font-size:.86rem;
+
       font-weight:700;
     }
 
+
     .brand-dot{
+
       width:34px;
+
       height:34px;
+
       border-radius:10px;
+
       display:grid;
+
       place-items:center;
+
       color:#fff;
-      background:var(--etec-red);
+
+      background:
+        var(--etec-red);
+
       font-size:.8rem;
+
       font-weight:900;
     }
 
-    /* HERO */
+
+
+    /* ==================================================
+       HERO
+    ================================================== */
+
 
     .hero{
+
       position:relative;
+
       overflow:hidden;
+
       background:
         linear-gradient(
           135deg,
@@ -120,353 +202,882 @@
           #f7e8ea 60%,
           #fff 76%
         );
-      border-bottom:1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
+
     .hero::after{
+
       content:"";
+
       position:absolute;
+
       right:-175px;
+
       bottom:-250px;
+
       width:500px;
+
       height:500px;
-      background:var(--etec-red);
+
+      background:
+        var(--etec-red);
+
       border-radius:50%;
+
       opacity:.96;
     }
 
+
     .hero-inner{
+
       position:relative;
+
       z-index:1;
+
       display:grid;
-      grid-template-columns:minmax(0,1fr) minmax(300px,420px);
+
+      grid-template-columns:
+        minmax(0,1fr)
+        minmax(300px,420px);
+
       gap:34px;
+
       align-items:center;
-      padding:48px 0 52px;
+
+      padding:
+        48px 0 52px;
     }
 
+
     .eyebrow{
+
       display:inline-flex;
+
       align-items:center;
+
       gap:8px;
-      text-transform:uppercase;
+
+      text-transform:
+        uppercase;
+
       letter-spacing:.12em;
-      color:var(--etec-red);
+
+      color:
+        var(--etec-red);
+
       font-size:.75rem;
+
       font-weight:900;
     }
 
+
     .hero h1{
-      margin:8px 0 4px;
-      font-size:clamp(2.2rem,5vw,4.2rem);
+
+      margin:
+        8px 0 4px;
+
+      font-size:
+        clamp(
+          2.2rem,
+          5vw,
+          4.2rem
+        );
+
       line-height:1;
+
       letter-spacing:-.045em;
     }
 
+
     .hero h2{
-      margin:8px 0 16px;
-      font-size:clamp(1.45rem,3vw,2.15rem);
-      color:var(--etec-red);
+
+      margin:
+        8px 0 16px;
+
+      font-size:
+        clamp(
+          1.45rem,
+          3vw,
+          2.15rem
+        );
+
+      color:
+        var(--etec-red);
     }
 
+
     .hero p{
+
       max-width:720px;
+
       margin:0;
+
       color:#596273;
+
       font-size:1rem;
     }
 
-    /* PERFIL PROFESSOR */
+
+
+    /* ==================================================
+       PROFESSOR
+    ================================================== */
+
 
     .profile-card{
-      background:rgba(255,255,255,.97);
-      border:1px solid rgba(255,255,255,.7);
-      box-shadow:0 18px 48px rgba(28,35,45,.13);
+
+      background:
+        rgba(255,255,255,.97);
+
+      border:
+        1px solid
+        rgba(255,255,255,.7);
+
+      box-shadow:
+        0 18px 48px
+        rgba(28,35,45,.13);
+
       border-radius:22px;
+
       padding:20px;
+
       display:grid;
-      grid-template-columns:100px 1fr;
+
+      grid-template-columns:
+        100px 1fr;
+
       gap:16px;
+
       align-items:center;
     }
 
+
     .portrait{
+
       width:100px;
+
       height:100px;
+
       object-fit:cover;
+
       border-radius:50%;
-      border:4px solid white;
-      outline:2px solid #f1c7cb;
-      box-shadow:0 8px 22px rgba(181,18,27,.12);
+
+      border:
+        4px solid white;
+
+      outline:
+        2px solid #f1c7cb;
+
+      box-shadow:
+        0 8px 22px
+        rgba(181,18,27,.12);
     }
 
+
     .profile-card small{
+
       color:var(--muted);
+
       font-weight:700;
     }
 
+
     .profile-card strong{
+
       display:block;
+
       margin-top:3px;
+
       font-size:1.12rem;
     }
 
+
     .profile-card span{
+
       display:block;
+
       margin-top:6px;
+
       color:var(--muted);
+
       font-size:.86rem;
     }
 
-    /* MENU */
+
+
+    /* ==================================================
+       MENU INTERNO
+    ================================================== */
+
 
     .quicknav-wrap{
+
       background:#fff;
-      border-bottom:1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
+
     .quicknav{
+
       display:flex;
+
       gap:10px;
-      padding:14px 0;
+
+      padding:
+        14px 0;
+
       overflow-x:auto;
     }
 
+
     .quicknav a{
+
       white-space:nowrap;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid var(--line);
+
+      padding:
+        10px 14px;
+
+      border-radius:
+        999px;
+
+      border:
+        1px solid var(--line);
+
       background:#fff;
+
       font-weight:800;
+
       font-size:.9rem;
+
       color:#4d5561;
+
+      transition:.2s;
     }
+
 
     .quicknav a:hover{
-      background:var(--etec-red-soft);
-      color:var(--etec-red);
+
+      background:
+        var(--etec-red-soft);
+
+      color:
+        var(--etec-red);
     }
+
 
     .quicknav a.active{
-      background:var(--etec-red);
+
+      background:
+        var(--etec-red);
+
       color:#fff;
-      border-color:var(--etec-red);
+
+      border-color:
+        var(--etec-red);
     }
 
-    /* SEÇÕES */
+
+
+    /* ==================================================
+       SEÇÕES
+    ================================================== */
+
 
     .section{
       padding:38px 0;
     }
 
+
     .section + .section{
       padding-top:10px;
     }
 
+
     .section-head{
+
       display:flex;
-      justify-content:space-between;
+
+      justify-content:
+        space-between;
+
       gap:20px;
+
       align-items:flex-end;
+
       margin-bottom:18px;
     }
 
+
     .section-head h3{
-      margin:4px 0 0;
+
+      margin:
+        4px 0 0;
+
       font-size:1.55rem;
     }
 
+
     .section-head p{
-      margin:5px 0 0;
-      color:var(--muted);
+
+      margin:
+        5px 0 0;
+
+      color:
+        var(--muted);
+
       font-size:.94rem;
     }
 
+
     .count-pill{
+
       display:inline-flex;
+
       align-items:center;
+
       justify-content:center;
+
       min-width:38px;
+
       height:32px;
-      padding:0 10px;
-      border-radius:999px;
-      background:var(--etec-red-soft);
-      color:var(--etec-red);
+
+      padding:
+        0 10px;
+
+      border-radius:
+        999px;
+
+      background:
+        var(--etec-red-soft);
+
+      color:
+        var(--etec-red);
+
       font-size:.82rem;
+
       font-weight:900;
     }
 
-    /* ATIVIDADE */
+
+
+    /* ==================================================
+       ATIVIDADES
+    ================================================== */
+
 
     .activity-card{
+
       background:#fff;
-      border:1px solid var(--line);
+
+      border:
+        1px solid var(--line);
+
       border-radius:18px;
-      box-shadow:var(--shadow);
+
+      box-shadow:
+        var(--shadow);
+
       padding:22px;
+
       display:grid;
-      grid-template-columns:72px minmax(0,1fr) auto;
+
+      grid-template-columns:
+        72px
+        minmax(0,1fr)
+        auto;
+
       gap:18px;
+
       align-items:center;
     }
 
+
     .activity-icon{
+
       width:72px;
+
       height:72px;
+
       border-radius:18px;
+
       display:grid;
+
       place-items:center;
-      background:var(--etec-red-soft);
-      color:var(--etec-red);
+
+      background:
+        var(--etec-red-soft);
+
+      color:
+        var(--etec-red);
+
       font-size:1.7rem;
     }
 
+
     .activity-main h4{
+
       margin:0;
+
       font-size:1.15rem;
     }
 
+
     .activity-main p{
-      margin:6px 0 12px;
-      color:var(--muted);
+
+      margin:
+        6px 0 12px;
+
+      color:
+        var(--muted);
+
       font-size:.9rem;
     }
 
+
     .meta{
+
       display:flex;
+
       flex-wrap:wrap;
+
       gap:8px;
     }
 
+
     .tag{
+
       display:inline-flex;
+
       align-items:center;
+
       gap:6px;
-      border-radius:999px;
-      padding:7px 10px;
+
+      border-radius:
+        999px;
+
+      padding:
+        7px 10px;
+
       font-size:.78rem;
+
       font-weight:800;
     }
 
+
     .tag-open{
-      background:var(--green-bg);
-      color:var(--green);
+
+      background:
+        var(--green-bg);
+
+      color:
+        var(--green);
     }
 
+
     .tag-neutral{
+
       background:#f0f2f5;
+
       color:#596273;
     }
 
+
     .btn{
+
       display:inline-flex;
+
       align-items:center;
+
       justify-content:center;
+
       min-height:44px;
-      padding:0 15px;
+
+      padding:
+        0 15px;
+
       border-radius:12px;
+
       font-weight:850;
-      border:1px solid transparent;
+
+      border:
+        1px solid transparent;
+
+      transition:.2s;
     }
 
+
     .btn-primary{
-      background:var(--etec-red);
+
+      background:
+        var(--etec-red);
+
       color:#fff;
     }
 
+
     .btn-primary:hover{
-      background:var(--etec-red-dark);
+
+      background:
+        var(--etec-red-dark);
+
+      transform:
+        translateY(-1px);
     }
 
-    /* PAINÉIS */
+
+
+    /* ==================================================
+       PAINÉIS
+    ================================================== */
+
 
     .layout-two{
+
       display:grid;
-      grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
+
+      grid-template-columns:
+        minmax(0,.7fr)
+        minmax(0,1.3fr);
+
       gap:18px;
+
+      align-items:start;
     }
 
+
     .panel{
+
       background:#fff;
-      border:1px solid var(--line);
+
+      border:
+        1px solid var(--line);
+
       border-radius:18px;
-      box-shadow:var(--shadow);
+
+      box-shadow:
+        var(--shadow);
+
       overflow:hidden;
     }
 
+
     .panel-head{
-      padding:18px 20px;
-      border-bottom:1px solid var(--line);
+
+      padding:
+        18px 20px;
+
+      border-bottom:
+        1px solid var(--line);
+
       display:flex;
+
       align-items:center;
-      justify-content:space-between;
+
+      justify-content:
+        space-between;
+
       gap:15px;
     }
 
+
     .panel-head h4{
+
       margin:0;
+
       font-size:1.05rem;
     }
 
+
+    /* AVISOS */
+
+
     .notice{
-      padding:18px 20px;
+
+      padding:
+        18px 20px;
+
       display:flex;
+
       gap:12px;
+
       align-items:flex-start;
     }
 
+
     .notice-icon{
+
       width:42px;
+
       height:42px;
+
       flex:0 0 auto;
+
       border-radius:12px;
+
       display:grid;
+
       place-items:center;
-      background:var(--etec-red-soft);
-      color:var(--etec-red);
+
+      background:
+        var(--etec-red-soft);
+
+      color:
+        var(--etec-red);
+
       font-size:1.05rem;
+
       font-weight:900;
     }
 
+
     .notice strong{
+
       display:block;
+
       font-size:.94rem;
     }
 
+
     .notice p{
-      margin:5px 0 0;
-      color:var(--muted);
+
+      margin:
+        5px 0 0;
+
+      color:
+        var(--muted);
+
       font-size:.86rem;
     }
 
-    .empty{
-      padding:26px 20px;
-      color:var(--muted);
-      font-size:.9rem;
-      text-align:center;
+
+
+    /* ==================================================
+       MATERIAIS
+    ================================================== */
+
+
+    .materials-list{
+      display:flex;
+      flex-direction:column;
     }
 
-    /* RODAPÉ */
+
+    .material-item{
+
+      padding:
+        18px 20px;
+
+      display:grid;
+
+      grid-template-columns:
+        48px
+        minmax(0,1fr)
+        auto;
+
+      gap:14px;
+
+      align-items:center;
+
+      border-bottom:
+        1px solid var(--line);
+    }
+
+
+    .material-item:last-child{
+      border-bottom:none;
+    }
+
+
+    .material-icon{
+
+      width:48px;
+
+      height:48px;
+
+      border-radius:13px;
+
+      display:grid;
+
+      place-items:center;
+
+      background:
+        var(--etec-red-soft);
+
+      color:
+        var(--etec-red);
+
+      font-size:1.25rem;
+    }
+
+
+    .material-item.no-pdf
+    .material-icon{
+
+      background:
+        var(--yellow-bg);
+    }
+
+
+    .material-item.activity-reference
+    .material-icon{
+
+      background:
+        var(--green-bg);
+    }
+
+
+    .material-info strong{
+
+      display:block;
+
+      margin-bottom:3px;
+
+      font-size:.92rem;
+    }
+
+
+    .material-info span{
+
+      display:block;
+
+      color:
+        var(--muted);
+
+      font-size:.8rem;
+    }
+
+
+    .material-btn{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      min-height:38px;
+
+      padding:
+        0 12px;
+
+      border-radius:10px;
+
+      background:
+        var(--etec-red);
+
+      color:white;
+
+      font-size:.78rem;
+
+      font-weight:850;
+
+      white-space:nowrap;
+
+      transition:.2s;
+    }
+
+
+    .material-btn:hover{
+
+      background:
+        var(--etec-red-dark);
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .material-status{
+
+      display:inline-flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      padding:
+        7px 10px;
+
+      border-radius:999px;
+
+      font-size:.75rem;
+
+      font-weight:800;
+
+      white-space:nowrap;
+    }
+
+
+    .status-no-file{
+
+      background:
+        var(--yellow-bg);
+
+      color:
+        var(--yellow);
+    }
+
+
+    .status-activity{
+
+      background:
+        var(--green-bg);
+
+      color:
+        var(--green);
+    }
+
+
+
+    /* ==================================================
+       RODAPÉ
+    ================================================== */
+
 
     footer{
+
       margin-top:28px;
+
       background:#fff;
-      border-top:1px solid var(--line);
+
+      border-top:
+        1px solid var(--line);
     }
+
 
     .footer-inner{
+
       min-height:70px;
+
       display:flex;
-      justify-content:space-between;
+
+      justify-content:
+        space-between;
+
       gap:20px;
+
       align-items:center;
-      color:var(--muted);
+
+      color:
+        var(--muted);
+
       font-size:.84rem;
-      padding:15px 0;
+
+      padding:
+        15px 0;
     }
 
-    /* RESPONSIVO */
+
+
+    /* ==================================================
+       RESPONSIVO
+    ================================================== */
+
 
     @media(max-width:900px){
 
@@ -474,67 +1085,131 @@
         grid-template-columns:1fr;
       }
 
+
       .layout-two{
         grid-template-columns:1fr;
       }
 
     }
 
+
     @media(max-width:700px){
 
       .shell{
-        width:min(100% - 22px,1160px);
+
+        width:
+          min(
+            100% - 22px,
+            1160px
+          );
+
       }
 
+
       .activity-card{
-        grid-template-columns:58px 1fr;
+
+        grid-template-columns:
+          58px 1fr;
+
         align-items:start;
       }
 
+
       .activity-icon{
+
         width:58px;
+
         height:58px;
       }
 
+
       .activity-card .btn{
-        grid-column:1 / -1;
+
+        grid-column:
+          1 / -1;
+
         width:100%;
       }
 
+
       .section-head{
-        flex-direction:column;
-        align-items:flex-start;
+
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
       }
 
+
+      .material-item{
+
+        grid-template-columns:
+          48px 1fr;
+
+        align-items:start;
+      }
+
+
+      .material-btn,
+      .material-status{
+
+        grid-column:
+          1 / -1;
+
+        width:100%;
+
+        margin-top:4px;
+      }
+
+
       .footer-inner{
-        flex-direction:column;
+
+        flex-direction:
+          column;
+
         text-align:center;
       }
 
     }
 
+
     @media(max-width:480px){
 
       .profile-card{
-        grid-template-columns:78px 1fr;
+
+        grid-template-columns:
+          78px 1fr;
       }
 
+
       .portrait{
+
         width:78px;
+
         height:78px;
       }
+
 
       .profile-card span{
         display:none;
       }
 
     }
+
   </style>
+
 </head>
+
+
 
 <body>
 
-  <!-- TOPO -->
+
+  <!-- ==================================================
+       TOPO
+  ================================================== -->
+
 
   <header class="topbar">
 
@@ -546,6 +1221,7 @@
       >
         ← Voltar ao Portal
       </a>
+
 
       <div class="brand-mini">
 
@@ -564,44 +1240,63 @@
   </header>
 
 
+
   <main>
 
-    <!-- CAPA -->
+
+    <!-- ==================================================
+         CAPA
+    ================================================== -->
+
 
     <section
       class="hero"
       id="inicio"
     >
 
+
       <div class="shell hero-inner">
 
+
         <div>
+
 
           <div class="eyebrow">
             Componente curricular
           </div>
 
+
           <h1>
             EM
           </h1>
+
 
           <h2>
             Economia e Mercado
           </h2>
 
+
           <p>
-            Espaço destinado às atividades, avisos, orientações e
-            materiais do componente Economia e Mercado.
-            Todo o conteúdo ficará organizado para facilitar
-            o acesso dos alunos.
+
+            Espaço destinado às atividades,
+            avisos, orientações e materiais
+            do componente Economia e Mercado.
+
+            Todo o conteúdo ficará organizado
+            para facilitar o acesso dos alunos.
+
           </p>
+
 
         </div>
 
 
+
         <!-- PROFESSOR -->
 
+
         <aside class="profile-card">
+
 
           <img
             class="portrait"
@@ -609,34 +1304,51 @@
             alt="Prof. Junior P. Colombo"
           >
 
+
           <div>
+
 
             <small>
               Professor responsável
             </small>
 
+
             <strong>
               Prof. Junior P. Colombo
             </strong>
 
+
             <span>
-              Economia e Mercado • 1º TANE — Extensão Ibiúna
+
+              Economia e Mercado •
+              1º TANE — Extensão Ibiúna
+
             </span>
+
 
           </div>
 
+
         </aside>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- MENU INTERNO -->
+
+    <!-- ==================================================
+         MENU INTERNO
+    ================================================== -->
+
 
     <div class="quicknav-wrap">
 
+
       <nav class="shell quicknav">
+
 
         <a
           class="active"
@@ -645,87 +1357,120 @@
           Atividades
         </a>
 
+
         <a href="#avisos">
           Avisos
         </a>
+
 
         <a href="#materiais">
           Materiais
         </a>
 
+
       </nav>
+
 
     </div>
 
 
-    <!-- ATIVIDADES -->
+
+    <!-- ==================================================
+         ATIVIDADES
+    ================================================== -->
+
 
     <section
       class="section"
       id="atividades"
     >
 
+
       <div class="shell">
+
 
         <div class="section-head">
 
+
           <div>
+
 
             <div class="eyebrow">
               Atividades
             </div>
 
+
             <h3>
               Atividades disponíveis
             </h3>
 
+
             <p>
+
               Novas atividades serão adicionadas
               nesta área durante o semestre.
+
             </p>
 
+
           </div>
+
 
           <span class="count-pill">
             1
           </span>
 
+
         </div>
+
 
 
         <!-- ATIVIDADE 01 -->
 
+
         <article class="activity-card">
+
 
           <div class="activity-icon">
             📄
           </div>
 
+
           <div class="activity-main">
 
+
             <h4>
-              Atividade 01 — Economia e Mercado
+              Aula 06 — ATD1 — Questionário Dissertativo
             </h4>
 
+
             <p>
-              Primeira atividade do componente com questões
-              sobre fundamentos econômicos, demanda,
-              oferta e equilíbrio de mercado.
+
+              Atividade sobre fundamentos econômicos,
+              escassez, demanda, oferta e
+              equilíbrio de mercado.
+
             </p>
 
+
             <div class="meta">
+
 
               <span class="tag tag-open">
                 ✓ Disponível
               </span>
 
+
               <span class="tag tag-neutral">
-                Atividade 01
+                ATD1
               </span>
+
 
             </div>
 
+
           </div>
+
 
           <a
             class="btn btn-primary"
@@ -734,108 +1479,406 @@
             Acessar atividade
           </a>
 
+
         </article>
 
+
       </div>
+
 
     </section>
 
 
-    <!-- AVISOS E MATERIAIS -->
+
+    <!-- ==================================================
+         AVISOS E MATERIAIS
+    ================================================== -->
+
 
     <section class="section">
 
+
       <div class="shell layout-two">
 
-        <!-- AVISOS -->
+
+
+        <!-- ==================================================
+             AVISOS
+        ================================================== -->
+
 
         <section
           class="panel"
           id="avisos"
         >
 
+
           <div class="panel-head">
+
 
             <h4>
               Avisos do componente
             </h4>
 
+
             <span class="count-pill">
               1
             </span>
 
+
           </div>
 
+
+
           <div class="notice">
+
 
             <div class="notice-icon">
               !
             </div>
 
+
             <div>
+
 
               <strong>
                 Bem-vindo à área de Economia e Mercado
               </strong>
 
+
               <p>
+
                 Os avisos específicos deste componente
                 serão publicados aqui.
+
               </p>
+
 
             </div>
 
+
           </div>
+
 
         </section>
 
 
-        <!-- MATERIAIS -->
+
+        <!-- ==================================================
+             MATERIAIS
+        ================================================== -->
+
 
         <section
           class="panel"
           id="materiais"
         >
 
+
           <div class="panel-head">
 
+
             <h4>
-              Materiais de apoio
+              📚 Materiais de apoio
             </h4>
 
+
+            <span class="count-pill">
+              6 aulas
+            </span>
+
+
           </div>
 
-          <div class="empty">
-            Nenhum material publicado no momento.
+
+
+          <div class="materials-list">
+
+
+
+            <!-- AULA 01 -->
+
+
+            <div class="material-item">
+
+
+              <div class="material-icon">
+                📕
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 01 — Teoria da Escassez Relativa
+                </strong>
+
+
+                <span>
+                  Apostila de apoio da aula em PDF.
+                </span>
+
+
+              </div>
+
+
+              <a
+                class="material-btn"
+                href="materiais/aula01-escassez-relativa.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir PDF
+              </a>
+
+
+            </div>
+
+
+
+            <!-- AULA 02 -->
+
+
+            <div class="material-item">
+
+
+              <div class="material-icon">
+                📕
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 02 — Lei da Demanda
+                </strong>
+
+
+                <span>
+                  Apostila de apoio da aula em PDF.
+                </span>
+
+
+              </div>
+
+
+              <a
+                class="material-btn"
+                href="materiais/aula02-lei-da-demanda.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir PDF
+              </a>
+
+
+            </div>
+
+
+
+            <!-- AULA 03 -->
+
+
+            <div class="material-item">
+
+
+              <div class="material-icon">
+                📕
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 03 — Lei da Oferta
+                </strong>
+
+
+                <span>
+                  Apostila de apoio da aula em PDF.
+                </span>
+
+
+              </div>
+
+
+              <a
+                class="material-btn"
+                href="materiais/aula03-lei-da-oferta.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Abrir PDF
+              </a>
+
+
+            </div>
+
+
+
+            <!-- AULA 04 -->
+
+
+            <div class="material-item no-pdf">
+
+
+              <div class="material-icon">
+                🎤
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 04 — Palestra
+                </strong>
+
+
+                <span>
+                  Aula realizada em formato de palestra.
+                </span>
+
+
+              </div>
+
+
+              <span
+                class="material-status status-no-file"
+              >
+                Sem PDF
+              </span>
+
+
+            </div>
+
+
+
+            <!-- AULA 05 -->
+
+
+            <div class="material-item no-pdf">
+
+
+              <div class="material-icon">
+                🔄
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 05 — Revisão Geral para Calouros e Veteranos
+                </strong>
+
+
+                <span>
+                  Revisão dos principais conteúdos trabalhados.
+                </span>
+
+
+              </div>
+
+
+              <span
+                class="material-status status-no-file"
+              >
+                Sem PDF
+              </span>
+
+
+            </div>
+
+
+
+            <!-- AULA 06 -->
+
+
+            <div class="material-item activity-reference">
+
+
+              <div class="material-icon">
+                📝
+              </div>
+
+
+              <div class="material-info">
+
+
+                <strong>
+                  Aula 06 — ATD1 — Questionário Dissertativo
+                </strong>
+
+
+                <span>
+                  Atividade disponível na seção Atividades.
+                </span>
+
+
+              </div>
+
+
+              <a
+                class="material-status status-activity"
+                href="#atividades"
+              >
+                Ver atividade
+              </a>
+
+
+            </div>
+
+
           </div>
+
 
         </section>
 
+
       </div>
 
+
     </section>
+
 
   </main>
 
 
-  <!-- RODAPÉ -->
+
+  <!-- ==================================================
+       RODAPÉ
+  ================================================== -->
+
 
   <footer>
 
+
     <div class="shell footer-inner">
+
 
       <span>
         EM — Economia e Mercado
       </span>
 
+
       <span>
+
         1º TANE — Extensão Ibiúna •
         Prof. Junior P. Colombo
+
       </span>
+
 
     </div>
 
+
   </footer>
 
+
 </body>
+
 </html>
