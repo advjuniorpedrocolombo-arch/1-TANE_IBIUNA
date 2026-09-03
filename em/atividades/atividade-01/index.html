@@ -22,7 +22,9 @@
       --point:#b20000;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
     body{
       margin:0;
@@ -32,7 +34,10 @@
       line-height:1.58;
     }
 
-    .top-strip{height:8px;background:var(--etec-red)}
+    .top-strip{
+      height:8px;
+      background:var(--etec-red);
+    }
 
     header{
       background:#fff;
@@ -206,7 +211,8 @@
       margin-top:18px;
     }
 
-    button,.back{
+    button,
+    .back{
       min-height:46px;
       border-radius:10px;
       padding:11px 18px;
@@ -222,8 +228,14 @@
       cursor:pointer;
     }
 
-    button:hover{background:var(--etec-red-dark)}
-    button:disabled{opacity:.6;cursor:not-allowed}
+    button:hover{
+      background:var(--etec-red-dark);
+    }
+
+    button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
 
     .back{
       display:inline-flex;
@@ -248,417 +260,1376 @@
     }
 
     @media(max-width:650px){
-      .row{grid-template-columns:1fr}
-      .header-wrap{align-items:flex-start}
-      .avatar{width:58px;height:58px}
-      .box,.question,.upload{padding:18px}
+      .row{
+        grid-template-columns:1fr;
+      }
+
+      .header-wrap{
+        align-items:flex-start;
+      }
+
+      .avatar{
+        width:58px;
+        height:58px;
+      }
+
+      .box,
+      .question,
+      .upload{
+        padding:18px;
+      }
     }
   </style>
 </head>
 
 <body>
+
   <div class="top-strip"></div>
 
   <header>
     <div class="header-wrap">
-      <img class="avatar" src="../../../prof-junior-colombo.png" alt="Professor Junior P. Colombo">
+
+      <img
+        class="avatar"
+        src="../../../foto-professor.png"
+        alt="Professor Junior P. Colombo"
+      >
+
       <div>
-        <div class="brand">Etec de Mairinque • Extensão Ibiúna</div>
-        <h1>Atividade 01 — Economia e Mercado</h1>
-        <div class="subtitle">1º TANE • Prof. Junior P. Colombo</div>
+        <div class="brand">
+          Etec de Mairinque • Extensão Ibiúna
+        </div>
+
+        <h1>
+          Atividade 01 — Economia e Mercado
+        </h1>
+
+        <div class="subtitle">
+          1º TANE • Prof. Junior P. Colombo
+        </div>
       </div>
+
     </div>
   </header>
 
   <main>
+
     <form id="activityForm">
 
       <section class="box intro">
-        <p><strong>Forma de realização:</strong> individual ou em dupla.</p>
-        <p><strong>Entrega:</strong> responda às questões no caderno ou em arquivo próprio e envie a atividade ao final desta página.</p>
-        <p><strong>Importante:</strong> não é necessário copiar os enunciados. Identifique apenas o número de cada questão nas respostas.</p>
+        <p>
+          <strong>Forma de realização:</strong>
+          individual ou em dupla.
+        </p>
+
+        <p>
+          <strong>Entrega:</strong>
+          responda às questões no caderno ou em arquivo próprio e envie a atividade ao final desta página.
+        </p>
+
+        <p>
+          <strong>Importante:</strong>
+          não é necessário copiar os enunciados. Identifique apenas o número de cada questão nas respostas.
+        </p>
       </section>
 
+
       <section class="box">
+
         <h2>Identificação</h2>
 
         <div class="row">
-          <div class="field">
-            <label for="integrante1">Integrante 1 — nome completo</label>
-            <input id="integrante1" name="integrante1" type="text" required>
-          </div>
 
           <div class="field">
-            <label for="integrante2">Integrante 2 — nome completo <span class="optional">(opcional)</span></label>
-            <input id="integrante2" name="integrante2" type="text">
+            <label for="integrante1">
+              Integrante 1 — nome completo
+            </label>
+
+            <input
+              id="integrante1"
+              name="integrante1"
+              type="text"
+              required
+            >
           </div>
+
+
+          <div class="field">
+            <label for="integrante2">
+              Integrante 2 — nome completo
+              <span class="optional">(opcional)</span>
+            </label>
+
+            <input
+              id="integrante2"
+              name="integrante2"
+              type="text"
+            >
+          </div>
+
         </div>
+
 
         <div class="field">
-          <label for="email">E-mail para retorno da correção</label>
-          <input id="email" name="email" type="email" required>
+
+          <label for="email">
+            E-mail para retorno da correção
+          </label>
+
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+          >
+
         </div>
 
-        <input type="hidden" name="turma" value="1º TANE">
-        <input type="hidden" name="componente" value="Economia e Mercado">
-        <input type="hidden" name="atividade" value="Atividade 01">
+
+        <input
+          type="hidden"
+          name="turma"
+          value="1º TANE"
+        >
+
+        <input
+          type="hidden"
+          name="componente"
+          value="Economia e Mercado"
+        >
+
+        <input
+          type="hidden"
+          name="atividade"
+          value="Atividade 01"
+        >
+
       </section>
 
-      <section class="question">
-        <div class="question-number"><strong>Questão 01 -</strong></div>
-        <p>
-          Uma prefeitura precisa decidir como utilizar os recursos disponíveis para o próximo ano. Entre as demandas apresentadas estão
-          a ampliação dos serviços de saúde, a construção de escolas, a melhoria das estradas, o reforço da segurança, investimentos em
-          transporte e a criação de áreas de lazer.
-        </p>
-        <p>
-          Explique o problema econômico presente nessa situação, demonstrando por que não é possível atender integralmente a todas as
-          demandas ao mesmo tempo e por que a administração precisa estabelecer prioridades. Analise também o que significa direcionar
-          recursos para determinada finalidade em detrimento de outras possibilidades.
-        </p>
-      </section>
+
+      <!-- QUESTÃO 01 -->
 
       <section class="question">
-        <div class="question-number"><strong>Questão 02 -</strong></div>
+
+        <div class="question-number">
+          <strong>Questão 01 -</strong>
+        </div>
+
+        <p>
+          Uma prefeitura precisa decidir como utilizar os recursos disponíveis para o próximo ano.
+          Entre as demandas apresentadas estão a ampliação dos serviços de saúde, a construção de escolas,
+          a melhoria das estradas, o reforço da segurança, investimentos em transporte e a criação de áreas de lazer.
+        </p>
+
+        <p>
+          Explique o problema econômico presente nessa situação, demonstrando por que não é possível atender
+          integralmente a todas as demandas ao mesmo tempo e por que a administração precisa estabelecer prioridades.
+          Analise também o que significa direcionar recursos para determinada finalidade em detrimento de outras possibilidades.
+        </p>
+
+      </section>
+
+
+      <!-- QUESTÃO 02 -->
+
+      <section class="question">
+
+        <div class="question-number">
+          <strong>Questão 02 -</strong>
+        </div>
+
         <p>
           O preço de determinado produto sofreu uma alteração enquanto as demais condições do mercado permaneceram constantes.
-          Analise a representação e explique <strong>o que ocorreu do ponto A para o ponto B</strong>, qual foi o comportamento
-          apresentado pelos participantes desse mercado e por que os dois pontos permanecem sobre a mesma curva.
-          Em sua explicação, considere também o princípio econômico segundo o qual as demais variáveis são mantidas constantes
-          durante a análise.
+          Analise a representação e explique <strong>o que ocorreu do ponto A para o ponto B</strong>,
+          qual foi o comportamento apresentado pelos participantes desse mercado e por que os dois pontos permanecem sobre a mesma curva.
+          Em sua explicação, considere também o princípio econômico segundo o qual as demais variáveis são mantidas constantes durante a análise.
         </p>
 
+
         <div class="graph">
-          <svg viewBox="0 0 640 360" role="img" aria-label="Curva decrescente com movimento do ponto A para o ponto B">
+
+          <svg
+            viewBox="0 0 640 360"
+            role="img"
+            aria-label="Curva decrescente com movimento do ponto A para o ponto B"
+          >
+
             <defs>
-              <marker id="arrowQ2" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
-                <path d="M0,0 L0,7 L9,3.5 z" fill="#333"/>
+              <marker
+                id="arrowQ2"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3.5"
+                orient="auto"
+              >
+                <path
+                  d="M0,0 L0,7 L9,3.5 z"
+                  fill="#333"
+                />
               </marker>
             </defs>
-            <rect x="0" y="0" width="640" height="360" rx="14" fill="#fff"/>
-            <line x1="78" y1="28" x2="78" y2="300" stroke="#222" stroke-width="2.2"/>
-            <line x1="78" y1="300" x2="590" y2="300" stroke="#222" stroke-width="2.2"/>
-            <text x="26" y="38" font-size="19" font-family="Arial" fill="#222">Preço</text>
-            <text x="480" y="334" font-size="19" font-family="Arial" fill="#222">Quantidade</text>
 
-            <path d="M140 70 C245 112, 360 184, 525 262"
-                  fill="none" stroke="#1f5f8b" stroke-width="5" stroke-linecap="round"/>
 
-            <circle cx="220" cy="108" r="8.5" fill="#b20000"/>
-            <text x="193" y="94" font-size="19" font-family="Arial" font-weight="700" fill="#111">A</text>
+            <rect
+              x="0"
+              y="0"
+              width="640"
+              height="360"
+              rx="14"
+              fill="#fff"
+            />
 
-            <circle cx="406" cy="207" r="8.5" fill="#b20000"/>
-            <text x="422" y="211" font-size="19" font-family="Arial" font-weight="700" fill="#111">B</text>
 
-            <path d="M241 120 C300 150, 348 177, 389 199"
-                  fill="none" stroke="#333" stroke-width="3" marker-end="url(#arrowQ2)"/>
+            <line
+              x1="78"
+              y1="28"
+              x2="78"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <line
+              x1="78"
+              y1="300"
+              x2="590"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <text
+              x="26"
+              y="38"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Preço
+            </text>
+
+
+            <text
+              x="480"
+              y="334"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Quantidade
+            </text>
+
+
+            <path
+              d="M140 70 C245 112, 360 184, 525 262"
+              fill="none"
+              stroke="#1f5f8b"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <circle
+              cx="220"
+              cy="108"
+              r="8.5"
+              fill="#b20000"
+            />
+
+
+            <text
+              x="193"
+              y="94"
+              font-size="19"
+              font-family="Arial"
+              font-weight="700"
+              fill="#111"
+            >
+              A
+            </text>
+
+
+            <circle
+              cx="406"
+              cy="207"
+              r="8.5"
+              fill="#b20000"
+            />
+
+
+            <text
+              x="422"
+              y="211"
+              font-size="19"
+              font-family="Arial"
+              font-weight="700"
+              fill="#111"
+            >
+              B
+            </text>
+
+
+            <path
+              d="M241 120 C300 150, 348 177, 389 199"
+              fill="none"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ2)"
+            />
+
           </svg>
+
         </div>
+
       </section>
 
+
+      <!-- QUESTÃO 03 -->
+
       <section class="question">
-        <div class="question-number"><strong>Questão 03 -</strong></div>
+
+        <div class="question-number">
+          <strong>Questão 03 -</strong>
+        </div>
+
         <p>
           O preço do produto sofreu uma alteração enquanto custos, tecnologia e demais condições do mercado permaneceram constantes.
-          Explique economicamente a passagem do ponto <strong>A para o ponto B</strong>, identificando quem está sendo representado
-          pela curva e qual relação existe entre <strong>preço e quantidade</strong> nessa situação.
+          Explique economicamente a passagem do ponto <strong>A para o ponto B</strong>,
+          identificando quem está sendo representado pela curva e qual relação existe entre <strong>preço e quantidade</strong> nessa situação.
           Explique também por que a curva não mudou de posição.
         </p>
 
+
         <div class="graph">
-          <svg viewBox="0 0 640 360" role="img" aria-label="Curva crescente com movimento do ponto A para o ponto B">
+
+          <svg
+            viewBox="0 0 640 360"
+            role="img"
+            aria-label="Curva crescente com movimento do ponto A para o ponto B"
+          >
+
             <defs>
-              <marker id="arrowQ3" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
-                <path d="M0,0 L0,7 L9,3.5 z" fill="#333"/>
+
+              <marker
+                id="arrowQ3"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3.5"
+                orient="auto"
+              >
+
+                <path
+                  d="M0,0 L0,7 L9,3.5 z"
+                  fill="#333"
+                />
+
               </marker>
+
             </defs>
-            <rect x="0" y="0" width="640" height="360" rx="14" fill="#fff"/>
-            <line x1="78" y1="28" x2="78" y2="300" stroke="#222" stroke-width="2.2"/>
-            <line x1="78" y1="300" x2="590" y2="300" stroke="#222" stroke-width="2.2"/>
-            <text x="26" y="38" font-size="19" font-family="Arial" fill="#222">Preço</text>
-            <text x="480" y="334" font-size="19" font-family="Arial" fill="#222">Quantidade</text>
 
-            <path d="M140 258 C245 210, 365 132, 525 72"
-                  fill="none" stroke="#c34141" stroke-width="5" stroke-linecap="round"/>
 
-            <circle cx="223" cy="218" r="8.5" fill="#b20000"/>
-            <text x="196" y="243" font-size="19" font-family="Arial" font-weight="700" fill="#111">A</text>
+            <rect
+              x="0"
+              y="0"
+              width="640"
+              height="360"
+              rx="14"
+              fill="#fff"
+            />
 
-            <circle cx="410" cy="128" r="8.5" fill="#b20000"/>
-            <text x="426" y="126" font-size="19" font-family="Arial" font-weight="700" fill="#111">B</text>
 
-            <path d="M244 207 C304 179, 354 153, 393 135"
-                  fill="none" stroke="#333" stroke-width="3" marker-end="url(#arrowQ3)"/>
+            <line
+              x1="78"
+              y1="28"
+              x2="78"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <line
+              x1="78"
+              y1="300"
+              x2="590"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <text
+              x="26"
+              y="38"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Preço
+            </text>
+
+
+            <text
+              x="480"
+              y="334"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Quantidade
+            </text>
+
+
+            <path
+              d="M140 258 C245 210, 365 132, 525 72"
+              fill="none"
+              stroke="#c34141"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <circle
+              cx="223"
+              cy="218"
+              r="8.5"
+              fill="#b20000"
+            />
+
+
+            <text
+              x="196"
+              y="243"
+              font-size="19"
+              font-family="Arial"
+              font-weight="700"
+              fill="#111"
+            >
+              A
+            </text>
+
+
+            <circle
+              cx="410"
+              cy="128"
+              r="8.5"
+              fill="#b20000"
+            />
+
+
+            <text
+              x="426"
+              y="126"
+              font-size="19"
+              font-family="Arial"
+              font-weight="700"
+              fill="#111"
+            >
+              B
+            </text>
+
+
+            <path
+              d="M244 207 C304 179, 354 153, 393 135"
+              fill="none"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ3)"
+            />
+
           </svg>
+
         </div>
+
       </section>
 
+
+      <!-- QUESTÃO 04 -->
+
       <section class="question">
-        <div class="question-number"><strong>Questão 04 -</strong></div>
+
+        <div class="question-number">
+          <strong>Questão 04 -</strong>
+        </div>
+
         <p>
-          Interprete o gráfico e explique o que aconteceu no mercado. Identifique qual grupo econômico está sendo
-          representado pela curva e apresente <strong>uma variável capaz de provocar a alteração observada</strong>.
+          Interprete o gráfico e explique o que aconteceu no mercado.
+          Identifique qual grupo econômico está sendo representado pela curva
+          e apresente <strong>uma variável capaz de provocar a alteração observada</strong>.
           Explique ainda por que essa situação é diferente daquela apresentada na Questão 02.
         </p>
 
+
         <div class="graph">
-          <svg viewBox="0 0 640 360" role="img" aria-label="Duas curvas decrescentes paralelas com duas setas para a direita">
+
+          <svg
+            viewBox="0 0 640 360"
+            role="img"
+            aria-label="Duas curvas decrescentes paralelas com duas setas para a direita"
+          >
+
             <defs>
-              <marker id="arrowQ4" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
-                <path d="M0,0 L0,7 L9,3.5 z" fill="#333"/>
+
+              <marker
+                id="arrowQ4"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3.5"
+                orient="auto"
+              >
+
+                <path
+                  d="M0,0 L0,7 L9,3.5 z"
+                  fill="#333"
+                />
+
               </marker>
+
             </defs>
-            <rect x="0" y="0" width="640" height="360" rx="14" fill="#fff"/>
-            <line x1="78" y1="28" x2="78" y2="300" stroke="#222" stroke-width="2.2"/>
-            <line x1="78" y1="300" x2="590" y2="300" stroke="#222" stroke-width="2.2"/>
-            <text x="26" y="38" font-size="19" font-family="Arial" fill="#222">Preço</text>
-            <text x="480" y="334" font-size="19" font-family="Arial" fill="#222">Quantidade</text>
 
-            <path d="M128 70 C225 111, 332 183, 470 260"
-                  fill="none" stroke="#1f5f8b" stroke-width="5" stroke-linecap="round"/>
-            <path d="M196 70 C293 111, 400 183, 538 260"
-                  fill="none" stroke="#c34141" stroke-width="5" stroke-linecap="round"/>
 
-            <path d="M240 120 L308 120" stroke="#333" stroke-width="3" marker-end="url(#arrowQ4)"/>
-            <path d="M340 205 L408 205" stroke="#333" stroke-width="3" marker-end="url(#arrowQ4)"/>
+            <rect
+              x="0"
+              y="0"
+              width="640"
+              height="360"
+              rx="14"
+              fill="#fff"
+            />
+
+
+            <line
+              x1="78"
+              y1="28"
+              x2="78"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <line
+              x1="78"
+              y1="300"
+              x2="590"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <text
+              x="26"
+              y="38"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Preço
+            </text>
+
+
+            <text
+              x="480"
+              y="334"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Quantidade
+            </text>
+
+
+            <path
+              d="M128 70 C225 111, 332 183, 470 260"
+              fill="none"
+              stroke="#1f5f8b"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <path
+              d="M196 70 C293 111, 400 183, 538 260"
+              fill="none"
+              stroke="#c34141"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <path
+              d="M240 120 L308 120"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ4)"
+            />
+
+
+            <path
+              d="M340 205 L408 205"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ4)"
+            />
+
           </svg>
+
         </div>
+
       </section>
 
+
+      <!-- QUESTÃO 05 -->
+
       <section class="question">
-        <div class="question-number"><strong>Questão 05 -</strong></div>
+
+        <div class="question-number">
+          <strong>Questão 05 -</strong>
+        </div>
+
         <p>
           Interprete o gráfico, identifique qual grupo econômico está sendo representado e explique o fenômeno ocorrido.
-          Apresente <strong>uma variável capaz de produzir a alteração mostrada</strong> e explique por que essa situação
-          é diferente daquela apresentada na Questão 03.
+          Apresente <strong>uma variável capaz de produzir a alteração mostrada</strong>
+          e explique por que essa situação é diferente daquela apresentada na Questão 03.
         </p>
 
+
         <div class="graph">
-          <svg viewBox="0 0 640 360" role="img" aria-label="Duas curvas crescentes paralelas com duas setas para a direita">
+
+          <svg
+            viewBox="0 0 640 360"
+            role="img"
+            aria-label="Duas curvas crescentes paralelas com duas setas para a direita"
+          >
+
             <defs>
-              <marker id="arrowQ5" markerWidth="10" markerHeight="10" refX="8" refY="3.5" orient="auto">
-                <path d="M0,0 L0,7 L9,3.5 z" fill="#333"/>
+
+              <marker
+                id="arrowQ5"
+                markerWidth="10"
+                markerHeight="10"
+                refX="8"
+                refY="3.5"
+                orient="auto"
+              >
+
+                <path
+                  d="M0,0 L0,7 L9,3.5 z"
+                  fill="#333"
+                />
+
               </marker>
+
             </defs>
-            <rect x="0" y="0" width="640" height="360" rx="14" fill="#fff"/>
-            <line x1="78" y1="28" x2="78" y2="300" stroke="#222" stroke-width="2.2"/>
-            <line x1="78" y1="300" x2="590" y2="300" stroke="#222" stroke-width="2.2"/>
-            <text x="26" y="38" font-size="19" font-family="Arial" fill="#222">Preço</text>
-            <text x="480" y="334" font-size="19" font-family="Arial" fill="#222">Quantidade</text>
 
-            <path d="M128 260 C235 207, 340 135, 470 72"
-                  fill="none" stroke="#1f5f8b" stroke-width="5" stroke-linecap="round"/>
-            <path d="M196 260 C303 207, 408 135, 538 72"
-                  fill="none" stroke="#c34141" stroke-width="5" stroke-linecap="round"/>
 
-            <path d="M246 208 L314 208" stroke="#333" stroke-width="3" marker-end="url(#arrowQ5)"/>
-            <path d="M337 134 L405 134" stroke="#333" stroke-width="3" marker-end="url(#arrowQ5)"/>
+            <rect
+              x="0"
+              y="0"
+              width="640"
+              height="360"
+              rx="14"
+              fill="#fff"
+            />
+
+
+            <line
+              x1="78"
+              y1="28"
+              x2="78"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <line
+              x1="78"
+              y1="300"
+              x2="590"
+              y2="300"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <text
+              x="26"
+              y="38"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Preço
+            </text>
+
+
+            <text
+              x="480"
+              y="334"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Quantidade
+            </text>
+
+
+            <path
+              d="M128 260 C235 207, 340 135, 470 72"
+              fill="none"
+              stroke="#1f5f8b"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <path
+              d="M196 260 C303 207, 408 135, 538 72"
+              fill="none"
+              stroke="#c34141"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <path
+              d="M246 208 L314 208"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ5)"
+            />
+
+
+            <path
+              d="M337 134 L405 134"
+              stroke="#333"
+              stroke-width="3"
+              marker-end="url(#arrowQ5)"
+            />
+
           </svg>
+
         </div>
+
       </section>
+
+
+      <!-- QUESTÃO 06 -->
 
       <section class="question">
-        <div class="question-number"><strong>Questão 06 -</strong></div>
+
+        <div class="question-number">
+          <strong>Questão 06 -</strong>
+        </div>
+
         <p>
-          Analise o significado econômico do ponto <strong>E</strong> e explique o que representam <strong>Pe</strong> e <strong>Qe</strong>.
+          Analise o significado econômico do ponto <strong>E</strong>
+          e explique o que representam <strong>Pe</strong> e <strong>Qe</strong>.
           Considere, em seguida, que, no preço Pe, uma das partes do mercado passe a desejar negociar uma quantidade maior
-          do que a outra está disposta a negociar. Explique qual situação será criada, o que poderá acontecer com o preço
-          e de que maneira o comportamento dos participantes do mercado poderá levá-lo novamente a uma situação semelhante
-          à representada pelo ponto E.
+          do que a outra está disposta a negociar.
+          Explique qual situação será criada, o que poderá acontecer com o preço
+          e de que maneira o comportamento dos participantes do mercado poderá levá-lo novamente
+          a uma situação semelhante à representada pelo ponto E.
         </p>
 
+
         <div class="graph">
-          <svg viewBox="0 0 680 390" role="img" aria-label="Duas curvas que se cruzam no ponto E com Pe e Qe">
-            <rect x="0" y="0" width="680" height="390" rx="14" fill="#fff"/>
-            <line x1="82" y1="30" x2="82" y2="320" stroke="#222" stroke-width="2.2"/>
-            <line x1="82" y1="320" x2="625" y2="320" stroke="#222" stroke-width="2.2"/>
-            <text x="28" y="40" font-size="19" font-family="Arial" fill="#222">Preço</text>
-            <text x="512" y="355" font-size="19" font-family="Arial" fill="#222">Quantidade</text>
 
-            <path d="M145 78 C260 126, 385 206, 560 282"
-                  fill="none" stroke="#1f5f8b" stroke-width="5" stroke-linecap="round"/>
-            <path d="M145 282 C260 224, 385 138, 560 78"
-                  fill="none" stroke="#c34141" stroke-width="5" stroke-linecap="round"/>
+          <svg
+            viewBox="0 0 680 390"
+            role="img"
+            aria-label="Duas curvas que se cruzam no ponto E com Pe e Qe"
+          >
 
-            <circle cx="349" cy="183" r="9.5" fill="#b20000"/>
-            <text x="365" y="177" font-size="20" font-family="Arial" font-weight="700" fill="#111">E</text>
+            <rect
+              x="0"
+              y="0"
+              width="680"
+              height="390"
+              rx="14"
+              fill="#fff"
+            />
 
-            <line x1="82" y1="183" x2="349" y2="183"
-                  stroke="#777" stroke-width="1.8" stroke-dasharray="7 6"/>
-            <line x1="349" y1="183" x2="349" y2="320"
-                  stroke="#777" stroke-width="1.8" stroke-dasharray="7 6"/>
 
-            <text x="44" y="189" font-size="17" font-family="Arial" fill="#333">Pe</text>
-            <text x="336" y="346" font-size="17" font-family="Arial" fill="#333">Qe</text>
+            <line
+              x1="82"
+              y1="30"
+              x2="82"
+              y2="320"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <line
+              x1="82"
+              y1="320"
+              x2="625"
+              y2="320"
+              stroke="#222"
+              stroke-width="2.2"
+            />
+
+
+            <text
+              x="28"
+              y="40"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Preço
+            </text>
+
+
+            <text
+              x="512"
+              y="355"
+              font-size="19"
+              font-family="Arial"
+              fill="#222"
+            >
+              Quantidade
+            </text>
+
+
+            <path
+              d="M145 78 C260 126, 385 206, 560 282"
+              fill="none"
+              stroke="#1f5f8b"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <path
+              d="M145 282 C260 224, 385 138, 560 78"
+              fill="none"
+              stroke="#c34141"
+              stroke-width="5"
+              stroke-linecap="round"
+            />
+
+
+            <circle
+              cx="349"
+              cy="183"
+              r="9.5"
+              fill="#b20000"
+            />
+
+
+            <text
+              x="365"
+              y="177"
+              font-size="20"
+              font-family="Arial"
+              font-weight="700"
+              fill="#111"
+            >
+              E
+            </text>
+
+
+            <line
+              x1="82"
+              y1="183"
+              x2="349"
+              y2="183"
+              stroke="#777"
+              stroke-width="1.8"
+              stroke-dasharray="7 6"
+            />
+
+
+            <line
+              x1="349"
+              y1="183"
+              x2="349"
+              y2="320"
+              stroke="#777"
+              stroke-width="1.8"
+              stroke-dasharray="7 6"
+            />
+
+
+            <text
+              x="44"
+              y="189"
+              font-size="17"
+              font-family="Arial"
+              fill="#333"
+            >
+              Pe
+            </text>
+
+
+            <text
+              x="336"
+              y="346"
+              font-size="17"
+              font-family="Arial"
+              fill="#333"
+            >
+              Qe
+            </text>
+
           </svg>
+
         </div>
+
       </section>
 
+
+      <!-- ENVIO -->
+
       <section class="upload">
-        <h2>Envio da atividade</h2>
+
+        <h2>
+          Envio da atividade
+        </h2>
+
 
         <div class="drop">
-          <label for="arquivo">Selecione o arquivo da atividade</label>
-          <input id="arquivo" name="arquivo" type="file" accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple required>
+
+          <label for="arquivo">
+            Selecione o arquivo da atividade
+          </label>
+
+          <input
+            id="arquivo"
+            name="arquivo"
+            type="file"
+            accept=".jpg,.jpeg,.png,image/jpeg,image/png"
+            multiple
+            required
+          >
+
+
           <div class="note">
-            Envie de 1 a 5 fotos em JPG, JPEG ou PNG. Fotografe as páginas na ordem correta e com boa iluminação.
+            Envie de 1 a 5 fotos em JPG, JPEG ou PNG.
+            Fotografe as páginas na ordem correta e com boa iluminação.
           </div>
+
         </div>
+
 
         <div class="integration-note">
           As fotos serão enviadas para o sistema de correção de Economia e Mercado.
           Após o envio, aguarde a confirmação e anote o protocolo apresentado na tela.
         </div>
 
+
         <div class="actions">
-          <button id="sendBtn" type="submit">Enviar atividade</button>
-          <a class="back" href="../../">Voltar para Economia e Mercado</a>
+
+          <button
+            id="sendBtn"
+            type="submit"
+          >
+            Enviar atividade
+          </button>
+
+
+          <a
+            class="back"
+            href="../../"
+          >
+            Voltar para Economia e Mercado
+          </a>
+
         </div>
 
-        <div id="message" aria-live="polite"></div>
+
+        <div
+          id="message"
+          aria-live="polite"
+        ></div>
+
       </section>
 
     </form>
+
   </main>
 
-<script>
-  /*
-    INSIRA AQUI A URL /exec DO WEB APP DO GOOGLE APPS SCRIPT.
-    Depois de implantar ou atualizar o Apps Script, cole aqui a URL.
-  */
-  const UPLOAD_ENDPOINT = "https://script.google.com/macros/s/AKfycbwwgSn0yt1Pii-L1jN9IV0fXjnhkYXRp__PG0EtTNG8O0haAjtctltKlNEUaAGYkzTn9g/exec";
 
-  const MAX_ARQUIVOS = 5;
-  const MAX_BYTES = 10 * 1024 * 1024;
+  <script>
 
-  const form = document.getElementById("activityForm");
-  const sendBtn = document.getElementById("sendBtn");
-  const message = document.getElementById("message");
-  const inputArquivo = document.getElementById("arquivo");
+    const UPLOAD_ENDPOINT =
+      "https://script.google.com/macros/s/AKfycbwwgSn0yt1Pii-L1jN9IV0fXjnhkYXRp__PG0EtTNG8O0haAjtctltKlNEUaAGYkzTn9g/exec";
 
-  function arquivoParaBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
 
-      reader.onload = () => {
-        const resultado = String(reader.result || "");
-        const pos = resultado.indexOf(",");
-        resolve(pos >= 0 ? resultado.slice(pos + 1) : resultado);
-      };
+    const MAX_ARQUIVOS = 5;
 
-      reader.onerror = () => reject(new Error("Falha ao ler " + file.name));
-      reader.readAsDataURL(file);
-    });
-  }
+    const MAX_BYTES =
+      10 * 1024 * 1024;
 
-  async function montarArquivos(files) {
-    const saida = [];
 
-    for (const file of files) {
-      if (!["image/jpeg", "image/png"].includes(file.type)) {
-        throw new Error("Utilize somente imagens JPG, JPEG ou PNG.");
+    const form =
+      document.getElementById("activityForm");
+
+
+    const sendBtn =
+      document.getElementById("sendBtn");
+
+
+    const message =
+      document.getElementById("message");
+
+
+    const inputArquivo =
+      document.getElementById("arquivo");
+
+
+
+    function arquivoParaBase64(file) {
+
+      return new Promise(
+        (resolve, reject) => {
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload = () => {
+
+            const resultado =
+              String(reader.result || "");
+
+
+            const pos =
+              resultado.indexOf(",");
+
+
+            resolve(
+              pos >= 0
+                ? resultado.slice(pos + 1)
+                : resultado
+            );
+
+          };
+
+
+          reader.onerror = () =>
+            reject(
+              new Error(
+                "Falha ao ler " + file.name
+              )
+            );
+
+
+          reader.readAsDataURL(file);
+
+        }
+      );
+
+    }
+
+
+
+    async function montarArquivos(files) {
+
+      const saida = [];
+
+
+      for (const file of files) {
+
+
+        if (
+          ![
+            "image/jpeg",
+            "image/png"
+          ].includes(file.type)
+        ) {
+
+          throw new Error(
+            "Utilize somente imagens JPG, JPEG ou PNG."
+          );
+
+        }
+
+
+        if (
+          file.size > MAX_BYTES
+        ) {
+
+          throw new Error(
+            "O arquivo " +
+            file.name +
+            " ultrapassa 10 MB."
+          );
+
+        }
+
+
+        saida.push({
+
+          nome: file.name,
+
+          mimeType: file.type,
+
+          base64:
+            await arquivoParaBase64(file)
+
+        });
+
       }
 
-      if (file.size > MAX_BYTES) {
-        throw new Error("O arquivo " + file.name + " ultrapassa 10 MB.");
+
+      return saida;
+
+    }
+
+
+
+    form.addEventListener(
+      "submit",
+      async (event) => {
+
+
+        event.preventDefault();
+
+
+        const integrante1 =
+          document
+            .getElementById("integrante1")
+            .value
+            .trim();
+
+
+        const integrante2 =
+          document
+            .getElementById("integrante2")
+            .value
+            .trim();
+
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+        const files =
+          Array.from(
+            inputArquivo.files || []
+          );
+
+
+
+        if (!integrante1) {
+
+          message.style.color =
+            "#a61b1b";
+
+          message.textContent =
+            "Informe o nome completo do Integrante 1.";
+
+          return;
+
+        }
+
+
+
+        if (
+          integrante2 &&
+          integrante2.toLocaleLowerCase("pt-BR") ===
+          integrante1.toLocaleLowerCase("pt-BR")
+        ) {
+
+          message.style.color =
+            "#a61b1b";
+
+          message.textContent =
+            "O Integrante 1 e o Integrante 2 não podem ser a mesma pessoa.";
+
+          return;
+
+        }
+
+
+
+        if (!email) {
+
+          message.style.color =
+            "#a61b1b";
+
+          message.textContent =
+            "Informe o e-mail para retorno da correção.";
+
+          return;
+
+        }
+
+
+
+        if (
+          files.length < 1 ||
+          files.length > MAX_ARQUIVOS
+        ) {
+
+          message.style.color =
+            "#a61b1b";
+
+          message.textContent =
+            "Selecione de 1 a 5 fotos da atividade.";
+
+          return;
+
+        }
+
+
+
+        if (!UPLOAD_ENDPOINT) {
+
+          message.style.color =
+            "#a61b1b";
+
+          message.textContent =
+            "O endereço do Google Apps Script ainda precisa ser configurado.";
+
+          return;
+
+        }
+
+
+
+        sendBtn.disabled = true;
+
+        message.style.color =
+          "#666";
+
+        message.textContent =
+          "Preparando e enviando as fotos...";
+
+
+
+        try {
+
+
+          const arquivos =
+            await montarArquivos(files);
+
+
+
+          const payload = {
+
+            alunos:
+              [
+                integrante1,
+                integrante2
+              ].filter(Boolean),
+
+            email: email,
+
+            arquivos: arquivos
+
+          };
+
+
+
+          const response =
+            await fetch(
+              UPLOAD_ENDPOINT,
+              {
+
+                method: "POST",
+
+                headers: {
+
+                  "Content-Type":
+                    "text/plain;charset=utf-8"
+
+                },
+
+                body:
+                  JSON.stringify(payload)
+
+              }
+            );
+
+
+
+          const texto =
+            await response.text();
+
+
+
+          let retorno;
+
+
+          try {
+
+            retorno =
+              JSON.parse(texto);
+
+          }
+
+          catch (_) {
+
+            throw new Error(
+              "O servidor retornou uma resposta inválida."
+            );
+
+          }
+
+
+
+          if (!retorno.ok) {
+
+            throw new Error(
+              retorno.erro ||
+              "Não foi possível concluir o envio."
+            );
+
+          }
+
+
+
+          message.style.color =
+            "#2e7d32";
+
+
+          message.textContent =
+            "Atividade enviada com sucesso. Protocolo: " +
+            retorno.protocolo;
+
+
+          form.reset();
+
+        }
+
+        catch (erro) {
+
+
+          message.style.color =
+            "#a61b1b";
+
+
+          message.textContent =
+            erro.message ||
+            "Não foi possível enviar a atividade.";
+
+        }
+
+        finally {
+
+
+          sendBtn.disabled = false;
+
+        }
+
       }
+    );
 
-      saida.push({
-        nome: file.name,
-        mimeType: file.type,
-        base64: await arquivoParaBase64(file)
-      });
-    }
+  </script>
 
-    return saida;
-  }
-
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-
-    const integrante1 = document.getElementById("integrante1").value.trim();
-    const integrante2 = document.getElementById("integrante2").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const files = Array.from(inputArquivo.files || []);
-
-    if (!integrante1) {
-      message.style.color = "#a61b1b";
-      message.textContent = "Informe o nome completo do Integrante 1.";
-      return;
-    }
-
-    if (integrante2 && integrante2.toLocaleLowerCase("pt-BR") === integrante1.toLocaleLowerCase("pt-BR")) {
-      message.style.color = "#a61b1b";
-      message.textContent = "O Integrante 1 e o Integrante 2 não podem ser a mesma pessoa.";
-      return;
-    }
-
-    if (!email) {
-      message.style.color = "#a61b1b";
-      message.textContent = "Informe o e-mail para retorno da correção.";
-      return;
-    }
-
-    if (files.length < 1 || files.length > MAX_ARQUIVOS) {
-      message.style.color = "#a61b1b";
-      message.textContent = "Selecione de 1 a 5 fotos da atividade.";
-      return;
-    }
-
-    if (!UPLOAD_ENDPOINT) {
-      message.style.color = "#a61b1b";
-      message.textContent = "O endereço do Google Apps Script ainda precisa ser configurado.";
-      return;
-    }
-
-    sendBtn.disabled = true;
-    message.style.color = "#666";
-    message.textContent = "Preparando e enviando as fotos...";
-
-    try {
-      const arquivos = await montarArquivos(files);
-
-      const payload = {
-        alunos: [integrante1, integrante2].filter(Boolean),
-        email: email,
-        arquivos: arquivos
-      };
-
-      const response = await fetch(UPLOAD_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const texto = await response.text();
-
-      let retorno;
-      try {
-        retorno = JSON.parse(texto);
-      } catch (_) {
-        throw new Error("O servidor retornou uma resposta inválida.");
-      }
-
-      if (!retorno.ok) {
-        throw new Error(retorno.erro || "Não foi possível concluir o envio.");
-      }
-
-      message.style.color = "#2e7d32";
-      message.textContent =
-        "Atividade enviada com sucesso. Protocolo: " + retorno.protocolo;
-
-      form.reset();
-
-    } catch (erro) {
-      message.style.color = "#a61b1b";
-      message.textContent = erro.message || "Não foi possível enviar a atividade.";
-    } finally {
-      sendBtn.disabled = false;
-    }
-  });
-</script>
 </body>
 </html>
-
