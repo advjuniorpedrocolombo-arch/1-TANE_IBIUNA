@@ -1,327 +1,1309 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="description"
+    content="CFE — Cálculos Financeiros e Estatísticos — Extensão Ibiúna"
+  />
 
   <title>CFE - Cálculos Financeiros e Estatísticos</title>
 
+
   <style>
+
     :root {
+
       --etec-vermelho: #b5123b;
       --etec-vermelho-escuro: #8f0e2f;
+
       --fundo: #f5f6f8;
+
       --texto: #2f343a;
       --texto-claro: #6d737b;
+
       --branco: #ffffff;
+
       --verde-bg: #e7f6ec;
       --verde-texto: #237a3b;
+
       --amarelo-bg: #fff3d6;
       --amarelo-texto: #9a6700;
+
+      --azul-bg: #edf4ff;
+      --azul-texto: #245b9e;
+
+      --cinza-bg: #f2f3f5;
+      --cinza-texto: #69707a;
+
       --borda: #e4e7eb;
-      --sombra: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      --sombra:
+        0 8px 24px
+        rgba(0, 0, 0, 0.08);
+
     }
+
 
     * {
+
       margin: 0;
+
       padding: 0;
+
       box-sizing: border-box;
+
     }
+
 
     html {
+
       scroll-behavior: smooth;
+
     }
 
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--fundo);
-      color: var(--texto);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        var(--fundo);
+
+      color:
+        var(--texto);
+
       line-height: 1.5;
+
     }
+
+
 
     /* =========================
        CABEÇALHO
     ========================== */
 
+
     header {
-      background: linear-gradient(
-        135deg,
-        var(--etec-vermelho-escuro),
-        var(--etec-vermelho)
-      );
-      color: var(--branco);
-      padding: 32px 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--etec-vermelho-escuro),
+          var(--etec-vermelho)
+        );
+
+      color:
+        var(--branco);
+
+      padding:
+        32px 20px;
+
     }
+
 
     .header-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 24px;
+
+      max-width:
+        1100px;
+
+      margin:
+        0 auto;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        24px;
+
     }
+
 
     .foto-professor {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid var(--branco);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-      flex-shrink: 0;
+
+      width:
+        115px;
+
+      height:
+        115px;
+
+      border-radius:
+        50%;
+
+      object-fit:
+        cover;
+
+      border:
+        5px solid
+        var(--branco);
+
+      box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.25);
+
+      flex-shrink:
+        0;
+
     }
+
 
     .header-texto h1 {
-      font-size: 30px;
-      margin-bottom: 6px;
+
+      font-size:
+        30px;
+
+      margin-bottom:
+        6px;
+
     }
+
 
     .header-texto h2 {
-      font-size: 19px;
-      font-weight: normal;
-      opacity: 0.95;
-      margin-bottom: 8px;
+
+      font-size:
+        19px;
+
+      font-weight:
+        normal;
+
+      opacity:
+        0.95;
+
+      margin-bottom:
+        8px;
+
     }
 
+
     .header-texto p {
-      font-size: 15px;
-      opacity: 0.95;
+
+      font-size:
+        15px;
+
+      opacity:
+        0.95;
+
     }
+
+
 
     /* =========================
        NAVEGAÇÃO RÁPIDA
     ========================== */
 
+
     .quicknav-wrapper {
-      background: var(--branco);
-      border-bottom: 1px solid var(--borda);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+
+      background:
+        var(--branco);
+
+      border-bottom:
+        1px solid
+        var(--borda);
+
+      box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.03);
+
     }
+
 
     .quicknav {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 14px 20px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+
+      max-width:
+        1100px;
+
+      margin:
+        0 auto;
+
+      padding:
+        14px 20px;
+
+      display:
+        flex;
+
+      gap:
+        10px;
+
+      flex-wrap:
+        wrap;
+
     }
+
 
     .quicknav a {
-      text-decoration: none;
-      color: var(--etec-vermelho);
-      background: #f9e9ee;
-      padding: 10px 16px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: bold;
-      transition: 0.2s ease;
+
+      text-decoration:
+        none;
+
+      color:
+        var(--etec-vermelho);
+
+      background:
+        #f9e9ee;
+
+      padding:
+        10px 16px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        14px;
+
+      font-weight:
+        bold;
+
+      transition:
+        0.2s ease;
+
     }
 
+
     .quicknav a:hover {
-      background: var(--etec-vermelho);
-      color: var(--branco);
-      transform: translateY(-1px);
+
+      background:
+        var(--etec-vermelho);
+
+      color:
+        var(--branco);
+
+      transform:
+        translateY(-1px);
+
     }
+
+
 
     /* =========================
        CONTEÚDO PRINCIPAL
     ========================== */
 
+
     main {
-      max-width: 1100px;
-      margin: 32px auto 50px;
-      padding: 0 20px;
+
+      max-width:
+        1100px;
+
+      margin:
+        32px auto 50px;
+
+      padding:
+        0 20px;
+
     }
+
 
     .voltar {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: var(--etec-vermelho);
-      text-decoration: none;
-      font-weight: bold;
+
+      display:
+        inline-block;
+
+      margin-bottom:
+        24px;
+
+      color:
+        var(--etec-vermelho);
+
+      text-decoration:
+        none;
+
+      font-weight:
+        bold;
+
     }
+
 
     .voltar:hover {
-      text-decoration: underline;
+
+      text-decoration:
+        underline;
+
     }
+
 
     section {
-      background: var(--branco);
-      border-radius: 16px;
-      padding: 26px;
-      margin-bottom: 24px;
-      box-shadow: var(--sombra);
-      border: 1px solid var(--borda);
-      scroll-margin-top: 20px;
+
+      background:
+        var(--branco);
+
+      border-radius:
+        16px;
+
+      padding:
+        26px;
+
+      margin-bottom:
+        24px;
+
+      box-shadow:
+        var(--sombra);
+
+      border:
+        1px solid
+        var(--borda);
+
+      scroll-margin-top:
+        20px;
+
     }
+
 
     .section-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        10px;
+
+      margin-bottom:
+        8px;
+
     }
+
 
     .section-title h2 {
-      font-size: 24px;
-      color: var(--etec-vermelho);
+
+      font-size:
+        24px;
+
+      color:
+        var(--etec-vermelho);
+
     }
 
+
     .section-intro {
-      color: var(--texto-claro);
-      margin-bottom: 22px;
-      font-size: 15px;
+
+      color:
+        var(--texto-claro);
+
+      margin-bottom:
+        22px;
+
+      font-size:
+        15px;
+
     }
+
+
 
     /* =========================
        CARDS DE ATIVIDADES
     ========================== */
 
+
     .atividades-lista {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        16px;
+
     }
+
 
     .atividade-card {
-      border: 1px solid var(--borda);
-      border-left: 6px solid var(--etec-vermelho);
-      border-radius: 13px;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      background: #fff;
-      transition: 0.2s ease;
+
+      border:
+        1px solid
+        var(--borda);
+
+      border-left:
+        6px solid
+        var(--etec-vermelho);
+
+      border-radius:
+        13px;
+
+      padding:
+        20px;
+
+      display:
+        flex;
+
+      justify-content:
+        space-between;
+
+      align-items:
+        center;
+
+      gap:
+        18px;
+
+      background:
+        #fff;
+
+      transition:
+        0.2s ease;
+
     }
+
 
     .atividade-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.08);
+
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 7px 18px
+        rgba(0, 0, 0, 0.08);
+
     }
+
 
     .atividade-card.em-breve {
-      border-left-color: #d7a11d;
+
+      border-left-color:
+        #d7a11d;
+
     }
+
 
     .atividade-conteudo {
-      display: flex;
-      align-items: center;
-      gap: 16px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      gap:
+        16px;
+
     }
+
 
     .atividade-icone {
-      width: 54px;
-      height: 54px;
-      min-width: 54px;
-      border-radius: 12px;
-      background: #f9e9ee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
+
+      width:
+        54px;
+
+      height:
+        54px;
+
+      min-width:
+        54px;
+
+      border-radius:
+        12px;
+
+      background:
+        #f9e9ee;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      font-size:
+        25px;
+
     }
 
-    .atividade-card.em-breve .atividade-icone {
-      background: #fff4dc;
+
+    .atividade-card.em-breve
+    .atividade-icone {
+
+      background:
+        #fff4dc;
+
     }
+
 
     .atividade-card h3 {
-      font-size: 19px;
-      margin-bottom: 5px;
+
+      font-size:
+        19px;
+
+      margin-bottom:
+        5px;
+
     }
+
 
     .atividade-card p {
-      color: var(--texto-claro);
-      font-size: 14px;
+
+      color:
+        var(--texto-claro);
+
+      font-size:
+        14px;
+
     }
+
 
     .status {
-      padding: 9px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: bold;
-      white-space: nowrap;
+
+      padding:
+        9px 14px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        14px;
+
+      font-weight:
+        bold;
+
+      white-space:
+        nowrap;
+
     }
+
 
     .status-finalizada {
-      background: var(--verde-bg);
-      color: var(--verde-texto);
+
+      background:
+        var(--verde-bg);
+
+      color:
+        var(--verde-texto);
+
     }
+
 
     .status-breve {
-      background: var(--amarelo-bg);
-      color: var(--amarelo-texto);
+
+      background:
+        var(--amarelo-bg);
+
+      color:
+        var(--amarelo-texto);
+
     }
+
+
 
     /* =========================
-       AVISOS E MATERIAIS
+       AVISOS
     ========================== */
 
-    .box-vazio {
-      border: 1px dashed #cfd4da;
-      border-radius: 12px;
-      padding: 20px;
-      color: var(--texto-claro);
-      background: #fafbfc;
+
+    .avisos-lista {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        14px;
+
     }
+
+
+    .aviso {
+
+      display:
+        flex;
+
+      gap:
+        14px;
+
+      align-items:
+        flex-start;
+
+      padding:
+        18px;
+
+      border-radius:
+        13px;
+
+      border:
+        1px solid
+        var(--borda);
+
+      background:
+        #fafbfc;
+
+    }
+
+
+    .aviso-icone {
+
+      width:
+        44px;
+
+      height:
+        44px;
+
+      min-width:
+        44px;
+
+      border-radius:
+        11px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #f9e9ee;
+
+      color:
+        var(--etec-vermelho);
+
+      font-size:
+        20px;
+
+      font-weight:
+        bold;
+
+    }
+
+
+    .aviso h3 {
+
+      font-size:
+        16px;
+
+      margin-bottom:
+        4px;
+
+    }
+
+
+    .aviso p {
+
+      font-size:
+        14px;
+
+      color:
+        var(--texto-claro);
+
+    }
+
+
+    .aviso.prova {
+
+      background:
+        #fff7f8;
+
+      border-left:
+        5px solid
+        var(--etec-vermelho);
+
+    }
+
+
+    .aviso.prova
+    .aviso-icone {
+
+      background:
+        var(--etec-vermelho);
+
+      color:
+        #fff;
+
+    }
+
+
+    .aviso.sabado {
+
+      background:
+        #fffaf0;
+
+      border-left:
+        5px solid
+        #d99000;
+
+    }
+
+
+    .aviso.sabado
+    .aviso-icone {
+
+      background:
+        var(--amarelo-bg);
+
+      color:
+        var(--amarelo-texto);
+
+    }
+
+
+
+    /* =========================
+       CRONOGRAMA / MATERIAIS
+    ========================== */
+
+
+    .cronograma-lista {
+
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      border:
+        1px solid
+        var(--borda);
+
+      border-radius:
+        14px;
+
+      overflow:
+        hidden;
+
+    }
+
+
+    .aula-item {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        58px
+        minmax(0, 1fr)
+        auto;
+
+      gap:
+        15px;
+
+      align-items:
+        center;
+
+      padding:
+        18px;
+
+      background:
+        #fff;
+
+      border-bottom:
+        1px solid
+        var(--borda);
+
+    }
+
+
+    .aula-item:last-child {
+
+      border-bottom:
+        none;
+
+    }
+
+
+    .aula-icone {
+
+      width:
+        52px;
+
+      height:
+        52px;
+
+      border-radius:
+        13px;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      background:
+        #f9e9ee;
+
+      font-size:
+        23px;
+
+    }
+
+
+    .aula-info {
+
+      min-width:
+        0;
+
+    }
+
+
+    .data-aula {
+
+      display:
+        inline-block;
+
+      margin-bottom:
+        5px;
+
+      padding:
+        3px 8px;
+
+      border-radius:
+        999px;
+
+      background:
+        #f0f2f5;
+
+      color:
+        #596273;
+
+      font-size:
+        12px;
+
+      font-weight:
+        bold;
+
+    }
+
+
+    .aula-info h3 {
+
+      font-size:
+        16px;
+
+      margin-bottom:
+        4px;
+
+    }
+
+
+    .aula-info p {
+
+      font-size:
+        13px;
+
+      color:
+        var(--texto-claro);
+
+    }
+
+
+    .aula-status {
+
+      padding:
+        8px 11px;
+
+      border-radius:
+        999px;
+
+      font-size:
+        12px;
+
+      font-weight:
+        bold;
+
+      white-space:
+        nowrap;
+
+      text-align:
+        center;
+
+    }
+
+
+    .aula-status.ministrada {
+
+      background:
+        var(--verde-bg);
+
+      color:
+        var(--verde-texto);
+
+    }
+
+
+    .aula-status.breve {
+
+      background:
+        var(--azul-bg);
+
+      color:
+        var(--azul-texto);
+
+    }
+
+
+    .aula-status.sem-aula {
+
+      background:
+        var(--cinza-bg);
+
+      color:
+        var(--cinza-texto);
+
+    }
+
+
+
+    /* =========================
+       REVISÃO
+    ========================== */
+
+
+    .aula-item.revisao {
+
+      background:
+        #f7fbff;
+
+      border-left:
+        5px solid
+        var(--azul-texto);
+
+    }
+
+
+    .aula-item.revisao
+    .aula-icone {
+
+      background:
+        var(--azul-bg);
+
+    }
+
+
+
+    /* =========================
+       ATESTADO
+    ========================== */
+
+
+    .aula-item.atestado {
+
+      background:
+        #fafafa;
+
+      border-left:
+        5px solid
+        #a5abb3;
+
+    }
+
+
+    .aula-item.atestado
+    .aula-icone {
+
+      background:
+        #f0f1f3;
+
+    }
+
+
+
+    /* =========================
+       PROVA
+    ========================== */
+
+
+    .aula-item.prova {
+
+      background:
+        #fff6f7;
+
+      border-left:
+        6px solid
+        var(--etec-vermelho);
+
+    }
+
+
+    .aula-item.prova
+    .aula-icone {
+
+      background:
+        var(--etec-vermelho);
+
+      color:
+        #fff;
+
+    }
+
+
+    .aula-item.prova
+    .aula-info h3 {
+
+      color:
+        var(--etec-vermelho);
+
+      font-weight:
+        900;
+
+    }
+
+
+    .aula-item.prova
+    .data-aula {
+
+      background:
+        #f9e9ee;
+
+      color:
+        var(--etec-vermelho);
+
+    }
+
+
+    .aula-status.prova {
+
+      background:
+        var(--etec-vermelho);
+
+      color:
+        #fff;
+
+      border-radius:
+        9px;
+
+    }
+
+
+
+    /* =========================
+       SÁBADO LETIVO
+    ========================== */
+
+
+    .aula-item.sabado {
+
+      background:
+        #fffaf0;
+
+      border-left:
+        6px solid
+        #d99000;
+
+    }
+
+
+    .aula-item.sabado
+    .aula-icone {
+
+      background:
+        var(--amarelo-bg);
+
+    }
+
+
+    .aula-item.sabado
+    .aula-info h3 {
+
+      color:
+        #8a5a00;
+
+    }
+
+
+    .aula-item.sabado
+    .data-aula {
+
+      background:
+        var(--amarelo-bg);
+
+      color:
+        var(--amarelo-texto);
+
+    }
+
+
+    .aula-status.sabado {
+
+      background:
+        var(--amarelo-bg);
+
+      color:
+        var(--amarelo-texto);
+
+    }
+
+
 
     /* =========================
        RODAPÉ
     ========================== */
 
+
     footer {
-      text-align: center;
-      padding: 28px 20px 35px;
-      color: #777;
-      font-size: 13px;
+
+      text-align:
+        center;
+
+      padding:
+        28px 20px 35px;
+
+      color:
+        #777;
+
+      font-size:
+        13px;
+
     }
+
+
 
     /* =========================
        RESPONSIVO
     ========================== */
 
+
     @media (max-width: 720px) {
+
+
       .header-container {
-        flex-direction: column;
-        text-align: center;
+
+        flex-direction:
+          column;
+
+        text-align:
+          center;
+
       }
+
 
       .header-texto h1 {
-        font-size: 25px;
+
+        font-size:
+          25px;
+
       }
+
 
       .quicknav {
-        justify-content: center;
+
+        justify-content:
+          center;
+
       }
+
 
       section {
-        padding: 20px;
+
+        padding:
+          20px;
+
       }
+
 
       .atividade-card {
-        flex-direction: column;
-        align-items: flex-start;
+
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+
       }
+
 
       .atividade-conteudo {
-        align-items: flex-start;
+
+        align-items:
+          flex-start;
+
       }
 
+
       .status {
-        margin-left: 70px;
+
+        margin-left:
+          70px;
+
       }
+
+
+      .aula-item {
+
+        grid-template-columns:
+          52px 1fr;
+
+        align-items:
+          start;
+
+      }
+
+
+      .aula-status {
+
+        grid-column:
+          1 / -1;
+
+        width:
+          100%;
+
+      }
+
+
     }
+
+
+    @media (max-width: 480px) {
+
+
+      .atividade-conteudo {
+
+        flex-direction:
+          column;
+
+      }
+
+
+      .status {
+
+        margin-left:
+          0;
+
+      }
+
+
+    }
+
   </style>
+
 </head>
+
+
 
 <body>
 
-  <!-- CABEÇALHO -->
+
+
+  <!-- =========================
+       CABEÇALHO
+  ========================== -->
+
+
   <header>
+
     <div class="header-container">
+
 
       <img
         src="foto-professor.png"
@@ -329,155 +1311,1255 @@
         class="foto-professor"
       />
 
+
       <div class="header-texto">
-        <h1>Cálculos Financeiros e Estatísticos</h1>
-        <h2>CFE</h2>
-        <p>Prof. Junior P. Colombo</p>
+
+        <h1>
+          Cálculos Financeiros e Estatísticos
+        </h1>
+
+        <h2>
+          CFE
+        </h2>
+
+        <p>
+          Prof. Junior P. Colombo
+        </p>
+
       </div>
 
+
     </div>
+
   </header>
 
 
-  <!-- MENU -->
+
+  <!-- =========================
+       MENU
+  ========================== -->
+
+
   <div class="quicknav-wrapper">
+
     <nav class="quicknav">
-      <a href="#atividades">📚 Atividades</a>
-      <a href="#avisos">📢 Avisos</a>
-      <a href="#materiais">📁 Materiais</a>
+
+      <a href="#atividades">
+        📚 Atividades
+      </a>
+
+      <a href="#avisos">
+        📢 Avisos
+      </a>
+
+      <a href="#materiais">
+        📁 Materiais e Aulas
+      </a>
+
     </nav>
+
   </div>
 
 
-  <!-- CONTEÚDO -->
+
+  <!-- =========================
+       CONTEÚDO
+  ========================== -->
+
+
   <main>
 
-    <a href="../index.html" class="voltar">
+
+    <a
+      href="../index.html"
+      class="voltar"
+    >
       ← Voltar para a página principal
     </a>
+
 
 
     <!-- =========================
          ATIVIDADES
     ========================== -->
+
+
     <section id="atividades">
 
+
       <div class="section-title">
-        <span>📚</span>
-        <h2>Atividades</h2>
+
+        <span>
+          📚
+        </span>
+
+        <h2>
+          Atividades
+        </h2>
+
       </div>
 
+
       <p class="section-intro">
+
         Atividades desenvolvidas no componente curricular de
         Cálculos Financeiros e Estatísticos.
+
       </p>
+
 
 
       <div class="atividades-lista">
 
+
+
         <!-- ATD1 -->
+
+
         <article class="atividade-card">
 
+
           <div class="atividade-conteudo">
+
 
             <div class="atividade-icone">
               📊
             </div>
 
+
             <div>
-              <h3>ATD1 – Juros Simples</h3>
+
+              <h3>
+                ATD1 – Juros Simples
+              </h3>
+
               <p>
-                Realizada em 02/09/2026.
+                Atividade referente aos conteúdos
+                de Juros Simples.
               </p>
+
             </div>
 
+
           </div>
+
 
           <div class="status status-finalizada">
             ✓ Finalizada
           </div>
 
+
         </article>
 
 
+
         <!-- ATD2 -->
+
+
         <article class="atividade-card em-breve">
 
+
           <div class="atividade-conteudo">
+
 
             <div class="atividade-icone">
               💰
             </div>
 
+
             <div>
-              <h3>ATD2 – Juros Compostos</h3>
+
+              <h3>
+                ATD2 – Juros Compostos
+              </h3>
+
               <p>
                 Próxima atividade do componente.
               </p>
+
             </div>
 
+
           </div>
+
 
           <div class="status status-breve">
             ⏳ Em breve
           </div>
 
+
         </article>
+
 
       </div>
 
+
     </section>
+
 
 
     <!-- =========================
          AVISOS
     ========================== -->
+
+
     <section id="avisos">
 
+
       <div class="section-title">
-        <span>📢</span>
-        <h2>Avisos</h2>
+
+        <span>
+          📢
+        </span>
+
+        <h2>
+          Avisos
+        </h2>
+
       </div>
+
 
       <p class="section-intro">
         Comunicados e informações importantes do componente.
       </p>
 
-      <div class="box-vazio">
-        Nenhum aviso específico cadastrado no momento.
+
+
+      <div class="avisos-lista">
+
+
+
+        <!-- 1ª PROVA -->
+
+
+        <div class="aviso prova">
+
+
+          <div class="aviso-icone">
+            !
+          </div>
+
+
+          <div>
+
+            <h3>
+              1ª Semana de Provas — 17 a 23/09/2026
+            </h3>
+
+
+            <p>
+
+              A avaliação de Cálculos Financeiros e Estatísticos
+              será realizada na
+              <strong>quarta-feira, 23/09/2026</strong>.
+
+              A prova terá início às
+              <strong>19h30</strong>.
+
+              O jantar será servido às
+              <strong>19h</strong>.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- 2ª PROVA -->
+
+
+        <div class="aviso prova">
+
+
+          <div class="aviso-icone">
+            !
+          </div>
+
+
+          <div>
+
+            <h3>
+              2ª Semana de Provas — 23 a 27/11/2026
+            </h3>
+
+
+            <p>
+
+              A segunda avaliação de CFE será realizada
+              na
+              <strong>quarta-feira, 25/11/2026</strong>.
+
+              A prova terá início às
+              <strong>19h30</strong>.
+
+              O jantar será servido às
+              <strong>19h</strong>.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- SÁBADO LETIVO -->
+
+
+        <div class="aviso sabado">
+
+
+          <div class="aviso-icone">
+            ⚠️
+          </div>
+
+
+          <div>
+
+            <h3>
+              ⚠️ Sábado Letivo — 28/11/2026
+            </h3>
+
+
+            <p>
+
+              Atenção: haverá sábado letivo em
+              <strong>28/11/2026</strong>,
+              referente à quarta-feira de
+              <strong>23/12/2026</strong>.
+
+              A atividade será informada posteriormente.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
       </div>
 
+
     </section>
+
 
 
     <!-- =========================
-         MATERIAIS
+         MATERIAIS / CRONOGRAMA
     ========================== -->
+
+
     <section id="materiais">
 
+
       <div class="section-title">
-        <span>📁</span>
-        <h2>Materiais</h2>
+
+        <span>
+          📁
+        </span>
+
+        <h2>
+          Materiais e Cronograma
+        </h2>
+
       </div>
+
 
       <p class="section-intro">
-        Materiais de apoio utilizados nas aulas.
+
+        Cronograma das aulas de quarta-feira,
+        atividades, revisões e avaliações do componente.
+
       </p>
 
-      <div class="box-vazio">
-        Nenhum material disponível no momento.
+
+
+      <div class="cronograma-lista">
+
+
+
+        <!-- AULA 01 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            💰
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              29/07/2026
+            </span>
+
+            <h3>
+              Aula 01 — Juros Simples
+            </h3>
+
+            <p>
+              Introdução ao conteúdo de Juros Simples,
+              conceitos, fórmulas e exercícios iniciais.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status ministrada">
+            Aula ministrada
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 02 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            💰
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              05/08/2026
+            </span>
+
+            <h3>
+              Aula 02 — Juros Simples
+            </h3>
+
+            <p>
+              Continuação dos cálculos de Juros Simples
+              e resolução de exercícios.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status ministrada">
+            Aula ministrada
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 03 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            🧮
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              12/08/2026
+            </span>
+
+            <h3>
+              Aula 03 — Juros Simples
+            </h3>
+
+            <p>
+              Continuação do conteúdo e correção
+              dos últimos exercícios de Juros Simples.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status ministrada">
+            Aula ministrada
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 04 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📊
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              19/08/2026
+            </span>
+
+            <h3>
+              Aula 04 — Juros Simples / Juros Compostos
+            </h3>
+
+            <p>
+              Continuação e correção dos exercícios.
+              Registro indica ausência do professor nesta data.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status sem-aula">
+            Ausência
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 05 -->
+
+
+        <div class="aula-item revisao">
+
+
+          <div class="aula-icone">
+            🔄
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              26/08/2026
+            </span>
+
+            <h3>
+              Aula 05 — Revisão de Juros Simples + Palestra
+            </h3>
+
+            <p>
+              Revisão dos conteúdos de Juros Simples
+              e participação em palestra com advogada.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status ministrada">
+            Aula ministrada
+          </span>
+
+
+        </div>
+
+
+
+        <!-- 02/09 ATESTADO -->
+
+
+        <div class="aula-item atestado">
+
+
+          <div class="aula-icone">
+            🩺
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              02/09/2026
+            </span>
+
+            <h3>
+              Professor afastado — Atestado Médico
+            </h3>
+
+            <p>
+              Não houve aula do componente nesta data.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status sem-aula">
+            Atestado
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 06 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📈
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              09/09/2026
+            </span>
+
+            <h3>
+              Aula 06 — Juros Compostos
+            </h3>
+
+            <p>
+              Correção na lousa dos exercícios de
+              Juros Simples da ATD1 e início do conteúdo
+              de Juros Compostos.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Próxima aula
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 07 -->
+
+
+        <div class="aula-item revisao">
+
+
+          <div class="aula-icone">
+            🔄
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              16/09/2026
+            </span>
+
+            <h3>
+              Aula 07 — Revisão para a 1ª Prova
+            </h3>
+
+            <p>
+              Revisão dos conteúdos de Juros Simples
+              e Juros Compostos para a primeira avaliação.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 08 - 1ª PROVA -->
+
+
+        <div class="aula-item prova">
+
+
+          <div class="aula-icone">
+            !
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              23/09/2026
+            </span>
+
+            <h3>
+              Aula 08 — DIA DA 1ª PROVA
+            </h3>
+
+            <p>
+
+              1ª Avaliação de
+              Cálculos Financeiros e Estatísticos.
+
+              <br />
+
+              <strong>
+                Prova às 19h30 —
+                jantar servido às 19h.
+              </strong>
+
+            </p>
+
+          </div>
+
+
+          <span class="aula-status prova">
+            AVALIAÇÃO
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 09 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              30/09/2026
+            </span>
+
+            <h3>
+              Aula 09 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 10 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              07/10/2026
+            </span>
+
+            <h3>
+              Aula 10 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 11 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              14/10/2026
+            </span>
+
+            <h3>
+              Aula 11 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 12 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              21/10/2026
+            </span>
+
+            <h3>
+              Aula 12 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 13 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              28/10/2026
+            </span>
+
+            <h3>
+              Aula 13 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 14 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              04/11/2026
+            </span>
+
+            <h3>
+              Aula 14 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 15 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              11/11/2026
+            </span>
+
+            <h3>
+              Aula 15 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 16 -->
+
+
+        <div class="aula-item revisao">
+
+
+          <div class="aula-icone">
+            🔄
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              18/11/2026
+            </span>
+
+            <h3>
+              Aula 16 — Revisão para a 2ª Prova
+            </h3>
+
+            <p>
+              Revisão dos conteúdos trabalhados
+              no segundo período.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 17 - 2ª PROVA -->
+
+
+        <div class="aula-item prova">
+
+
+          <div class="aula-icone">
+            !
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              25/11/2026
+            </span>
+
+            <h3>
+              Aula 17 — DIA DA 2ª PROVA
+            </h3>
+
+            <p>
+
+              2ª Avaliação de
+              Cálculos Financeiros e Estatísticos.
+
+              <br />
+
+              <strong>
+                Prova às 19h30 —
+                jantar servido às 19h.
+              </strong>
+
+            </p>
+
+          </div>
+
+
+          <span class="aula-status prova">
+            AVALIAÇÃO
+          </span>
+
+
+        </div>
+
+
+
+        <!-- SÁBADO LETIVO -->
+
+
+        <div class="aula-item sabado">
+
+
+          <div class="aula-icone">
+            ⚠️
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              28/11/2026
+            </span>
+
+            <h3>
+              ⚠️ Sábado Letivo — Atenção
+            </h3>
+
+            <p>
+
+              Sábado letivo referente à
+              quarta-feira de
+              <strong>23/12/2026</strong>.
+
+              Atividade a ser informada.
+
+            </p>
+
+          </div>
+
+
+          <span class="aula-status sabado">
+            ⚠️ Atividade em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 18 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              02/12/2026
+            </span>
+
+            <h3>
+              Aula 18 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 19 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            📘
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              09/12/2026
+            </span>
+
+            <h3>
+              Aula 19 — Conteúdo em breve
+            </h3>
+
+            <p>
+              Conteúdo será informado posteriormente.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Material em breve
+          </span>
+
+
+        </div>
+
+
+
+        <!-- AULA 20 -->
+
+
+        <div class="aula-item">
+
+
+          <div class="aula-icone">
+            ✅
+          </div>
+
+
+          <div class="aula-info">
+
+            <span class="data-aula">
+              16/12/2026
+            </span>
+
+            <h3>
+              Aula 20 — Encerramento do Componente
+            </h3>
+
+            <p>
+              Encerramento das atividades de
+              Cálculos Financeiros e Estatísticos.
+            </p>
+
+          </div>
+
+
+          <span class="aula-status breve">
+            Encerramento
+          </span>
+
+
+        </div>
+
+
       </div>
 
+
     </section>
+
 
   </main>
 
 
-  <!-- RODAPÉ -->
+
+  <!-- =========================
+       RODAPÉ
+  ========================== -->
+
+
   <footer>
-    Etec de Mairinque – Extensão Ibiúna<br />
+
+    Etec de Mairinque – Extensão Ibiúna
+    <br />
+
+    CFE — Cálculos Financeiros e Estatísticos
+    <br />
+
     Prof. Junior P. Colombo
+
   </footer>
 
+
 </body>
+
 </html>
