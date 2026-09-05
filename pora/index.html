@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -13,10 +15,14 @@
     content="PORA — Processos Organizacionais e Rotinas Administrativas | 1º TANE — Extensão Ibiúna"
   >
 
-  <title>PORA — Processos Organizacionais e Rotinas Administrativas</title>
+  <title>
+    PORA — Processos Organizacionais e Rotinas Administrativas
+  </title>
 
   <style>
+
     :root{
+
       --etec-red:#b5121b;
       --etec-red-dark:#8e0d14;
       --etec-red-soft:#f9e9eb;
@@ -28,6 +34,9 @@
       --green:#237a42;
       --green-bg:#eaf7ef;
 
+      --yellow:#926100;
+      --yellow-bg:#fff5d8;
+
       --text:#222831;
       --muted:#667085;
       --line:#e7e9ee;
@@ -35,6 +44,7 @@
       --white:#ffffff;
 
       --shadow:0 10px 30px rgba(30,38,50,.08);
+
     }
 
     *{
@@ -314,6 +324,7 @@
       display:grid;
       grid-template-columns:minmax(0,1.25fr) minmax(300px,.75fr);
       gap:18px;
+      align-items:start;
     }
 
     .panel{
@@ -403,7 +414,7 @@
     }
 
     /* =========================
-       AVISO
+       AVISOS
        ========================= */
 
     .notice{
@@ -411,6 +422,11 @@
       display:flex;
       gap:12px;
       align-items:flex-start;
+      border-bottom:1px solid var(--line);
+    }
+
+    .notice:last-child{
+      border-bottom:none;
     }
 
     .notice-icon{
@@ -437,15 +453,26 @@
       font-size:.86rem;
     }
 
+    .notice.prova-notice{
+      background:#fff8f8;
+      border-left:5px solid var(--etec-red);
+    }
+
+    .notice.prova-notice .notice-icon{
+      background:var(--etec-red);
+      color:#fff;
+    }
+
     /* =========================
-       MATERIAIS
+       MATERIAIS / CRONOGRAMA
        ========================= */
 
     .material-item{
       padding:18px 20px;
-      display:flex;
+      display:grid;
+      grid-template-columns:46px minmax(0,1fr) auto;
       gap:14px;
-      align-items:flex-start;
+      align-items:center;
       border-top:1px solid var(--line);
     }
 
@@ -468,6 +495,19 @@
       width:100%;
     }
 
+    .lesson-date{
+      display:inline-flex;
+      align-items:center;
+      width:max-content;
+      padding:3px 7px;
+      margin-bottom:5px;
+      border-radius:999px;
+      background:#f1f3f5;
+      color:#596273;
+      font-size:.7rem;
+      font-weight:900;
+    }
+
     .material-content strong{
       display:block;
       font-size:.96rem;
@@ -477,6 +517,69 @@
       margin:5px 0 0;
       color:var(--muted);
       font-size:.86rem;
+    }
+
+    .material-status{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:.74rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .status-ministered{
+      color:var(--green);
+      background:var(--green-bg);
+    }
+
+    .status-future{
+      color:var(--blue);
+      background:var(--blue-soft);
+    }
+
+    .status-no-file{
+      color:var(--yellow);
+      background:var(--yellow-bg);
+    }
+
+    /* =========================
+       PROVAS
+       ========================= */
+
+    .material-item.prova{
+      background:#fff7f7;
+      border-left:6px solid var(--etec-red);
+    }
+
+    .material-item.prova .material-icon{
+      background:var(--etec-red);
+      color:#fff;
+    }
+
+    .material-item.prova .material-content strong{
+      color:var(--etec-red);
+      font-weight:900;
+    }
+
+    .material-item.prova .lesson-date{
+      color:var(--etec-red);
+      background:var(--etec-red-soft);
+    }
+
+    .proof-label{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:8px 11px;
+      border-radius:9px;
+      background:var(--etec-red);
+      color:#fff;
+      font-size:.74rem;
+      font-weight:900;
+      white-space:nowrap;
     }
 
     /* =========================
@@ -536,6 +639,7 @@
        ========================= */
 
     @media(max-width:900px){
+
       .hero-inner{
         grid-template-columns:1fr;
       }
@@ -543,6 +647,7 @@
       .layout-two{
         grid-template-columns:1fr;
       }
+
     }
 
     @media(max-width:700px){
@@ -566,10 +671,22 @@
         align-items:flex-start;
       }
 
+      .material-item{
+        grid-template-columns:46px 1fr;
+        align-items:start;
+      }
+
+      .material-status,
+      .proof-label{
+        grid-column:1 / -1;
+        width:100%;
+      }
+
       .footer-inner{
         flex-direction:column;
         text-align:center;
       }
+
     }
 
     @media(max-width:480px){
@@ -586,8 +703,11 @@
       .profile-card span{
         display:none;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
@@ -600,7 +720,10 @@
 
     <div class="shell topbar-inner">
 
-      <a class="back-link" href="../index.html">
+      <a
+        class="back-link"
+        href="../index.html"
+      >
         ← Voltar ao Portal
       </a>
 
@@ -620,14 +743,16 @@
 
   </header>
 
-
   <main>
 
     <!-- =========================
          CAPA
          ========================= -->
 
-    <section class="hero" id="inicio">
+    <section
+      class="hero"
+      id="inicio"
+    >
 
       <div class="shell hero-inner">
 
@@ -646,13 +771,12 @@
           </h2>
 
           <p>
-            Espaço destinado às atividades, avisos, orientações
-            e materiais do componente Processos Organizacionais
-            e Rotinas Administrativas.
+            Espaço destinado às atividades,
+            avisos, orientações e materiais do componente
+            Processos Organizacionais e Rotinas Administrativas.
           </p>
 
         </div>
-
 
         <aside class="profile-card">
 
@@ -685,7 +809,6 @@
 
     </section>
 
-
     <!-- =========================
          NAVEGAÇÃO
          ========================= -->
@@ -706,13 +829,12 @@
         </a>
 
         <a href="#materiais">
-          Materiais
+          Materiais e Aulas
         </a>
 
       </nav>
 
     </div>
-
 
     <!-- =========================
          ATIVIDADES
@@ -750,13 +872,11 @@
 
         </div>
 
-
         <article class="activity-card">
 
           <div class="activity-icon">
             🧩
           </div>
-
 
           <div class="activity-main">
 
@@ -767,7 +887,8 @@
             <p>
               Questionário destinado à identificação e análise
               dos perfis Rei, Guerreiro, Mago e Amante.
-              Responda às 20 questões e obtenha seu resultado individual.
+              Responda às 20 questões e obtenha
+              seu resultado individual.
             </p>
 
             <div class="meta">
@@ -784,7 +905,6 @@
 
           </div>
 
-
           <a
             class="btn btn-primary"
             href="atividades/atd1-quem-sou-eu/index.html"
@@ -798,7 +918,6 @@
 
     </section>
 
-
     <!-- =========================
          AVISOS E MATERIAIS
          ========================= -->
@@ -807,54 +926,8 @@
 
       <div class="shell layout-two">
 
-
-        <!-- AVISOS -->
-
-        <section
-          class="panel"
-          id="avisos"
-        >
-
-          <div class="panel-head">
-
-            <h4>
-              Avisos do componente
-            </h4>
-
-            <span class="count-pill">
-              1
-            </span>
-
-          </div>
-
-
-          <div class="notice">
-
-            <div class="notice-icon">
-              !
-            </div>
-
-            <div>
-
-              <strong>
-                Bem-vindo à área de PORA
-              </strong>
-
-              <p>
-                Os avisos específicos do componente
-                Processos Organizacionais e Rotinas Administrativas
-                serão publicados nesta seção.
-              </p>
-
-            </div>
-
-          </div>
-
-        </section>
-
-
         <!-- =========================
-             MATERIAIS
+             MATERIAIS / CRONOGRAMA
              ========================= -->
 
         <section
@@ -865,15 +938,14 @@
           <div class="panel-head">
 
             <h4>
-              Materiais de apoio
+              📚 Materiais e Cronograma de Aulas
             </h4>
 
             <span class="count-pill">
-              6
+              21 aulas
             </span>
 
           </div>
-
 
           <!-- AULA 01 -->
 
@@ -885,19 +957,28 @@
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                30/07/2026
+              </span>
+
               <strong>
-                Aula 01 — Boas-vindas
+                Aula 01 — Recepção e Boas-vindas
               </strong>
 
               <p>
-                Recepção da turma, apresentação do componente
-                e orientações iniciais para o semestre.
+                Recepção dos alunos,
+                apresentação do componente,
+                orientações iniciais
+                e integração dos calouros.
               </p>
 
             </div>
 
-          </div>
+            <span class="material-status status-ministered">
+              Aula ministrada
+            </span>
 
+          </div>
 
           <!-- AULA 02 -->
 
@@ -909,13 +990,20 @@
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                06/08/2026
+              </span>
+
               <strong>
                 Aula 02 — Perfil do Administrador
               </strong>
 
               <p>
-                Características, responsabilidades, comportamento,
-                atitudes e atuação profissional do Técnico em Administração.
+                Características,
+                responsabilidades,
+                comportamento,
+                atitudes e atuação profissional
+                do Técnico em Administração.
               </p>
 
               <a
@@ -929,8 +1017,11 @@
 
             </div>
 
-          </div>
+            <span class="material-status status-ministered">
+              Aula ministrada
+            </span>
 
+          </div>
 
           <!-- AULA 03 -->
 
@@ -942,14 +1033,19 @@
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                13/08/2026
+              </span>
+
               <strong>
-                Aula 03 — Questionário de Perfis
+                Aula 03 — Perfil Profissional e Questionário de Perfis
               </strong>
 
               <p>
-                Atividade destinada à identificação e análise
-                dos diferentes perfis comportamentais,
-                com base nos perfis Rei, Guerreiro, Mago e Amante.
+                Estudo sobre o perfil profissional
+                do administrador.
+                Aplicação e debate sobre os perfis
+                Rei, Guerreiro, Mago e Amante.
               </p>
 
               <a
@@ -961,8 +1057,11 @@
 
             </div>
 
-          </div>
+            <span class="material-status status-ministered">
+              Aula ministrada
+            </span>
 
+          </div>
 
           <!-- AULA 04 -->
 
@@ -974,43 +1073,59 @@
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                20/08/2026
+              </span>
+
               <strong>
                 Aula 04 — Palestra
               </strong>
 
               <p>
-                Encontro destinado à participação dos alunos
-                em palestra realizada durante o período de aula.
+                Encontro destinado à participação
+                dos alunos em palestra realizada
+                durante o período de aula.
               </p>
 
             </div>
 
-          </div>
+            <span class="material-status status-no-file">
+              Sem material
+            </span>
 
+          </div>
 
           <!-- AULA 05 -->
 
           <div class="material-item">
 
             <div class="material-icon">
-              🔎
+              🔄
             </div>
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                27/08/2026
+              </span>
+
               <strong>
-                Aula 05 — Revisão Geral para Calouros e Veteranos
+                Aula 05 — Revisão Geral
               </strong>
 
               <p>
-                Revisão dos conteúdos trabalhados e integração
-                entre alunos calouros e veteranos.
+                Revisão dos conteúdos trabalhados
+                até o momento e integração entre
+                alunos calouros e veteranos.
               </p>
 
             </div>
 
-          </div>
+            <span class="material-status status-no-file">
+              Sem PDF
+            </span>
 
+          </div>
 
           <!-- AULA 06 -->
 
@@ -1022,13 +1137,18 @@
 
             <div class="material-content">
 
+              <span class="lesson-date">
+                03/09/2026
+              </span>
+
               <strong>
                 Aula 06 — Atendimento ao Cliente
               </strong>
 
               <p>
-                Conteúdo referente ao atendimento ao cliente
-                interno e externo e às práticas administrativas.
+                Atendimento ao cliente interno e externo,
+                comportamento profissional
+                e práticas administrativas.
               </p>
 
               <a
@@ -1042,8 +1162,606 @@
 
             </div>
 
+            <span class="material-status status-ministered">
+              Aula ministrada
+            </span>
+
           </div>
 
+          <!-- AULA 07 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              🤝
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                10/09/2026
+              </span>
+
+              <strong>
+                Aula 07 — Continuação das Técnicas de Atendimento
+              </strong>
+
+              <p>
+                Continuação do conteúdo sobre técnicas de atendimento,
+                com ênfase no atendimento ao cliente interno e externo,
+                postura profissional, comunicação
+                e práticas administrativas.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 08 — 1ª PROVA -->
+
+          <div class="material-item prova">
+
+            <div class="material-icon">
+              !
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                17/09/2026
+              </span>
+
+              <strong>
+                Aula 08 — DIA DA 1ª PROVA
+              </strong>
+
+              <p>
+                1ª Avaliação de
+                Processos Organizacionais
+                e Rotinas Administrativas.
+
+                <br><br>
+
+                <strong>Conteúdo da prova:</strong><br>
+                • Perfil do Administrador<br>
+                • Atendimento ao Cliente Interno e Externo
+
+                <br><br>
+
+                <strong>
+                  Prova às 19h30 —
+                  jantar servido às 19h.
+                </strong>
+              </p>
+
+            </div>
+
+            <span class="proof-label">
+              AVALIAÇÃO
+            </span>
+
+          </div>
+
+          <!-- AULA 09 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                24/09/2026
+              </span>
+
+              <strong>
+                Aula 09 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 10 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                01/10/2026
+              </span>
+
+              <strong>
+                Aula 10 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 11 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                08/10/2026
+              </span>
+
+              <strong>
+                Aula 11 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 12 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                15/10/2026
+              </span>
+
+              <strong>
+                Aula 12 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 13 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                22/10/2026
+              </span>
+
+              <strong>
+                Aula 13 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 14 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                29/10/2026
+              </span>
+
+              <strong>
+                Aula 14 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 15 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                05/11/2026
+              </span>
+
+              <strong>
+                Aula 15 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 16 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                12/11/2026
+              </span>
+
+              <strong>
+                Aula 16 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 17 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              🔄
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                19/11/2026
+              </span>
+
+              <strong>
+                Aula 17 — Revisão para a 2ª Prova
+              </strong>
+
+              <p>
+                Revisão dos conteúdos trabalhados
+                durante o segundo período.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 18 — 2ª PROVA -->
+
+          <div class="material-item prova">
+
+            <div class="material-icon">
+              !
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                26/11/2026
+              </span>
+
+              <strong>
+                Aula 18 — DIA DA 2ª PROVA
+              </strong>
+
+              <p>
+                2ª Avaliação de
+                Processos Organizacionais
+                e Rotinas Administrativas.
+
+                <br>
+
+                <strong>
+                  Prova às 19h30 —
+                  jantar servido às 19h.
+                </strong>
+              </p>
+
+            </div>
+
+            <span class="proof-label">
+              AVALIAÇÃO
+            </span>
+
+          </div>
+
+          <!-- AULA 19 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                03/12/2026
+              </span>
+
+              <strong>
+                Aula 19 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 20 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              📘
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                10/12/2026
+              </span>
+
+              <strong>
+                Aula 20 — Conteúdo em breve
+              </strong>
+
+              <p>
+                Conteúdo e material serão informados posteriormente.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Material em breve
+            </span>
+
+          </div>
+
+          <!-- AULA 21 -->
+
+          <div class="material-item">
+
+            <div class="material-icon">
+              ✅
+            </div>
+
+            <div class="material-content">
+
+              <span class="lesson-date">
+                17/12/2026
+              </span>
+
+              <strong>
+                Aula 21 — Encerramento do Componente
+              </strong>
+
+              <p>
+                Encerramento das atividades de
+                Processos Organizacionais
+                e Rotinas Administrativas.
+              </p>
+
+            </div>
+
+            <span class="material-status status-future">
+              Encerramento
+            </span>
+
+          </div>
+
+        </section>
+
+        <!-- =========================
+             AVISOS
+             ========================= -->
+
+        <section
+          class="panel"
+          id="avisos"
+        >
+
+          <div class="panel-head">
+
+            <h4>
+              Avisos do componente
+            </h4>
+
+            <span class="count-pill">
+              3
+            </span>
+
+          </div>
+
+          <!-- PRIMEIRA PROVA -->
+
+          <div class="notice prova-notice">
+
+            <div class="notice-icon">
+              !
+            </div>
+
+            <div>
+
+              <strong>
+                1ª Semana de Provas — 17 a 23/09/2026
+              </strong>
+
+              <p>
+                A avaliação de PORA será realizada
+                na quinta-feira,
+                <strong>17/09/2026</strong>.
+
+                <br><br>
+
+                <strong>Conteúdo da prova:</strong><br>
+                • Perfil do Administrador<br>
+                • Atendimento ao Cliente Interno e Externo
+
+                <br><br>
+
+                A prova terá início às
+                <strong>19h30</strong>.
+
+                O jantar será servido às
+                <strong>19h</strong>.
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- SEGUNDA PROVA -->
+
+          <div class="notice prova-notice">
+
+            <div class="notice-icon">
+              !
+            </div>
+
+            <div>
+
+              <strong>
+                2ª Semana de Provas — 23 a 27/11/2026
+              </strong>
+
+              <p>
+                A segunda avaliação de PORA
+                será realizada na quinta-feira,
+                <strong>26/11/2026</strong>.
+
+                A prova terá início às
+                <strong>19h30</strong>.
+
+                O jantar será servido às
+                <strong>19h</strong>.
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- ATD1 -->
+
+          <div class="notice">
+
+            <div class="notice-icon">
+              🧩
+            </div>
+
+            <div>
+
+              <strong>
+                ATD1 — Questionário “Quem sou eu?”
+              </strong>
+
+              <p>
+                A atividade para identificação dos perfis
+                Rei, Guerreiro, Mago e Amante
+                permanece disponível na área de Atividades.
+              </p>
+
+            </div>
+
+          </div>
 
         </section>
 
@@ -1052,7 +1770,6 @@
     </section>
 
   </main>
-
 
   <!-- =========================
        RODAPÉ
@@ -1067,7 +1784,8 @@
       </span>
 
       <span>
-        1º TANE — Extensão Ibiúna • Prof. Junior P. Colombo
+        1º TANE — Extensão Ibiúna •
+        Prof. Junior P. Colombo
       </span>
 
     </div>
@@ -1075,4 +1793,5 @@
   </footer>
 
 </body>
+
 </html>
