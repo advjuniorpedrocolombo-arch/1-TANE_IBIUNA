@@ -1,1 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b5121b">
+  <meta name="description" content="ATD2 – Formatação ABNT | Aplicativos Informatizados | 1º TANE – Extensão Ibiúna">
+  <title>ATD2 – Formatação ABNT | 1º TANE</title>
+
+  <style>
+    :root{
+      --red:#b5121b;
+      --red-dark:#8e0d14;
+      --red-soft:#f9e9eb;
+      --text:#222831;
+      --muted:#667085;
+      --line:#e5e7eb;
+      --bg:#f6f7f9;
+      --white:#fff;
+      --green:#237a42;
+      --green-soft:#eaf7ef;
+      --yellow:#8a5a00;
+      --yellow-soft:#fff7df;
+      --shadow:0 10px 30px rgba(30,38,50,.08);
+    }
+
+    *{box-sizing:border-box}
+
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .top{height:7px;background:var(--red)}
+
+    header{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+    }
+
+    .header-wrap{
+      width:min(980px,calc(100% - 28px));
+      margin:auto;
+      display:flex;
+      align-items:center;
+      gap:16px;
+      padding:17px 0;
+    }
+
+    .avatar{
+      width:66px;
+      height:66px;
+      object-fit:cover;
+      border-radius:50%;
+      border:3px solid var(--red);
+    }
+
+    .brand{
+      font-size:.75rem;
+      font-weight:900;
+      color:var(--red);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    h1{
+      margin:3px 0 2px;
+      font-size:clamp(1.45rem,4vw,2.1rem);
+      line-height:1.15;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      font-size:.9rem;
+    }
+
+    main{
+      width:min(980px,calc(100% - 28px));
+      margin:24px auto 50px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:17px;
+      padding:22px;
+      margin-bottom:18px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero{border-left:6px solid var(--red)}
+
+    .hero p{margin:.4rem 0}
+
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--red-soft);
+      color:var(--red);
+      font-size:.75rem;
+      font-weight:900;
+    }
+
+    h2{
+      margin:0 0 14px;
+      color:var(--red);
+      font-size:1.25rem;
+    }
+
+    h3{
+      margin:18px 0 9px;
+      font-size:1rem;
+    }
+
+    ul{
+      margin:8px 0 0;
+      padding-left:21px;
+    }
+
+    li{margin:5px 0}
+
+    .rules{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:9px;
+    }
+
+    .rule{
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      background:#fafafa;
+      font-size:.9rem;
+    }
+
+    .important{
+      background:var(--yellow-soft);
+      border-left:5px solid #d99000;
+    }
+
+    .important strong{color:var(--yellow)}
+
+    .field{margin-bottom:15px}
+
+    label{
+      display:block;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="file"]{
+      width:100%;
+      min-height:47px;
+      padding:11px 12px;
+      border:1px solid #c9cdd3;
+      border-radius:10px;
+      background:#fff;
+      font:inherit;
+      font-size:16px;
+    }
+
+    input:focus{
+      outline:3px solid rgba(181,18,27,.12);
+      border-color:var(--red);
+    }
+
+    .hint{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:.82rem;
+    }
+
+    .drop{
+      padding:17px;
+      border:2px dashed #c9cdd3;
+      border-radius:12px;
+      background:#fafafa;
+    }
+
+    .agree{
+      display:flex;
+      gap:9px;
+      align-items:flex-start;
+      margin:17px 0;
+      font-size:.9rem;
+    }
+
+    .agree input{margin-top:4px}
+
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    button,
+    .back{
+      min-height:46px;
+      border-radius:10px;
+      padding:11px 18px;
+      font-weight:900;
+      font-size:15px;
+      border:0;
+    }
+
+    button{
+      background:var(--red);
+      color:#fff;
+      cursor:pointer;
+    }
+
+    button:hover{background:var(--red-dark)}
+
+    button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
+    .back{
+      display:inline-flex;
+      align-items:center;
+      background:#eceef1;
+      color:#363c45;
+    }
+
+    #message{
+      display:none;
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:10px;
+      font-weight:700;
+    }
+
+    #message.ok{
+      display:block;
+      background:var(--green-soft);
+      color:var(--green);
+      border:1px solid #b8ddc4;
+    }
+
+    #message.err{
+      display:block;
+      background:#fff0f0;
+      color:#9f1b1b;
+      border:1px solid #edc0c0;
+    }
+
+    #message.info{
+      display:block;
+      background:#eef4ff;
+      color:#2457a6;
+      border:1px solid #c9d9f7;
+    }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.8rem;
+      padding:8px 0 20px;
+    }
+
+    @media(max-width:700px){
+      .rules{grid-template-columns:1fr}
+      .card{padding:18px}
+      .header-wrap{align-items:flex-start}
+      .avatar{width:58px;height:58px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top"></div>
+
+  <header>
+    <div class="header-wrap">
+
+      <img
+        class="avatar"
+        src="../../foto-professor.png"
+        alt="Prof. Junior P. Colombo"
+      >
+
+      <div>
+        <div class="brand">
+          Etec de Mairinque • Extensão Ibiúna
+        </div>
+
+        <h1>
+          ATD2 — Formatação ABNT
+        </h1>
+
+        <div class="subtitle">
+          Aplicativos Informatizados • 1º TANE • Prof. Junior P. Colombo
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="card hero">
+
+      <span class="pill">
+        ATD2 • Individual ou dupla
+      </span>
+
+      <h2 style="margin-top:12px">
+        Pesquisa sobre tema relacionado à Administração
+      </h2>
+
+      <p>
+        <strong>Objetivo principal:</strong>
+        aplicar corretamente a estrutura e a formatação acadêmica trabalhada durante a aula.
+      </p>
+
+      <p>
+        A atividade poderá ser realizada
+        <strong>individualmente ou em dupla</strong>.
+        Informe no campo de identificação um nome ou os dois nomes.
+      </p>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        📑 Estrutura obrigatória
+      </h2>
+
+      <ul>
+        <li>Capa</li>
+        <li>Folha de rosto</li>
+        <li>Sumário automático</li>
+        <li><strong>1 INTRODUÇÃO</strong></li>
+        <li><strong>2 CONCEITO</strong></li>
+        <li><strong>3 DESENVOLVIMENTO</strong></li>
+        <li><strong>4 CONCLUSÃO</strong></li>
+        <li><strong>REFERÊNCIAS</strong></li>
+      </ul>
+
+    </section>
+
+
+    <section class="card">
+
+      <h2>
+        📐 Formatação obrigatória
+      </h2>
+
+      <div class="rules">
+
+        <div class="rule">📄 Papel A4</div>
+        <div class="rule">🔤 Fonte Arial</div>
+        <div class="rule">🔢 Tamanho 12 no texto</div>
+        <div class="rule">↕ Espaçamento 1,5</div>
+        <div class="rule">↔ Texto justificado</div>
+        <div class="rule">↪ Recuo de primeira linha: 1,25 cm</div>
+        <div class="rule">⬆ Margem superior: 3 cm</div>
+        <div class="rule">⬅ Margem esquerda: 3 cm</div>
+        <div class="rule">⬇ Margem inferior: 2 cm</div>
+        <div class="rule">➡ Margem direita: 2 cm</div>
+        <div class="rule">🧭 Títulos organizados hierarquicamente</div>
+        <div class="rule">🔢 Paginação</div>
+        <div class="rule">📚 Sumário automático do Word</div>
+        <div class="rule">⬛ Todo o conteúdo em preto</div>
+
+      </div>
+
+      <h3>
+        Regras especiais dos títulos
+      </h3>
+
+      <ul>
+        <li>
+          Os títulos principais devem estar em
+          <strong>LETRAS MAIÚSCULAS</strong>.
+        </li>
+
+        <li>
+          Os títulos principais devem
+          <strong>sempre iniciar em uma nova página</strong>.
+        </li>
+
+        <li>
+          Títulos, subtítulos e demais textos devem usar
+          <strong>somente a cor preta</strong>.
+        </li>
+
+        <li>
+          Capa e folha de rosto devem seguir rigorosamente o modelo fornecido pelo professor,
+          variando apenas nome(s), título, eventual subtítulo e o trecho correspondente ao título
+          na folha de rosto.
+        </li>
+      </ul>
+
+    </section>
+
+
+    <section class="card important">
+
+      <strong>
+        ⚠️ IMPORTANTE
+      </strong>
+
+      <p>
+        O trabalho deverá ser confeccionado no Microsoft Word ou programa equivalente
+        e, ao final, convertido para PDF.
+      </p>
+
+      <p>
+        <strong>Somente o arquivo PDF deverá ser enviado.</strong>
+      </p>
+
+    </section>
+
+
+    <form
+      id="activityForm"
+      class="card"
+    >
+
+      <h2>
+        📤 Enviar atividade
+      </h2>
+
+
+      <div class="field">
+
+        <label for="nomes">
+          Nome(s) do(s) aluno(s)
+        </label>
+
+        <input
+          id="nomes"
+          name="nomes"
+          type="text"
+          required
+          placeholder="Ex.: Ana Souza / Bruno Lima"
+        >
+
+        <div class="hint">
+          Se for individual, informe apenas um nome.
+          Se for em dupla, informe os dois nomes completos.
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="email">
+          E-mail para devolutiva
+        </label>
+
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          placeholder="seuemail@exemplo.com"
+        >
+
+        <div class="hint">
+          Será utilizado um único e-mail para o retorno da correção.
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="pdf">
+          Arquivo PDF
+        </label>
+
+        <div class="drop">
+
+          <input
+            id="pdf"
+            name="pdf"
+            type="file"
+            accept="application/pdf,.pdf"
+            required
+          >
+
+          <div class="hint">
+            Aceito somente PDF. Tamanho máximo: 15 MB.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <label class="agree">
+
+        <input
+          id="confirm"
+          type="checkbox"
+          required
+        >
+
+        <span>
+          Confirmo que revisei o arquivo e que os nomes informados acima
+          correspondem aos nomes apresentados na capa e na folha de rosto.
+        </span>
+
+      </label>
+
+
+      <div class="actions">
+
+        <button
+          id="sendBtn"
+          type="submit"
+        >
+          Enviar atividade
+        </button>
+
+        <a
+          class="back"
+          href="../../index.html"
+        >
+          ← Voltar para AI
+        </a>
+
+      </div>
+
+      <div
+        id="message"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+    </form>
+
+
+    <div class="footer">
+      Etec de Mairinque – Extensão Ibiúna •
+      1º TANE • Aplicativos Informatizados
+    </div>
+
+  </main>
+
+
+  <script>
+
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
+
+    const form =
+      document.getElementById('activityForm');
+
+    const sendBtn =
+      document.getElementById('sendBtn');
+
+    const message =
+      document.getElementById('message');
+
+
+    function showMessage(text, type) {
+
+      message.className = type;
+      message.textContent = text;
+
+    }
+
+
+    function fileToBase64(file) {
+
+      return new Promise((resolve, reject) => {
+
+        const reader =
+          new FileReader();
+
+        reader.onload = () => {
+
+          const result =
+            String(reader.result);
+
+          resolve(
+            result.split(',')[1]
+          );
+
+        };
+
+        reader.onerror =
+          reject;
+
+        reader.readAsDataURL(file);
+
+      });
+
+    }
+
+
+    form.addEventListener(
+      'submit',
+      async (e) => {
+
+        e.preventDefault();
+
+
+        const nomes =
+          document
+            .getElementById('nomes')
+            .value
+            .trim();
+
+        const email =
+          document
+            .getElementById('email')
+            .value
+            .trim();
+
+        const file =
+          document
+            .getElementById('pdf')
+            .files[0];
+
+
+        if (!nomes) {
+
+          showMessage(
+            'Informe o nome do aluno ou os nomes da dupla.',
+            'err'
+          );
+
+          return;
+
+        }
+
+
+        if (!file) {
+
+          showMessage(
+            'Selecione o arquivo PDF.',
+            'err'
+          );
+
+          return;
+
+        }
+
+
+        if (
+          file.type !== 'application/pdf' &&
+          !file.name.toLowerCase().endsWith('.pdf')
+        ) {
+
+          showMessage(
+            'Envie somente arquivo PDF.',
+            'err'
+          );
+
+          return;
+
+        }
+
+
+        if (
+          file.size >
+          15 * 1024 * 1024
+        ) {
+
+          showMessage(
+            'O PDF ultrapassa 15 MB. Reduza o tamanho do arquivo e tente novamente.',
+            'err'
+          );
+
+          return;
+
+        }
+
+
+        sendBtn.disabled =
+          true;
+
+        sendBtn.textContent =
+          'Enviando...';
+
+        showMessage(
+          'Enviando a atividade. Aguarde...',
+          'info'
+        );
+
+
+        try {
+
+          const pdfBase64 =
+            await fileToBase64(file);
+
+
+          const payload = {
+
+            nomes: nomes,
+
+            email: email,
+
+            turma: '1º TANE',
+
+            componente:
+              'Aplicativos Informatizados',
+
+            atividade:
+              'ATD2 - Formatação ABNT',
+
+            fileName:
+              file.name,
+
+            mimeType:
+              'application/pdf',
+
+            pdfBase64:
+              pdfBase64
+
+          };
+
+
+          await fetch(
+            SCRIPT_URL,
+            {
+
+              method:'POST',
+
+              mode:'no-cors',
+
+              headers:{
+                'Content-Type':
+                  'text/plain;charset=utf-8'
+              },
+
+              body:
+                JSON.stringify(payload)
+
+            }
+          );
+
+
+          form.reset();
+
+
+          showMessage(
+            'Atividade enviada. A correção será devolvida pelo e-mail informado.',
+            'ok'
+          );
+
+
+        }
+        catch (err) {
+
+          console.error(err);
+
+          showMessage(
+            'Não foi possível enviar a atividade. Tente novamente.',
+            'err'
+          );
+
+        }
+        finally {
+
+          sendBtn.disabled =
+            false;
+
+          sendBtn.textContent =
+            'Enviar atividade';
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
 
