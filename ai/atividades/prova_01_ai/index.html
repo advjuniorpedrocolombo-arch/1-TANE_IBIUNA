@@ -11,10 +11,62 @@
 <script>
 (async()=>{
   try{
-    const url='https://raw.githubusercontent.com/advjuniorpedrocolombo-arch/1-TANE_IBIUNA/main/ai/ai%20/%20atividades%20/%20prova_01_ai%20/index.html';
+    const url='https://raw.githubusercontent.com/advjuniorpedrocolombo-arch/1-TANE_IBIUNA/main/ai/ai%20/%20atividades%20/%20prova_01_ai%20/index.html?ts='+Date.now();
     const r=await fetch(url,{cache:'no-store'});
     if(!r.ok) throw new Error('HTTP '+r.status);
-    const html=await r.text();
+    let html=await r.text();
+
+    const tarefaAntiga='Copie o texto abaixo para o <strong>Microsoft Word ou editor similar</strong> e produza um documento acadêmico contendo <strong>capa, folha de rosto e o texto integral formatado conforme as normas ABNT trabalhadas em aula</strong>. Ao finalizar, <strong>salve/exporte o trabalho em PDF</strong>. O arquivo enviado para correção deverá ser obrigatoriamente em <strong>formato PDF</strong>.';
+    const tarefaNova='Copie o texto abaixo para o <strong>Microsoft Word ou editor similar</strong> e faça a formatação acadêmica conforme as orientações trabalhadas em aula. Ao finalizar, <strong>salve/exporte o trabalho em PDF</strong> para envio.';
+    html=html.replace(tarefaAntiga,tarefaNova);
+
+    const marcador='<div id="randomText" class="random-text"></div>';
+    const bloco=`
+      <div id="temaSorteadoBox" style="margin:0 0 18px;padding:18px;border-radius:16px;background:#fff7f7;border:2px solid #b5121b;display:none">
+        <div style="color:#b5121b;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px">Título do tema sorteado</div>
+        <div id="temaSorteadoTitulo" style="color:#7d0b12;font-size:1.2rem;line-height:1.35;font-weight:900;margin-bottom:8px"></div>
+        <div style="color:#6e252a;font-size:.9rem;font-weight:700">Use este título exatamente na CAPA e na FOLHA DE ROSTO do trabalho.</div>
+      </div>
+      <div id="folhaRostoOrientacaoBox" style="margin:0 0 18px;padding:18px;border-radius:16px;background:#f8fafc;border:1px solid #d9dee7;display:none">
+        <div style="color:#475467;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Texto obrigatório da folha de rosto</div>
+        <div style="padding:13px 15px;border-left:4px solid #b5121b;background:#fff;border-radius:8px;color:#303743;line-height:1.55;font-size:.92rem">Avaliação apresentada ao Curso Técnico em Administração da Etec de Mairinque – Extensão Ibiúna, orientado pelo Prof. Junior Pedro Colombo, como requisito parcial para obtenção do título de técnico em Administração.</div>
+      </div>
+      ${marcador}`;
+    html=html.replace(marcador,bloco);
+
+    html=html.replace('<script src="upload.js"></script>','<script src="upload.js?v=20260906-02"></script>');
+
+    const reforco=`<script>
+    (function(){
+      const titulos=[
+        'TRANSFORMAÇÃO DIGITAL NAS ORGANIZAÇÕES',
+        'COMUNICAÇÃO INTERNA NAS ORGANIZAÇÕES',
+        'ATENDIMENTO AO CLIENTE COMO DIFERENCIAL COMPETITIVO',
+        'GESTÃO DE PESSOAS NAS ORGANIZAÇÕES',
+        'PLANEJAMENTO E TECNOLOGIA NAS ORGANIZAÇÕES'
+      ];
+      function atualizarTema(){
+        try{
+          const a=JSON.parse(localStorage.getItem('prova_ai_2026_tentativa')||'null');
+          if(!a||typeof a.textIndex==='undefined') return;
+          const titulo=titulos[Number(a.textIndex)]||'TÍTULO NÃO IDENTIFICADO';
+          const alvo=document.getElementById('temaSorteadoTitulo');
+          const box=document.getElementById('temaSorteadoBox');
+          const folha=document.getElementById('folhaRostoOrientacaoBox');
+          if(alvo) alvo.textContent=titulo;
+          if(box) box.style.display='block';
+          if(folha) folha.style.display='block';
+        }catch(e){}
+      }
+      document.addEventListener('click',function(e){
+        if(e.target&&['startBtn','resumeBtn'].includes(e.target.id)) setTimeout(atualizarTema,30);
+      });
+      setTimeout(atualizarTema,100);
+      setInterval(atualizarTema,1000);
+    })();
+    </script>`;
+    html=html.replace('</body>',reforco+'</body>');
+
     document.open();
     document.write(html);
     document.close();
