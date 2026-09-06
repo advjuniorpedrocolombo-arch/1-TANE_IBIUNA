@@ -16,34 +16,6 @@ const PROVA_AI_TEXTO_FOLHA_ROSTO='Avaliação apresentada ao Curso Técnico em A
   const examArea=document.getElementById('examArea');
   if(!examArea)return;
 
-  const style=document.createElement('style');
-  style.textContent=`
-    .prova-title-box{margin:0 0 18px;padding:18px;border-radius:16px;background:#fff7f7;border:2px solid var(--red);box-shadow:0 8px 20px rgba(181,18,27,.08)}
-    .prova-title-box small{display:block;color:var(--red);font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px}
-    .prova-title-box strong{display:block;color:#7d0b12;font-size:1.22rem;line-height:1.35;margin-bottom:7px}
-    .prova-title-box p{margin:0;color:#6e252a;font-size:.9rem;font-weight:700}
-    .folha-rosto-box{margin:18px 0;padding:18px;border-radius:16px;background:#f8fafc;border:1px solid #d9dee7}
-    .folha-rosto-box small{display:block;color:#475467;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-    .folha-rosto-box strong{display:block;margin-bottom:8px;color:#222831}
-    .folha-rosto-box blockquote{margin:0;padding:13px 15px;border-left:4px solid var(--red);background:#fff;border-radius:8px;color:#303743;line-height:1.55;font-size:.92rem}
-    .folha-rosto-box .obs{margin-top:10px;color:#596273;font-size:.84rem;font-weight:700}
-    .upload-panel{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px rgba(30,38,50,.07);overflow:hidden}
-    .upload-head{padding:20px 22px;border-bottom:1px solid var(--line)}
-    .upload-head small{display:block;color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-    .upload-head h2{margin:0;font-size:1.35rem}
-    .upload-body{padding:22px}
-    .upload-note{padding:14px 16px;border-radius:14px;background:var(--blue-soft);color:#174a9c;border-left:5px solid var(--blue);font-size:.9rem;margin-bottom:16px}
-    .upload-file{display:block;width:100%;padding:13px;border:1px dashed #b9c0ca;border-radius:12px;background:#fafafa;font-size:.92rem}
-    .upload-meta{margin-top:10px;color:var(--muted);font-size:.82rem}
-    .upload-btn{width:100%;margin-top:14px;border:0;border-radius:13px;padding:14px 18px;background:var(--red);color:#fff;font-weight:900;cursor:pointer}
-    .upload-btn:disabled{background:#c9cdd3;color:#6b7280;cursor:not-allowed}
-    .upload-status{display:none;margin-top:14px;padding:14px;border-radius:12px;font-size:.88rem;font-weight:800}
-    .upload-status.ok{display:block;background:var(--green-soft);color:var(--green)}
-    .upload-status.error{display:block;background:#fff1f1;color:#8e0d14}
-    .upload-status.wait{display:block;background:var(--yellow-soft);color:var(--yellow)}
-  `;
-  document.head.appendChild(style);
-
   function getAttempt(){
     try{return JSON.parse(localStorage.getItem(PROVA_AI_STORAGE_KEY)||'null')}catch(e){return null}
   }
@@ -57,61 +29,133 @@ const PROVA_AI_TEXTO_FOLHA_ROSTO='Avaliação apresentada ao Curso Técnico em A
     return PROVA_AI_TITULOS[i]||'TÍTULO NÃO IDENTIFICADO';
   }
 
-  const randomText=document.getElementById('randomText');
-  let titleBox=null;
-  let folhaBox=null;
+  /* =========================================================
+     LIMPA A TELA ANTERIOR
+     Capa, folha de rosto e texto acadêmico ficam somente
+     na área de envio do arquivo.
+     ========================================================= */
 
-  if(randomText&&randomText.parentNode){
-    titleBox=document.createElement('div');
-    titleBox.className='prova-title-box';
-    titleBox.style.display='none';
-    titleBox.innerHTML='<small>Título sorteado para o trabalho</small><strong id="provaTituloSorteado"></strong><p>Use este título exatamente na CAPA e na FOLHA DE ROSTO do trabalho.</p>';
-    randomText.parentNode.insertBefore(titleBox,randomText);
-
-    folhaBox=document.createElement('div');
-    folhaBox.className='folha-rosto-box';
-    folhaBox.style.display='none';
-    folhaBox.innerHTML='<small>Folha de rosto — texto obrigatório</small><strong>Utilize o texto abaixo na folha de rosto:</strong><blockquote>'+PROVA_AI_TEXTO_FOLHA_ROSTO+'</blockquote><div class="obs">O título da folha de rosto deve ser o mesmo título sorteado exibido acima.</div>';
-    if(randomText.nextSibling){
-      randomText.parentNode.insertBefore(folhaBox,randomText.nextSibling);
-    }else{
-      randomText.parentNode.appendChild(folhaBox);
-    }
-  }
-
-  function atualizarOrientacoes(){
-    const a=getAttempt();
-    if(!a||typeof a.textIndex==='undefined')return;
-    const titulo=tituloDaTentativa(a);
-    const alvo=document.getElementById('provaTituloSorteado');
-    if(alvo)alvo.textContent=titulo;
-    if(titleBox)titleBox.style.display='block';
-    if(folhaBox)folhaBox.style.display='block';
-  }
-
-  atualizarOrientacoes();
-
-  const observer=new MutationObserver(atualizarOrientacoes);
-  observer.observe(examArea,{attributes:true,attributeFilter:['style','class']});
-
-  document.addEventListener('click',function(e){
-    if(e.target&&(
-      e.target.id==='startBtn'||
-      e.target.id==='resumeBtn'
-    )){
-      setTimeout(atualizarOrientacoes,0);
+  const regras=document.querySelectorAll('#instructionsPanel .rules li');
+  regras.forEach(function(li){
+    const txt=(li.textContent||'').toLowerCase();
+    if(txt.includes('capa')||txt.includes('folha de rosto')){
+      li.remove();
     }
   });
 
+  const pdfNote=document.querySelector('#instructionsPanel .pdf-note');
+  if(pdfNote){
+    pdfNote.innerHTML='<strong>📄 FORMATO OBRIGATÓRIO DE ENTREGA</strong>O trabalho deverá ser produzido no <strong>Microsoft Word ou editor de texto similar</strong> e, ao final, <strong>salvo/exportado em PDF</strong>. Somente o arquivo PDF será aceito para envio.';
+  }
+
+  const taskText=document.querySelector('#examArea .task-box p');
+  if(taskText){
+    taskText.innerHTML='Copie o texto sorteado abaixo para o <strong>Microsoft Word ou editor similar</strong> e desenvolva/formate o documento conforme as orientações trabalhadas em aula. Ao finalizar, <strong>salve/exporte o arquivo em PDF</strong> para realizar a entrega.';
+  }
+
+  const style=document.createElement('style');
+  style.textContent=`
+    .upload-panel{margin-top:20px;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px rgba(30,38,50,.07);overflow:hidden}
+    .upload-head{padding:20px 22px;border-bottom:1px solid var(--line)}
+    .upload-head small{display:block;color:var(--red);font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+    .upload-head h2{margin:0;font-size:1.35rem}
+    .upload-body{padding:22px}
+    .orientacoes-entrega{margin-bottom:20px;padding:18px;border-radius:16px;background:#fff8f8;border:1px solid #efc7ca}
+    .orientacoes-entrega h3{margin:0 0 14px;color:var(--red);font-size:1.08rem}
+    .orientacao-item{margin-top:13px;padding-top:13px;border-top:1px solid #f0d8da}
+    .orientacao-item:first-of-type{margin-top:0;padding-top:0;border-top:0}
+    .orientacao-item strong{display:block;color:#303743;margin-bottom:5px}
+    .titulo-sorteado{display:block;margin:7px 0 6px;padding:13px 14px;border-radius:11px;background:#fff;border:2px solid var(--red);color:#7d0b12;font-size:1.08rem;font-weight:900;text-align:center}
+    .texto-folha-rosto{margin-top:7px;padding:13px 14px;border-left:4px solid var(--red);border-radius:8px;background:#fff;color:#303743;line-height:1.5;font-size:.9rem}
+    .orientacao-aviso{margin-top:14px;padding:12px 14px;border-radius:10px;background:#fff0f1;color:#7d0b12;font-size:.86rem;font-weight:800}
+    .upload-note{padding:14px 16px;border-radius:14px;background:var(--blue-soft);color:#174a9c;border-left:5px solid var(--blue);font-size:.9rem;margin-bottom:16px}
+    .upload-file{display:block;width:100%;padding:13px;border:1px dashed #b9c0ca;border-radius:12px;background:#fafafa;font-size:.92rem}
+    .upload-meta{margin-top:10px;color:var(--muted);font-size:.82rem}
+    .upload-btn{width:100%;margin-top:14px;border:0;border-radius:13px;padding:14px 18px;background:var(--red);color:#fff;font-weight:900;cursor:pointer}
+    .upload-btn:disabled{background:#c9cdd3;color:#6b7280;cursor:not-allowed}
+    .upload-status{display:none;margin-top:14px;padding:14px;border-radius:12px;font-size:.88rem;font-weight:800}
+    .upload-status.ok{display:block;background:var(--green-soft);color:var(--green)}
+    .upload-status.error{display:block;background:#fff1f1;color:#8e0d14}
+    .upload-status.wait{display:block;background:var(--yellow-soft);color:var(--yellow)}
+  `;
+  document.head.appendChild(style);
+
   const panel=document.createElement('section');
   panel.className='upload-panel';
-  panel.innerHTML='<div class="upload-head"><small>Entrega da avaliação</small><h2>Enviar arquivo PDF</h2></div><div class="upload-body"><div class="upload-note"><strong>📄 Envio obrigatório em PDF.</strong><br>Selecione o trabalho final exportado do Word ou editor similar. Limite máximo: 15 MB.</div><input id="provaPdfFile" class="upload-file" type="file" accept="application/pdf,.pdf"><div id="provaPdfMeta" class="upload-meta">Nenhum arquivo selecionado.</div><button id="provaPdfSend" class="upload-btn" type="button" disabled>ENVIAR PDF PARA CORREÇÃO</button><div id="provaPdfStatus" class="upload-status" aria-live="polite"></div></div>';
+  panel.innerHTML=`
+    <div class="upload-head">
+      <small>Entrega da avaliação</small>
+      <h2>Revisar orientações e enviar PDF</h2>
+    </div>
+    <div class="upload-body">
+      <div class="orientacoes-entrega">
+        <h3>⚠️ Confira antes de enviar</h3>
+
+        <div class="orientacao-item">
+          <strong>1. TÍTULO DO TRABALHO</strong>
+          O título obrigatório correspondente ao texto sorteado é:
+          <span id="provaTituloEntrega" class="titulo-sorteado">AGUARDANDO SORTEIO DO TEXTO</span>
+          Utilize <strong>exatamente este título</strong> na CAPA e na FOLHA DE ROSTO.
+        </div>
+
+        <div class="orientacao-item">
+          <strong>2. CAPA</strong>
+          A capa deve utilizar o título sorteado acima e seguir o modelo/formatação trabalhados em aula.
+        </div>
+
+        <div class="orientacao-item">
+          <strong>3. FOLHA DE ROSTO</strong>
+          Utilize o mesmo título sorteado acima e insira obrigatoriamente o seguinte texto:
+          <div class="texto-folha-rosto">${PROVA_AI_TEXTO_FOLHA_ROSTO}</div>
+        </div>
+
+        <div class="orientacao-aviso">
+          Antes do envio, confira se CAPA e FOLHA DE ROSTO apresentam o mesmo título sorteado. A correção por IA verificará essa correspondência.
+        </div>
+      </div>
+
+      <div class="upload-note">
+        <strong>📄 Envio obrigatório em PDF.</strong><br>
+        Selecione o trabalho final exportado do Word ou editor similar. Limite máximo: 15 MB.
+      </div>
+
+      <input id="provaPdfFile" class="upload-file" type="file" accept="application/pdf,.pdf">
+      <div id="provaPdfMeta" class="upload-meta">Nenhum arquivo selecionado.</div>
+      <button id="provaPdfSend" class="upload-btn" type="button" disabled>ENVIAR PDF PARA CORREÇÃO</button>
+      <div id="provaPdfStatus" class="upload-status" aria-live="polite"></div>
+    </div>`;
+
   examArea.appendChild(panel);
 
+  const titleTarget=document.getElementById('provaTituloEntrega');
   const fileInput=document.getElementById('provaPdfFile');
   const sendBtn=document.getElementById('provaPdfSend');
   const meta=document.getElementById('provaPdfMeta');
   const status=document.getElementById('provaPdfStatus');
+
+  function atualizarTituloEntrega(){
+    const a=getAttempt();
+    if(!a||typeof a.textIndex==='undefined'){
+      titleTarget.textContent='AGUARDANDO SORTEIO DO TEXTO';
+      return;
+    }
+    const titulo=tituloDaTentativa(a);
+    titleTarget.textContent=titulo;
+    a.titulo=titulo;
+    saveAttempt(a);
+  }
+
+  atualizarTituloEntrega();
+
+  document.addEventListener('click',function(e){
+    if(e.target&&(e.target.id==='startBtn'||e.target.id==='resumeBtn')){
+      setTimeout(atualizarTituloEntrega,50);
+      setTimeout(atualizarTituloEntrega,250);
+    }
+  });
+
+  const observer=new MutationObserver(atualizarTituloEntrega);
+  observer.observe(examArea,{attributes:true,attributeFilter:['style','class']});
 
   function setStatus(type,msg){
     status.className='upload-status '+type;
@@ -175,6 +219,11 @@ const PROVA_AI_TEXTO_FOLHA_ROSTO='Avaliação apresentada ao Curso Técnico em A
 
     const tituloSorteado=tituloDaTentativa(attempt);
 
+    if(tituloSorteado==='TÍTULO NÃO IDENTIFICADO'){
+      setStatus('error','Não foi possível identificar o título sorteado. Retome a prova antes de enviar.');
+      return;
+    }
+
     sendBtn.disabled=true;
     fileInput.disabled=true;
     setStatus('wait','Enviando PDF para o Google Drive. Aguarde...');
@@ -191,7 +240,7 @@ const PROVA_AI_TEXTO_FOLHA_ROSTO='Avaliação apresentada ao Curso Técnico em A
         titulo:tituloSorteado,
         textoFolhaRosto:PROVA_AI_TEXTO_FOLHA_ROSTO,
         mimeType:'application/pdf',
-        pdfBase64,
+        pdfBase64:pdfBase64,
         observacoes:'Envio realizado pela interface da 1ª Prova de Aplicativos Informatizados. Título sorteado: '+tituloSorteado
       };
 
