@@ -59,6 +59,13 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
     const endpointAntigo='https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
     html=html.split(endpointAntigo).join(SCRIPT_URL);
 
+    const avisoSimulado=`<div style="margin:18px 0 16px;padding:18px 20px;border:3px solid #2563eb;border-radius:16px;background:#eff6ff;color:#1e3a8a;box-shadow:0 10px 24px rgba(37,99,235,.10);font-family:Arial,Helvetica,sans-serif">
+      <div style="font-size:1.08rem;font-weight:900;margin-bottom:8px">🎯 ESTA ATD2 É UM SIMULADO PARA A PROVA</div>
+      <div style="font-size:.94rem;line-height:1.55;font-weight:700">A atividade foi preparada para treinar o mesmo tipo de organização, atenção à formatação e trabalho sob tempo que será exigido na avaliação.</div>
+      <div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#2563eb;color:white;font-size:.9rem;font-weight:900;text-align:center">NA PROVA: ATIVIDADE INDIVIDUAL • TEMPO: 20 MINUTOS</div>
+      <div style="margin-top:9px;font-size:.88rem;line-height:1.45">Aproveite os <strong>40 minutos desta ATD2</strong> para treinar o procedimento completo e identificar suas dificuldades antes da prova.</div>
+    </div>`;
+
     const avisoPC=`<div id="pcCheckAlert" style="margin:18px 0 20px;padding:18px 20px;border:3px solid #b5121b;border-radius:16px;background:#fff1f2;color:#7f1d1d;box-shadow:0 10px 24px rgba(181,18,27,.12);font-family:Arial,Helvetica,sans-serif">
       <div style="font-size:1.05rem;font-weight:900;margin-bottom:8px">🚨 ATENÇÃO ANTES DE INICIAR</div>
       <div style="font-size:.94rem;line-height:1.55;font-weight:700">Certifique-se de que este computador possui <strong>Microsoft Word ou outro editor compatível capaz de criar e salvar o arquivo em PDF</strong>.</div>
@@ -66,7 +73,7 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
       <div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#b5121b;color:white;font-size:.88rem;font-weight:900;text-align:center">VERIFIQUE O COMPUTADOR ANTES DE CLICAR EM INICIAR</div>
     </div>`;
 
-    html=html.replace('<aside class="panel" id="loginPanel">',avisoPC+'<aside class="panel" id="loginPanel">');
+    html=html.replace('<aside class="panel" id="loginPanel">',avisoSimulado+avisoPC+'<aside class="panel" id="loginPanel">');
 
     const extras=`<script>
       const URL_STATUS_ATD2='${SCRIPT_URL}';
