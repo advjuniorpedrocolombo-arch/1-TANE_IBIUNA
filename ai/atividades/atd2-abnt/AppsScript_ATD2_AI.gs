@@ -13,17 +13,31 @@ const CONFIG = {
   ATIVIDADE: 'ATD2 - AI',
   TIMEZONE: 'America/Sao_Paulo',
   TEMPO_REFERENCIA_MINUTOS: 40,
-  MAX_PDF_BYTES: 15 * 1024 * 1024
+  MAX_PDF_BYTES: 15 * 1024 * 1024,
+  ABERTURA_ISO: '2026-09-08T21:00:00-03:00',
+  ENCERRAMENTO_ISO: '2026-09-08T22:30:00-03:00'
 };
 
 function doGet() {
-  return json_({ok:true,sistema:CONFIG.ATIVIDADE,turma:CONFIG.TURMA,status:'online'});
+  const janela = obterStatusJanela_();
+  return json_({
+    ok: true,
+    sistema: CONFIG.ATIVIDADE,
+    turma: CONFIG.TURMA,
+    status: janela.status,
+    aberto: janela.aberto,
+    agoraServidor: janela.agora.toISOString(),
+    abertura: CONFIG.ABERTURA_ISO,
+    encerramento: CONFIG.ENCERRAMENTO_ISO,
+    mensagem: janela.mensagem
+  });
 }
 
 function doPost(e) {
   const lock = LockService.getScriptLock();
   try {
     lock.waitLock(30000);
+    validarJanela_();
 
     if (!e || !e.postData || !e.postData.contents) {
       throw new Error('Requisição sem conteúdo.');
@@ -73,32 +87,6 @@ function doPost(e) {
 
     const horarioEnvio = Utilities.formatDate(agora, CONFIG.TIMEZONE, 'dd/MM/yyyy HH:mm:ss');
 
-    // NOVA ORDEM DA PLANILHA — STATUS na coluna A.
-    // A STATUS
-    // B ID
-    // C HORÁRIO DE INÍCIO
-    // D NOME DO ALUNO
-    // E E-MAIL PARA DEVOLUTIVA
-    // F TURMA
-    // G VERSÃO
-    // H TEMA
-    // I HORÁRIO DE ENVIO
-    // J TEMPO UTILIZADO
-    // K TEMPO DE REFERÊNCIA
-    // L EXCEDENTE
-    // M ARQUIVO PDF
-    // N LINK/ID DO ARQUIVO NO DRIVE
-    // O CORRIGIR COM IA
-    // P DATA CORREÇÃO IA
-    // Q MENÇÃO IA
-    // R ARQUIVO CORREÇÃO
-    // S REVISADO PELO PROFESSOR
-    // T MENÇÃO FINAL
-    // U APROVAR E ENVIAR
-    // V DATA ENVIO
-    // W STATUS ENVIO
-    // X OBSERVAÇÕES
-    // Y RESERVA
     sheet.appendRow([
       'PENDENTE',
       protocolo,
@@ -127,7 +115,6 @@ function doPost(e) {
       ''
     ]);
 
-    // Mantém validações/checkboxes herdando do modelo da linha anterior.
     aplicarValidacoesNaUltimaLinha_(sheet);
 
     return json_({
@@ -148,13 +135,48 @@ function doPost(e) {
   }
 }
 
+function obterStatusJanela_() {
+  const agora = new Date();
+  const abertura = new Date(CONFIG.ABERTURA_ISO);
+  const encerramento = new Date(CONFIG.ENCERRAMENTO_ISO);
+
+  if (agora < abertura) {
+    return {
+      agora,
+      aberto: false,
+      status: 'AGUARDANDO',
+      mensagem: 'A ATD2 será liberada hoje às 21h00.'
+    };
+  }
+
+  if (agora >= encerramento) {
+    return {
+      agora,
+      aberto: false,
+      status: 'ENCERRADA',
+      mensagem: 'A ATD2 foi encerrada às 22h30.'
+    };
+  }
+
+  return {
+    agora,
+    aberto: true,
+    status: 'DISPONIVEL',
+    mensagem: 'ATD2 disponível para acesso e envio até 22h30.'
+  };
+}
+
+function validarJanela_() {
+  const janela = obterStatusJanela_();
+  if (!janela.aberto) {
+    throw new Error(janela.mensagem);
+  }
+}
+
 function aplicarValidacoesNaUltimaLinha_(sheet) {
   const linha = sheet.getLastRow();
   if (linha <= 2) return;
 
-  // Copia apenas validações das colunas operacionais da linha anterior.
-  // A STATUS | O CORRIGIR IA | Q MENÇÃO IA | S REVISADO | T MENÇÃO FINAL |
-  // U APROVAR/ENVIAR | W STATUS ENVIO
   const colunas = [1, 15, 17, 19, 20, 21, 23];
 
   colunas.forEach(col => {
