@@ -37,19 +37,23 @@
 
     const autoScript=`<script>
       (function(){
+        const STATUS_URL='https://script.google.com/macros/s/AKfycby-MZxAUKGvhDtHLKJ2r3CV7i98C2hzADA2ezfvbZ19mX8JzMk1ucTr59JrVmxNGsFF/exec';
         const ABERTURA=Date.parse('2026-09-08T21:00:00-03:00');
         const ENCERRAMENTO=Date.parse('2026-09-08T22:30:00-03:00');
-        function atualizarATD2(){
+
+        function aplicarEstado(status){
           const b=document.getElementById('atd2AutoBtn');
           if(!b)return;
-          const agora=Date.now();
-          if(agora<ABERTURA){
+          if(status==='AGUARDANDO'){
             b.classList.add('disabled');
             b.setAttribute('aria-disabled','true');
+            b.setAttribute('href','atividades/atd2-abnt/index.html');
             b.textContent='⏰ Abertura às 21h00';
-          }else if(agora<ENCERRAMENTO){
+            b.style.background='#c8cdd5';
+          }else if(status==='DISPONIVEL'){
             b.classList.remove('disabled');
             b.removeAttribute('aria-disabled');
+            b.setAttribute('href','atividades/atd2-abnt/index.html');
             b.textContent='ACESSAR ATD2 — DISPONÍVEL';
             b.style.background='#237a42';
           }else{
@@ -60,8 +64,24 @@
             b.style.background='#c8cdd5';
           }
         }
+
+        async function atualizarATD2(){
+          try{
+            const r=await fetch(STATUS_URL+'?ts='+Date.now(),{cache:'no-store'});
+            const j=await r.json();
+            if(j.status==='AGUARDANDO'||j.status==='DISPONIVEL'||j.status==='ENCERRADA'){
+              aplicarEstado(j.status);
+              return;
+            }
+            throw new Error('Status inválido');
+          }catch(_){
+            const agora=Date.now();
+            aplicarEstado(agora<ABERTURA?'AGUARDANDO':(agora>=ENCERRAMENTO?'ENCERRADA':'DISPONIVEL'));
+          }
+        }
+
         atualizarATD2();
-        setInterval(atualizarATD2,1000);
+        setInterval(atualizarATD2,15000);
       })();
     <\/script>`;
 
