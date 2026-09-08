@@ -59,6 +59,15 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
     const endpointAntigo='https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
     html=html.split(endpointAntigo).join(SCRIPT_URL);
 
+    const avisoPC=`<div id="pcCheckAlert" style="margin:18px 0 20px;padding:18px 20px;border:3px solid #b5121b;border-radius:16px;background:#fff1f2;color:#7f1d1d;box-shadow:0 10px 24px rgba(181,18,27,.12);font-family:Arial,Helvetica,sans-serif">
+      <div style="font-size:1.05rem;font-weight:900;margin-bottom:8px">🚨 ATENÇÃO ANTES DE INICIAR</div>
+      <div style="font-size:.94rem;line-height:1.55;font-weight:700">Certifique-se de que este computador possui <strong>Microsoft Word ou outro editor compatível capaz de criar e salvar o arquivo em PDF</strong>.</div>
+      <div style="margin-top:8px;font-size:.9rem;line-height:1.5">Após clicar em <strong>INICIAR ATD2</strong>, o cronômetro começa imediatamente. <strong>Problemas com o computador, ausência do Word, troca de máquina ou fechamento da página não reiniciam o tempo.</strong></div>
+      <div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#b5121b;color:white;font-size:.88rem;font-weight:900;text-align:center">VERIFIQUE O COMPUTADOR ANTES DE CLICAR EM INICIAR</div>
+    </div>`;
+
+    html=html.replace('<aside class="panel" id="loginPanel">',avisoPC+'<aside class="panel" id="loginPanel">');
+
     const extras=`<script>
       const URL_STATUS_ATD2='${SCRIPT_URL}';
       const MODO_PREVIEW=${PREVIEW ? 'true' : 'false'};
