@@ -9,20 +9,42 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
 </style>
 </head>
 <body>
-<div class="box" id="loading"><strong>ETEC — ATD2 AI</strong><p>Verificando horário da atividade...</p></div>
+<div class="box" id="loading"><strong>ETEC — ATD2 AI</strong><p>Consultando o horário oficial da atividade...</p></div>
 <script>
 (async()=>{
+  const SCRIPT_URL='https://script.google.com/macros/s/AKfycby-MZxAUKGvhDtHLKJ2r3CV7i98C2hzADA2ezfvbZ19mX8JzMk1ucTr59JrVmxNGsFF/exec';
   const ABERTURA=Date.parse('2026-09-08T21:00:00-03:00');
   const ENCERRAMENTO=Date.parse('2026-09-08T22:30:00-03:00');
-  const agora=Date.now();
   const box=document.getElementById('loading');
 
-  if(agora<ABERTURA){
-    box.innerHTML='<strong>ATD2 — Aplicativos Informatizados</strong><p>A atividade ainda não está disponível.</p><div class="hour">Abertura hoje às 21h00</div><p class="muted">Horário de São Paulo. A página será liberada automaticamente a partir das 21h.</p><a class="back" href="../../index.html">Voltar</a>';
+  async function statusOficial(){
+    try{
+      const controller=new AbortController();
+      const timer=setTimeout(()=>controller.abort(),5000);
+      const r=await fetch(SCRIPT_URL+'?ts='+Date.now(),{cache:'no-store',signal:controller.signal});
+      clearTimeout(timer);
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const j=await r.json();
+      if(j && (j.status==='AGUARDANDO'||j.status==='DISPONIVEL'||j.status==='ENCERRADA')) return j;
+      throw new Error('Resposta sem status da janela');
+    }catch(_){
+      const agora=Date.now();
+      return {
+        status: agora<ABERTURA?'AGUARDANDO':(agora>=ENCERRAMENTO?'ENCERRADA':'DISPONIVEL'),
+        aberto: agora>=ABERTURA&&agora<ENCERRAMENTO,
+        fallback:true
+      };
+    }
+  }
+
+  const janela=await statusOficial();
+
+  if(janela.status==='AGUARDANDO'){
+    box.innerHTML='<strong>ATD2 — Aplicativos Informatizados</strong><p>A atividade ainda não está disponível.</p><div class="hour">Abertura hoje às 21h00</div><p class="muted">08/09/2026 — horário de São Paulo. A liberação ocorrerá automaticamente.</p><a class="back" href="../../index.html">Voltar</a>';
     return;
   }
 
-  if(agora>=ENCERRAMENTO){
+  if(janela.status==='ENCERRADA'){
     box.innerHTML='<strong>ATD2 — ENCERRADA</strong><p>O período de realização e envio foi encerrado.</p><div class="hour">Encerramento: 22h30</div><p class="muted">08/09/2026 — horário de São Paulo.</p><a class="back" href="../../index.html">Voltar</a>';
     return;
   }
@@ -34,28 +56,35 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
     let html=await r.text();
 
     const endpointAntigo='https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
-    const endpointNovo='https://script.google.com/macros/s/AKfycby-MZxAUKGvhDtHLKJ2r3CV7i98C2hzADA2ezfvbZ19mX8JzMk1ucTr59JrVmxNGsFF/exec';
+    html=html.split(endpointAntigo).join(SCRIPT_URL);
 
-    html=html.split(endpointAntigo).join(endpointNovo);
-
-    // Segurança visual adicional: impede iniciar uma tentativa nova após 22h30,
-    // caso a página permaneça aberta no navegador.
     const trava=`<script>
-      const LIMITE_ATD2=Date.parse('2026-09-08T22:30:00-03:00');
-      setInterval(()=>{
-        if(Date.now()>=LIMITE_ATD2){
-          const s=document.getElementById('startBtn');
-          const e=document.getElementById('sendBtn');
-          if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA';}
-          if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO';}
+      const URL_STATUS_ATD2='${SCRIPT_URL}';
+      async function verificarFechamentoATD2(){
+        try{
+          const r=await fetch(URL_STATUS_ATD2+'?ts='+Date.now(),{cache:'no-store'});
+          const j=await r.json();
+          if(j.status==='ENCERRADA'){
+            const s=document.getElementById('startBtn');
+            const e=document.getElementById('sendBtn');
+            if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA';}
+            if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO';}
+          }
+        }catch(_){
+          if(Date.now()>=${ENCERRAMENTO}){
+            const s=document.getElementById('startBtn');
+            const e=document.getElementById('sendBtn');
+            if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA';}
+            if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO';}
+          }
         }
-      },1000);
+      }
+      verificarFechamentoATD2();
+      setInterval(verificarFechamentoATD2,15000);
     <\/script>`;
     html=html.replace('</body>',trava+'</body>');
 
-    document.open();
-    document.write(html);
-    document.close();
+    document.open();document.write(html);document.close();
   }catch(e){
     box.innerHTML='<strong>Não foi possível carregar a ATD2.</strong><p>'+String(e.message||e)+'</p>';
   }
