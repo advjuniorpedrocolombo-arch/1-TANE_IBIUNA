@@ -16,6 +16,7 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
   const ABERTURA=Date.parse('2026-09-08T21:00:00-03:00');
   const ENCERRAMENTO=Date.parse('2026-09-08T22:30:00-03:00');
   const box=document.getElementById('loading');
+  const PREVIEW=new URLSearchParams(location.search).get('preview')==='1';
 
   async function statusOficial(){
     try{
@@ -39,12 +40,12 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
 
   const janela=await statusOficial();
 
-  if(janela.status==='AGUARDANDO'){
+  if(!PREVIEW && janela.status==='AGUARDANDO'){
     box.innerHTML='<strong>ATD2 — Aplicativos Informatizados</strong><p>A atividade ainda não está disponível.</p><div class="hour">Abertura hoje às 21h00</div><p class="muted">08/09/2026 — horário de São Paulo. A liberação ocorrerá automaticamente.</p><a class="back" href="../../index.html">Voltar</a>';
     return;
   }
 
-  if(janela.status==='ENCERRADA'){
+  if(!PREVIEW && janela.status==='ENCERRADA'){
     box.innerHTML='<strong>ATD2 — ENCERRADA</strong><p>O período de realização e envio foi encerrado.</p><div class="hour">Encerramento: 22h30</div><p class="muted">08/09/2026 — horário de São Paulo.</p><a class="back" href="../../index.html">Voltar</a>';
     return;
   }
@@ -58,9 +59,32 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
     const endpointAntigo='https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
     html=html.split(endpointAntigo).join(SCRIPT_URL);
 
-    const trava=`<script>
+    const extras=`<script>
       const URL_STATUS_ATD2='${SCRIPT_URL}';
+      const MODO_PREVIEW=${PREVIEW ? 'true' : 'false'};
+
+      function aplicarPreviewATD2(){
+        if(!MODO_PREVIEW)return;
+        const aviso=document.createElement('div');
+        aviso.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffecb5;padding:10px 14px;text-align:center;font:700 14px Arial,sans-serif';
+        aviso.textContent='MODO DE PRÉ-VISUALIZAÇÃO DO PROFESSOR — a atividade oficial continua fechada e nenhum envio será aceito antes das 21h.';
+        document.body.appendChild(aviso);
+        document.body.style.paddingTop='44px';
+
+        const bloquearEnvio=()=>{
+          const e=document.getElementById('sendBtn');
+          if(e){
+            e.disabled=true;
+            e.textContent='ENVIO DESABILITADO NO MODO DE PRÉ-VISUALIZAÇÃO';
+            e.title='O envio real só será liberado no horário oficial.';
+          }
+        };
+        bloquearEnvio();
+        setInterval(bloquearEnvio,1000);
+      }
+
       async function verificarFechamentoATD2(){
+        if(MODO_PREVIEW)return;
         try{
           const r=await fetch(URL_STATUS_ATD2+'?ts='+Date.now(),{cache:'no-store'});
           const j=await r.json();
@@ -79,10 +103,12 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
           }
         }
       }
+
+      aplicarPreviewATD2();
       verificarFechamentoATD2();
       setInterval(verificarFechamentoATD2,15000);
     <\/script>`;
-    html=html.replace('</body>',trava+'</body>');
+    html=html.replace('</body>',extras+'</body>');
 
     document.open();document.write(html);document.close();
   }catch(e){
