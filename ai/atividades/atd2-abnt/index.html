@@ -30,11 +30,7 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
       throw new Error('Resposta sem status da janela');
     }catch(_){
       const agora=Date.now();
-      return {
-        status: agora<ABERTURA?'AGUARDANDO':(agora>=ENCERRAMENTO?'ENCERRADA':'DISPONIVEL'),
-        aberto: agora>=ABERTURA&&agora<ENCERRAMENTO,
-        fallback:true
-      };
+      return {status:agora<ABERTURA?'AGUARDANDO':(agora>=ENCERRAMENTO?'ENCERRADA':'DISPONIVEL'),aberto:agora>=ABERTURA&&agora<ENCERRAMENTO,fallback:true};
     }
   }
 
@@ -59,70 +55,49 @@ body{font-family:Arial,Helvetica,sans-serif;margin:0;display:grid;place-items:ce
     const endpointAntigo='https://script.google.com/macros/s/AKfycbwIP3xPyvkTdU6AMTicNAFH2Evw460RuSFnsSyVmxpVkQlddQ9qowBQDS8O5wqX6dg7/exec';
     html=html.split(endpointAntigo).join(SCRIPT_URL);
 
-    const avisoSimulado=`<div style="margin:18px 0 16px;padding:18px 20px;border:3px solid #2563eb;border-radius:16px;background:#eff6ff;color:#1e3a8a;box-shadow:0 10px 24px rgba(37,99,235,.10);font-family:Arial,Helvetica,sans-serif">
-      <div style="font-size:1.08rem;font-weight:900;margin-bottom:8px">🎯 ESTA ATD2 É UM SIMULADO PARA A PROVA</div>
-      <div style="font-size:.94rem;line-height:1.55;font-weight:700">A atividade foi preparada para treinar o mesmo tipo de organização, atenção à formatação e trabalho sob tempo que será exigido na avaliação.</div>
-      <div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#2563eb;color:white;font-size:.9rem;font-weight:900;text-align:center">NA PROVA: ATIVIDADE INDIVIDUAL • TEMPO: 20 MINUTOS</div>
-      <div style="margin-top:9px;font-size:.88rem;line-height:1.45">Aproveite os <strong>40 minutos desta ATD2</strong> para treinar o procedimento completo e identificar suas dificuldades antes da prova.</div>
-    </div>`;
+    const emailAntigo='<label class="field">E-mail para devolutiva<input id="studentEmail" type="email" placeholder="seuemail@exemplo.com"></label>';
+    const emailNovo='<label class="field">E-mail do Aluno 1<input id="studentEmail1" type="email" placeholder="email do primeiro aluno"><span class="hint">Obrigatório. Futuramente será exigido o e-mail institucional.</span></label><label class="field">E-mail do Aluno 2 — opcional<input id="studentEmail2" type="email" placeholder="email do segundo aluno"><span class="hint">Obrigatório somente quando a atividade for realizada em dupla.</span></label>';
+    html=html.replace(emailAntigo,emailNovo);
 
-    const avisoPC=`<div id="pcCheckAlert" style="margin:18px 0 20px;padding:18px 20px;border:3px solid #b5121b;border-radius:16px;background:#fff1f2;color:#7f1d1d;box-shadow:0 10px 24px rgba(181,18,27,.12);font-family:Arial,Helvetica,sans-serif">
-      <div style="font-size:1.05rem;font-weight:900;margin-bottom:8px">🚨 ATENÇÃO ANTES DE INICIAR</div>
-      <div style="font-size:.94rem;line-height:1.55;font-weight:700">Certifique-se de que este computador possui <strong>Microsoft Word ou outro editor compatível capaz de criar e salvar o arquivo em PDF</strong>.</div>
-      <div style="margin-top:8px;font-size:.9rem;line-height:1.5">Após clicar em <strong>INICIAR ATD2</strong>, o cronômetro começa imediatamente. <strong>Problemas com o computador, ausência do Word, troca de máquina ou fechamento da página não reiniciam o tempo.</strong></div>
-      <div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#b5121b;color:white;font-size:.88rem;font-weight:900;text-align:center">VERIFIQUE O COMPUTADOR ANTES DE CLICAR EM INICIAR</div>
-    </div>`;
+    html=html.replace('O e-mail informado será utilizado para identificação e devolução da correção.','Cada aluno deverá informar seu próprio e-mail. Os e-mails identificam a tentativa e permitem retomá-la em outro computador, navegador ou celular sem reiniciar o tempo.');
+    html=html.replace('Existe uma ATD2 em andamento neste computador. Você pode retomá-la mantendo o mesmo texto e o tempo restante.','Existe uma ATD2 em andamento neste navegador. Você pode retomá-la aqui; em outro dispositivo, informe novamente os mesmos dados e e-mail(s).');
+    html=html.replace('✓ O texto fica vinculado a esta tentativa. Atualizar ou fechar a página não sorteia outro texto neste computador.','✓ O texto e o horário ficam vinculados à tentativa no servidor. Trocar de computador, navegador ou celular não cria uma nova tentativa.');
 
+    const declAntigo="const s1=document.getElementById('student1'),s2=document.getElementById('student2'),email=document.getElementById('studentEmail'),confirm=document.getElementById('confirm'),startBtn=document.getElementById('startBtn'),resumeBtn=document.getElementById('resumeBtn'),resumeBox=document.getElementById('resumeBox'),instructions=document.getElementById('instructionsPanel'),login=document.getElementById('loginPanel'),area=document.getElementById('activityArea'),randomTitle=document.getElementById('randomTitle'),randomText=document.getElementById('randomText'),deliveryTitle=document.getElementById('deliveryTitle'),timer=document.getElementById('timer'),studentData=document.getElementById('studentData'),expiredBox=document.getElementById('expiredBox'),pdfFile=document.getElementById('pdfFile'),sendBtn=document.getElementById('sendBtn'),uploadStatus=document.getElementById('uploadStatus');let intervalId=null;";
+    const declNovo="const s1=document.getElementById('student1'),s2=document.getElementById('student2'),email1=document.getElementById('studentEmail1'),email2=document.getElementById('studentEmail2'),confirm=document.getElementById('confirm'),startBtn=document.getElementById('startBtn'),resumeBtn=document.getElementById('resumeBtn'),resumeBox=document.getElementById('resumeBox'),instructions=document.getElementById('instructionsPanel'),login=document.getElementById('loginPanel'),area=document.getElementById('activityArea'),randomTitle=document.getElementById('randomTitle'),randomText=document.getElementById('randomText'),deliveryTitle=document.getElementById('deliveryTitle'),timer=document.getElementById('timer'),studentData=document.getElementById('studentData'),expiredBox=document.getElementById('expiredBox'),pdfFile=document.getElementById('pdfFile'),sendBtn=document.getElementById('sendBtn'),uploadStatus=document.getElementById('uploadStatus');let intervalId=null;";
+    html=html.replace(declAntigo,declNovo);
+
+    const validAntigo="function valid(){return s1.value.trim().length>=3&&/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email.value.trim())&&confirm.checked}function refresh(){startBtn.disabled=!valid()}[s1,s2,email].forEach(el=>el.addEventListener('input',refresh));confirm.addEventListener('change',refresh);";
+    const validNovo="function emailValido(v){return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(String(v||'').trim())}function valid(){const dupla=s2.value.trim().length>0;return s1.value.trim().length>=3&&emailValido(email1.value)&&(dupla?s2.value.trim().length>=3&&emailValido(email2.value):!email2.value.trim())&&email1.value.trim().toLowerCase()!==email2.value.trim().toLowerCase()&&confirm.checked}function refresh(){startBtn.disabled=!valid();startBtn.textContent='INICIAR / RETOMAR ATD2 — 40 MINUTOS'}[s1,s2,email1,email2].forEach(el=>el.addEventListener('input',refresh));confirm.addEventListener('change',refresh);";
+    html=html.replace(validAntigo,validNovo);
+
+    const showAntigo="function showActivity(a){instructions.style.display='none';login.style.display='none';area.style.display='block';const item=atividades[a.textIndex];randomTitle.textContent=item.titulo;deliveryTitle.textContent=item.titulo;randomText.textContent=item.texto;studentData.innerHTML='Aluno 1<strong>'+esc(a.student1)+'</strong>'+(a.student2?'<br>Aluno 2<strong>'+esc(a.student2)+'</strong>':'')+'<br>E-mail<strong>'+esc(a.email)+'</strong>';runTimer(a)}";
+    const showNovo="function showActivity(a){instructions.style.display='none';login.style.display='none';area.style.display='block';const item=atividades[a.textIndex];randomTitle.textContent=item.titulo;deliveryTitle.textContent=item.titulo;randomText.textContent=item.texto;studentData.innerHTML='Aluno 1<strong>'+esc(a.student1)+'</strong><br>E-mail 1<strong>'+esc(a.email1||a.email)+'</strong>'+(a.student2?'<br>Aluno 2<strong>'+esc(a.student2)+'</strong><br>E-mail 2<strong>'+esc(a.email2)+'</strong>':'');runTimer(a);if(a.submitted){pdfFile.disabled=true;sendBtn.disabled=true;sendBtn.textContent='ATD2 JÁ ENCAMINHADA';setStatus('ok','✓ Esta tentativa já foi encaminhada.')}}";
+    html=html.replace(showAntigo,showNovo);
+
+    const startAntigo="startBtn.addEventListener('click',()=>{if(!valid())return;const a={student1:s1.value.trim(),student2:s2.value.trim(),email:email.value.trim(),textIndex:Math.floor(Math.random()*atividades.length),startTime:Date.now(),endTime:Date.now()+DURATION,submitted:false};saveAttempt(a);showActivity(a)});resumeBtn.addEventListener('click',()=>{const a=getAttempt();if(a)showActivity(a)});";
+    const startNovo="startBtn.addEventListener('click',async()=>{if(!valid())return;startBtn.disabled=true;const textoOriginal=startBtn.textContent;startBtn.textContent='CONSULTANDO TENTATIVA...';try{const payload={action:'iniciarTentativa',aluno1:s1.value.trim(),aluno2:s2.value.trim(),email1:email1.value.trim(),email2:email2.value.trim(),qtdTextos:atividades.length};const resp=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});const j=await resp.json();if(!j.ok)throw new Error(j.erro||'Não foi possível iniciar a tentativa.');const a=j.tentativa;saveAttempt(a);showActivity(a)}catch(err){alert('Não foi possível registrar a tentativa no servidor. '+String(err.message||err));startBtn.textContent=textoOriginal;refresh()}});resumeBtn.addEventListener('click',()=>{const a=getAttempt();if(a)showActivity(a)});";
+    html=html.replace(startAntigo,startNovo);
+
+    const initAntigo="(()=>{const a=getAttempt();if(a){resumeBox.style.display='block';resumeBtn.style.display='block';s1.value=a.student1||'';s2.value=a.student2||'';email.value=a.email||'';refresh()}})();";
+    const initNovo="(()=>{const a=getAttempt();if(a){resumeBox.style.display='block';resumeBtn.style.display='block';s1.value=a.student1||'';s2.value=a.student2||'';email1.value=a.email1||a.email||'';email2.value=a.email2||'';refresh()}})();";
+    html=html.replace(initAntigo,initNovo);
+
+    const sendAntigo="sendBtn.addEventListener('click',async()=>{const a=getAttempt(),f=pdfFile.files&&pdfFile.files[0];if(!a){setStatus('error','Tentativa não localizada. Retome a ATD2 antes de enviar.');return}if(!f){setStatus('error','Selecione o PDF.');return}if(a.submitted){setStatus('ok','Esta ATD2 já foi enviada neste navegador.');return}sendBtn.disabled=true;pdfFile.disabled=true;setStatus('wait','Enviando atividade...');try{const item=atividades[a.textIndex],pdfBase64=await fileToBase64(f),nomes=a.student2?a.student1+' / '+a.student2:a.student1,payload={nomes,email:a.email,turma:'1º TANE',componente:'Aplicativos Informatizados',atividade:'ATD2 - AI',tema:item.titulo,titulo:item.titulo,textoFolhaRosto:FOLHA_ROSTO,inicio:new Date(a.startTime).toISOString(),fim:new Date().toISOString(),versao:'Texto '+(a.textIndex+1),fileName:f.name,mimeType:'application/pdf',pdfBase64};await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});a.submitted=true;a.submittedAt=Date.now();saveAttempt(a);setStatus('ok','✓ ATD2 encaminhada para correção.');sendBtn.textContent='ATD2 ENCAMINHADA'}catch(err){pdfFile.disabled=false;sendBtn.disabled=false;setStatus('error','Não foi possível enviar a atividade. Tente novamente.')}});";
+    const sendNovo="sendBtn.addEventListener('click',async()=>{const a=getAttempt(),f=pdfFile.files&&pdfFile.files[0];if(!a){setStatus('error','Tentativa não localizada. Retome a ATD2 antes de enviar.');return}if(!f){setStatus('error','Selecione o PDF.');return}if(a.submitted){setStatus('ok','Esta ATD2 já foi enviada.');return}sendBtn.disabled=true;pdfFile.disabled=true;setStatus('wait','Enviando atividade e aguardando confirmação...');try{const item=atividades[a.textIndex],pdfBase64=await fileToBase64(f),payload={action:'enviar',tokenTentativa:a.token,aluno1:a.student1,aluno2:a.student2,email1:a.email1||a.email,email2:a.email2||'',turma:'1º TANE',componente:'Aplicativos Informatizados',atividade:'ATD2 - AI',tema:item.titulo,titulo:item.titulo,textoFolhaRosto:FOLHA_ROSTO,inicio:new Date(a.startTime).toISOString(),fim:new Date().toISOString(),versao:'Texto '+(a.textIndex+1),fileName:f.name,mimeType:'application/pdf',pdfBase64};const resp=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});const j=await resp.json();if(!j.ok)throw new Error(j.erro||'O servidor não confirmou o envio.');a.submitted=true;a.submittedAt=Date.now();a.protocoloEnvio=j.protocolo||'';saveAttempt(a);setStatus('ok','✓ ATD2 encaminhada. Protocolo: '+(j.protocolo||'confirmado'));sendBtn.textContent='ATD2 ENCAMINHADA'}catch(err){pdfFile.disabled=false;sendBtn.disabled=false;setStatus('error','Não foi possível confirmar o envio: '+String(err.message||err))}});";
+    html=html.replace(sendAntigo,sendNovo);
+
+    const avisoSimulado=`<div style="margin:18px 0 16px;padding:18px 20px;border:3px solid #2563eb;border-radius:16px;background:#eff6ff;color:#1e3a8a;box-shadow:0 10px 24px rgba(37,99,235,.10);font-family:Arial,Helvetica,sans-serif"><div style="font-size:1.08rem;font-weight:900;margin-bottom:8px">🎯 ESTA ATD2 É UM SIMULADO PARA A PROVA</div><div style="font-size:.94rem;line-height:1.55;font-weight:700">A atividade foi preparada para treinar o mesmo tipo de organização, atenção à formatação e trabalho sob tempo que será exigido na avaliação.</div><div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#2563eb;color:white;font-size:.9rem;font-weight:900;text-align:center">NA PROVA: ATIVIDADE INDIVIDUAL • TEMPO: 20 MINUTOS</div><div style="margin-top:9px;font-size:.88rem;line-height:1.45">Aproveite os <strong>40 minutos desta ATD2</strong> para treinar o procedimento completo e identificar suas dificuldades antes da prova.</div></div>`;
+
+    const avisoPC=`<div id="pcCheckAlert" style="margin:18px 0 20px;padding:18px 20px;border:3px solid #b5121b;border-radius:16px;background:#fff1f2;color:#7f1d1d;box-shadow:0 10px 24px rgba(181,18,27,.12);font-family:Arial,Helvetica,sans-serif"><div style="font-size:1.05rem;font-weight:900;margin-bottom:8px">🚨 ATENÇÃO ANTES DE INICIAR</div><div style="font-size:.94rem;line-height:1.55;font-weight:700">Certifique-se de que este computador possui <strong>Microsoft Word ou outro editor compatível capaz de criar e salvar o arquivo em PDF</strong>.</div><div style="margin-top:8px;font-size:.9rem;line-height:1.5">Após clicar em <strong>INICIAR / RETOMAR ATD2</strong>, o servidor registra a tentativa. <strong>Fechar a página, trocar de computador, navegador ou celular não reinicia os 40 minutos e não sorteia outro texto.</strong></div><div style="margin-top:10px;padding:10px 12px;border-radius:10px;background:#b5121b;color:white;font-size:.88rem;font-weight:900;text-align:center">CONFIRA NOMES E E-MAILS ANTES DE INICIAR</div></div>`;
     html=html.replace('<aside class="panel" id="loginPanel">',avisoSimulado+avisoPC+'<aside class="panel" id="loginPanel">');
 
     const extras=`<script>
       const URL_STATUS_ATD2='${SCRIPT_URL}';
       const MODO_PREVIEW=${PREVIEW ? 'true' : 'false'};
-
-      function aplicarPreviewATD2(){
-        if(!MODO_PREVIEW)return;
-        const aviso=document.createElement('div');
-        aviso.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffecb5;padding:10px 14px;text-align:center;font:700 14px Arial,sans-serif';
-        aviso.textContent='MODO DE PRÉ-VISUALIZAÇÃO DO PROFESSOR — a atividade oficial continua fechada e nenhum envio será aceito antes das 21h.';
-        document.body.appendChild(aviso);
-        document.body.style.paddingTop='44px';
-
-        const bloquearEnvio=()=>{
-          const e=document.getElementById('sendBtn');
-          if(e){
-            e.disabled=true;
-            e.textContent='ENVIO DESABILITADO NO MODO DE PRÉ-VISUALIZAÇÃO';
-            e.title='O envio real só será liberado no horário oficial.';
-          }
-        };
-        bloquearEnvio();
-        setInterval(bloquearEnvio,1000);
-      }
-
-      async function verificarFechamentoATD2(){
-        if(MODO_PREVIEW)return;
-        try{
-          const r=await fetch(URL_STATUS_ATD2+'?ts='+Date.now(),{cache:'no-store'});
-          const j=await r.json();
-          if(j.status==='ENCERRADA'){
-            const s=document.getElementById('startBtn');
-            const e=document.getElementById('sendBtn');
-            if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA';}
-            if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO';}
-          }
-        }catch(_){
-          if(Date.now()>=${ENCERRAMENTO}){
-            const s=document.getElementById('startBtn');
-            const e=document.getElementById('sendBtn');
-            if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA';}
-            if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO';}
-          }
-        }
-      }
-
-      aplicarPreviewATD2();
-      verificarFechamentoATD2();
-      setInterval(verificarFechamentoATD2,15000);
+      function aplicarPreviewATD2(){if(!MODO_PREVIEW)return;const aviso=document.createElement('div');aviso.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#fff3cd;color:#664d03;border-bottom:1px solid #ffecb5;padding:10px 14px;text-align:center;font:700 14px Arial,sans-serif';aviso.textContent='MODO DE PRÉ-VISUALIZAÇÃO DO PROFESSOR — nenhum envio real será aceito fora da janela oficial.';document.body.appendChild(aviso);document.body.style.paddingTop='44px';const bloquearEnvio=()=>{const e=document.getElementById('sendBtn');if(e){e.disabled=true;e.textContent='ENVIO DESABILITADO NO MODO DE PRÉ-VISUALIZAÇÃO'}};bloquearEnvio();setInterval(bloquearEnvio,1000)}
+      async function verificarFechamentoATD2(){if(MODO_PREVIEW)return;try{const r=await fetch(URL_STATUS_ATD2+'?ts='+Date.now(),{cache:'no-store'});const j=await r.json();if(j.status==='ENCERRADA'){const s=document.getElementById('startBtn'),e=document.getElementById('sendBtn');if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA'}if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO'}}}catch(_){if(Date.now()>=${ENCERRAMENTO}){const s=document.getElementById('startBtn'),e=document.getElementById('sendBtn');if(s){s.disabled=true;s.textContent='ATD2 ENCERRADA'}if(e){e.disabled=true;e.textContent='PRAZO DE ENVIO ENCERRADO'}}}}
+      aplicarPreviewATD2();verificarFechamentoATD2();setInterval(verificarFechamentoATD2,15000);
     <\/script>`;
     html=html.replace('</body>',extras+'</body>');
 
