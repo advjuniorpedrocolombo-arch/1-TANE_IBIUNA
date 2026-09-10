@@ -56,9 +56,7 @@
     * {
 
       margin: 0;
-
       padding: 0;
-
       box-sizing: border-box;
 
     }
@@ -202,7 +200,7 @@
 
 
     /* =========================
-       NAVEGAÇÃO RÁPIDA
+       NAVEGAÇÃO
     ========================== */
 
 
@@ -290,7 +288,7 @@
 
 
     /* =========================
-       CONTEÚDO PRINCIPAL
+       CONTEÚDO
     ========================== */
 
 
@@ -407,7 +405,7 @@
 
 
     /* =========================
-       CARDS DE ATIVIDADES
+       ATIVIDADES
     ========================== */
 
 
@@ -756,8 +754,6 @@
     }
 
 
-    /* AVISO EXPOTEC */
-
     .aviso.expotec {
 
       background:
@@ -784,7 +780,7 @@
 
 
     /* =========================
-       CRONOGRAMA / MATERIAIS
+       CRONOGRAMA
     ========================== */
 
 
@@ -990,12 +986,6 @@
     }
 
 
-
-    /* =========================
-       REVISÃO
-    ========================== */
-
-
     .aula-item.revisao {
 
       background:
@@ -1017,46 +1007,13 @@
     }
 
 
-
-    /* =========================
-       ATESTADO
-    ========================== */
-
-
-    .aula-item.atestado {
-
-      background:
-        #fafafa;
-
-      border-left:
-        5px solid
-        #a5abb3;
-
-    }
-
-
-    .aula-item.atestado
-    .aula-icone {
-
-      background:
-        #f0f1f3;
-
-    }
-
-
-
-    /* =========================
-       PROVA
-    ========================== */
-
-
     .aula-item.prova {
 
       background:
-        #fff6f7;
+        #fff7f8;
 
       border-left:
-        6px solid
+        5px solid
         var(--etec-vermelho);
 
     }
@@ -1071,29 +1028,8 @@
       color:
         #fff;
 
-    }
-
-
-    .aula-item.prova
-    .aula-info h3 {
-
-      color:
-        var(--etec-vermelho);
-
       font-weight:
-        900;
-
-    }
-
-
-    .aula-item.prova
-    .data-aula {
-
-      background:
-        #f9e9ee;
-
-      color:
-        var(--etec-vermelho);
+        bold;
 
     }
 
@@ -1106,16 +1042,19 @@
       color:
         #fff;
 
-      border-radius:
-        9px;
-
     }
 
 
+    .aula-item.atestado {
 
-    /* =========================
-       SÁBADO LETIVO
-    ========================== */
+      background:
+        var(--cinza-bg);
+
+      border-left:
+        5px solid
+        var(--cinza-texto);
+
+    }
 
 
     .aula-item.sabado {
@@ -1124,38 +1063,8 @@
         #fffaf0;
 
       border-left:
-        6px solid
+        5px solid
         #d99000;
-
-    }
-
-
-    .aula-item.sabado
-    .aula-icone {
-
-      background:
-        var(--amarelo-bg);
-
-    }
-
-
-    .aula-item.sabado
-    .aula-info h3 {
-
-      color:
-        #8a5a00;
-
-    }
-
-
-    .aula-item.sabado
-    .data-aula {
-
-      background:
-        var(--amarelo-bg);
-
-      color:
-        var(--amarelo-texto);
 
     }
 
@@ -1171,19 +1080,13 @@
     }
 
 
-
-    /* =========================
-       EXPOTEC
-    ========================== */
-
-
     .aula-item.expotec {
 
       background:
         #f4f8ff;
 
       border-left:
-        6px solid
+        5px solid
         var(--azul-texto);
 
     }
@@ -1229,6 +1132,58 @@
 
       color:
         var(--amarelo-texto);
+
+    }
+
+
+
+    /* =========================
+       BOTÃO GERADOR
+    ========================== */
+
+
+    .botao-gerador {
+
+      display:
+        inline-block;
+
+      margin-top:
+        12px;
+
+      padding:
+        10px 15px;
+
+      border-radius:
+        10px;
+
+      background:
+        var(--etec-vermelho);
+
+      color:
+        #ffffff;
+
+      text-decoration:
+        none;
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+
+      transition:
+        0.2s ease;
+
+    }
+
+
+    .botao-gerador:hover {
+
+      background:
+        var(--etec-vermelho-escuro);
+
+      transform:
+        translateY(-1px);
 
     }
 
@@ -1348,7 +1303,6 @@
 
       }
 
-
     }
 
 
@@ -1369,7 +1323,6 @@
           0;
 
       }
-
 
     }
 
@@ -1674,21 +1627,28 @@
           <div>
 
             <h3>
-              1ª Semana de Provas — 17 a 23/09/2026
+              1ª Prova — 21/09/2026
             </h3>
 
 
             <p>
 
-              A avaliação de Cálculos Financeiros e Estatísticos
+              A primeira avaliação de
+              Cálculos Financeiros e Estatísticos
               será realizada na
-              <strong>quarta-feira, 23/09/2026</strong>.
+              <strong>segunda-feira, 21/09/2026</strong>.
 
-              A prova terá início às
-              <strong>19h30</strong>.
+              <br /><br />
 
-              O jantar será servido às
-              <strong>19h</strong>.
+              <strong>
+                Conteúdo: Juros Simples e Juros Compostos.
+              </strong>
+
+              <br />
+
+              <strong>
+                Formato: 10 questões de múltipla escolha.
+              </strong>
 
             </p>
 
@@ -1803,7 +1763,7 @@
 
       <p class="section-intro">
 
-        Cronograma das aulas de quarta-feira,
+        Cronograma das aulas,
         atividades, revisões e avaliações do componente.
 
       </p>
@@ -1819,11 +1779,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             💰
           </div>
-
 
           <div class="aula-info">
 
@@ -1842,11 +1800,9 @@
 
           </div>
 
-
           <span class="aula-status ministrada">
             Aula ministrada
           </span>
-
 
         </div>
 
@@ -1857,11 +1813,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             💰
           </div>
-
 
           <div class="aula-info">
 
@@ -1880,11 +1834,9 @@
 
           </div>
 
-
           <span class="aula-status ministrada">
             Aula ministrada
           </span>
-
 
         </div>
 
@@ -1895,11 +1847,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             🧮
           </div>
-
 
           <div class="aula-info">
 
@@ -1918,11 +1868,9 @@
 
           </div>
 
-
           <span class="aula-status ministrada">
             Aula ministrada
           </span>
-
 
         </div>
 
@@ -1933,11 +1881,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📊
           </div>
-
 
           <div class="aula-info">
 
@@ -1956,11 +1902,9 @@
 
           </div>
 
-
           <span class="aula-status sem-aula">
             Ausência
           </span>
-
 
         </div>
 
@@ -1971,11 +1915,9 @@
 
         <div class="aula-item revisao">
 
-
           <div class="aula-icone">
             🔄
           </div>
-
 
           <div class="aula-info">
 
@@ -1994,11 +1936,9 @@
 
           </div>
 
-
           <span class="aula-status ministrada">
             Aula ministrada
           </span>
-
 
         </div>
 
@@ -2009,11 +1949,9 @@
 
         <div class="aula-item atestado">
 
-
           <div class="aula-icone">
             🩺
           </div>
-
 
           <div class="aula-info">
 
@@ -2031,11 +1969,9 @@
 
           </div>
 
-
           <span class="aula-status sem-aula">
             Atestado
           </span>
-
 
         </div>
 
@@ -2045,7 +1981,6 @@
 
 
         <div class="aula-item">
-
 
           <div class="aula-icone">
             📈
@@ -2068,13 +2003,23 @@
               de Juros Compostos.
             </p>
 
+
+            <a
+              href="https://advjuniorpedrocolombo-arch.github.io/Gerador_de_Problemas_Simples_Compostos/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="botao-gerador"
+            >
+              🧮 Gerador de Problemas — Juros Simples e Compostos
+            </a>
+
+
           </div>
 
 
-          <span class="aula-status breve">
-            Próxima aula
+          <span class="aula-status ministrada">
+            Aula ministrada
           </span>
-
 
         </div>
 
@@ -2085,11 +2030,9 @@
 
         <div class="aula-item revisao">
 
-
           <div class="aula-icone">
             🔄
           </div>
-
 
           <div class="aula-info">
 
@@ -2108,21 +2051,18 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
 
 
-        <!-- AULA 08 - 1ª PROVA -->
+        <!-- 1ª PROVA -->
 
 
         <div class="aula-item prova">
-
 
           <div class="aula-icone">
             !
@@ -2132,11 +2072,11 @@
           <div class="aula-info">
 
             <span class="data-aula">
-              23/09/2026
+              21/09/2026
             </span>
 
             <h3>
-              Aula 08 — DIA DA 1ª PROVA
+              1ª PROVA — CFE
             </h3>
 
             <p>
@@ -2147,8 +2087,13 @@
               <br />
 
               <strong>
-                Prova às 19h30 —
-                jantar servido às 19h.
+                Conteúdo: Juros Simples e Juros Compostos.
+              </strong>
+
+              <br />
+
+              <strong>
+                10 questões de múltipla escolha.
               </strong>
 
             </p>
@@ -2160,7 +2105,6 @@
             AVALIAÇÃO
           </span>
 
-
         </div>
 
 
@@ -2170,11 +2114,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2192,26 +2134,22 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
 
 
-        <!-- 07/10 - EXPOTEC -->
+        <!-- EXPOTEC -->
 
 
         <div class="aula-item expotec">
 
-
           <div class="aula-icone">
             🎓
           </div>
-
 
           <div class="aula-info">
 
@@ -2233,11 +2171,9 @@
 
           </div>
 
-
           <span class="aula-status confirmar">
             ⏳ A confirmar
           </span>
-
 
         </div>
 
@@ -2248,11 +2184,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2270,11 +2204,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2285,11 +2217,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2307,11 +2237,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2322,11 +2250,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2344,11 +2270,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2359,11 +2283,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2381,11 +2303,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2396,11 +2316,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2418,11 +2336,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2433,11 +2349,9 @@
 
         <div class="aula-item revisao">
 
-
           <div class="aula-icone">
             🔄
           </div>
-
 
           <div class="aula-info">
 
@@ -2456,11 +2370,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2471,11 +2383,9 @@
 
         <div class="aula-item prova">
 
-
           <div class="aula-icone">
             !
           </div>
-
 
           <div class="aula-info">
 
@@ -2503,11 +2413,9 @@
 
           </div>
 
-
           <span class="aula-status prova">
             AVALIAÇÃO
           </span>
-
 
         </div>
 
@@ -2518,11 +2426,9 @@
 
         <div class="aula-item sabado">
 
-
           <div class="aula-icone">
             ⚠️
           </div>
-
 
           <div class="aula-info">
 
@@ -2546,11 +2452,9 @@
 
           </div>
 
-
           <span class="aula-status sabado">
             ⚠️ Atividade em breve
           </span>
-
 
         </div>
 
@@ -2561,11 +2465,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2583,11 +2485,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2598,11 +2498,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             📘
           </div>
-
 
           <div class="aula-info">
 
@@ -2620,11 +2518,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Material em breve
           </span>
-
 
         </div>
 
@@ -2635,11 +2531,9 @@
 
         <div class="aula-item">
 
-
           <div class="aula-icone">
             ✅
           </div>
-
 
           <div class="aula-info">
 
@@ -2658,11 +2552,9 @@
 
           </div>
 
-
           <span class="aula-status breve">
             Encerramento
           </span>
-
 
         </div>
 
