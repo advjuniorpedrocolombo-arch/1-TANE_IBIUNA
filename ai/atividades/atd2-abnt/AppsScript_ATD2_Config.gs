@@ -1,10 +1,11 @@
 // CONFIGURAÇÃO BASE DA ATD2 AI
 // Este arquivo deve estar no MESMO projeto do Google Apps Script
-// que contém AppsScript_ATD2_CorrecaoIA.gs.
+// que contém AppsScript_ATD2_AI.gs e AppsScript_ATD2_CorrecaoIA.gs.
 
 var CONFIG = {
   SPREADSHEET_ID: '10H9XgzlYQiP7BXKodFfo98jUw7nx0UHp8jEHxRtbG04',
   SHEET_NAME: 'Respostas',
+  TENTATIVAS_SHEET_NAME: 'Tentativas_ATD2',
   PASTA_RESPOSTAS_PDF_ID: '1Kr76zzOv53QnDxLxjJNow3L2S9qiekRo',
   TURMA: '1º TANE - Extensão Ibiúna',
   COMPONENTE: 'Aplicativos Informatizados',
