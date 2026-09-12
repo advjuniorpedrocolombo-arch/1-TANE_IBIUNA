@@ -1,6 +1,6 @@
 // ATD2 - TIAA | Simulado de Prova
 // Prof. Dr. Junior P. Colombo
-// Recebe arquivo .xlsm, registra no Google Sheets e envia devolutiva por e-mail.
+// Recebe arquivo Excel habilitado para macro (.xlsm ou .xltm), registra no Google Sheets e envia devolutiva por e-mail.
 
 const CONFIG_TIAA = {
   SPREADSHEET_ID: '1a6U_ieofvinaUdqmY63uwMEn_ohAs4zdoJgZOYEcDYA',
@@ -27,7 +27,11 @@ function doPost(e) {
 
     if (nome.length < 3) throw new Error('Informe o nome completo.');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Informe um e-mail válido.');
-    if (!arquivoNome.toLowerCase().endsWith('.xlsm')) throw new Error('Envie somente arquivo Excel habilitado para macro (.xlsm).');
+
+    const nomeLower = arquivoNome.toLowerCase();
+    const ehXlsm = nomeLower.endsWith('.xlsm');
+    const ehXltm = nomeLower.endsWith('.xltm');
+    if (!ehXlsm && !ehXltm) throw new Error('Envie somente arquivo Excel habilitado para macro (.xlsm ou .xltm).');
     if (!base64) throw new Error('Arquivo não recebido.');
 
     const bytes = Utilities.base64Decode(base64.replace(/^data:.*?;base64,/, ''));
@@ -35,8 +39,12 @@ function doPost(e) {
 
     const protocolo = 'TIAA-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone() || 'America/Sao_Paulo', 'yyyyMMdd-HHmmss') + '-' + Math.floor(1000 + Math.random()*9000);
     const nomeSeguro = nome.replace(/[\\/:*?"<>|]/g,'_');
-    const finalName = nomeSeguro + ' - ' + CONFIG_TIAA.ATIVIDADE + ' - ' + protocolo + '.xlsm';
-    const blob = Utilities.newBlob(bytes, mime || 'application/vnd.ms-excel.sheet.macroEnabled.12', finalName);
+    const extensao = ehXltm ? '.xltm' : '.xlsm';
+    const mimePadrao = ehXltm
+      ? 'application/vnd.ms-excel.template.macroEnabled.12'
+      : 'application/vnd.ms-excel.sheet.macroEnabled.12';
+    const finalName = nomeSeguro + ' - ' + CONFIG_TIAA.ATIVIDADE + ' - ' + protocolo + extensao;
+    const blob = Utilities.newBlob(bytes, mime || mimePadrao, finalName);
     const file = DriveApp.getFolderById(CONFIG_TIAA.FOLDER_ID).createFile(blob);
 
     const ss = SpreadsheetApp.openById(CONFIG_TIAA.SPREADSHEET_ID);
