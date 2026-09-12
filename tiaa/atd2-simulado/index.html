@@ -46,15 +46,13 @@
 </main>
 <div class="rodape">TIAA • ATD2 — Simulado de Prova • Prof. Dr. Junior Pedro Colombo</div>
 <script>
-// Após publicar o Apps Script como Web App, cole a URL /exec abaixo.
-const ENDPOINT='COLE_AQUI_A_URL_DO_APPS_SCRIPT';
+const ENDPOINT='https://script.google.com/macros/s/AKfycbw3uiLENo0yQvyeNb3M3VaOWPtMt48pQbhmXM-IY-_7QeRziNBrCrW28j6viG55RFr0dQ/exec';
 const form=document.getElementById('formEnvio'),btn=document.getElementById('btnEnviar'),statusBox=document.getElementById('status');
 function mostrar(msg,tipo){statusBox.textContent=msg;statusBox.className='status '+tipo}
 function toBase64(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result).split(',')[1]);r.onerror=reject;r.readAsDataURL(file)})}
 form.addEventListener('submit',async e=>{
  e.preventDefault();
  try{
-  if(ENDPOINT.startsWith('COLE_AQUI')) throw new Error('Envio ainda não foi ativado pelo professor.');
   const file=document.getElementById('arquivo').files[0];
   if(!file) throw new Error('Selecione o arquivo .xlsm.');
   if(!file.name.toLowerCase().endsWith('.xlsm')) throw new Error('Envie somente arquivo .xlsm.');
