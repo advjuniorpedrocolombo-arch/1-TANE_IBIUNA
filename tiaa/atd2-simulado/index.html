@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>TIAA — ATD2 Simulado de Prova</title>
 <style>
-:root{--azul:#0b3558;--verde:#1f7a4c;--cinza:#f4f6f8;--texto:#1f2937;--borda:#d7dde4}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cinza);color:var(--texto)}header{background:linear-gradient(135deg,#0b3558,#174f7c);color:#fff;padding:28px 18px}.wrap{max-width:900px;margin:auto}.tag{display:inline-block;background:#fff;color:#0b3558;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}h1{margin:12px 0 6px;font-size:30px}header p{margin:0;opacity:.92}.card{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 4px 14px rgba(0,0,0,.05)}h2{margin-top:0;color:var(--azul)}ol,ul{line-height:1.55}.alerta{background:#fff7df;border-left:5px solid #d99b00;padding:14px;border-radius:8px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}input{width:100%;padding:12px;border:1px solid #bcc6d0;border-radius:9px;font-size:15px}button{width:100%;border:0;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--verde);color:#fff}button:disabled{background:#9aa4ae;cursor:not-allowed}.status{margin-top:14px;padding:12px;border-radius:9px;display:none}.ok{display:block;background:#e7f7ee;color:#145b37}.erro{display:block;background:#fdeaea;color:#8b1d1d}.rodape{text-align:center;color:#6b7280;font-size:13px;padding:20px}.check{display:flex;gap:10px;align-items:flex-start;margin:14px 0}.check input{width:auto;margin-top:4px}@media(max-width:650px){.grid{grid-template-columns:1fr}h1{font-size:24px}}
+:root{--azul:#0b3558;--verde:#1f7a4c;--cinza:#f4f6f8;--texto:#1f2937;--borda:#d7dde4}*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--cinza);color:var(--texto)}header{background:linear-gradient(135deg,#0b3558,#174f7c);color:#fff;padding:28px 18px}.wrap{max-width:900px;margin:auto}.tag{display:inline-block;background:#fff;color:#0b3558;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}h1{margin:12px 0 6px;font-size:30px}header p{margin:0;opacity:.92}.card{background:#fff;border:1px solid var(--borda);border-radius:14px;padding:22px;margin:18px 0;box-shadow:0 4px 14px rgba(0,0,0,.05)}h2{margin-top:0;color:var(--azul)}ol,ul{line-height:1.55}.alerta{background:#fff7df;border-left:5px solid #d99b00;padding:14px;border-radius:8px}.liberado{background:#e7f7ee;border-left:5px solid #1f7a4c;padding:14px;border-radius:8px;color:#145b37;font-weight:700;margin-bottom:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{font-weight:700;font-size:14px;display:block;margin-bottom:6px}input{width:100%;padding:12px;border:1px solid #bcc6d0;border-radius:9px;font-size:15px}button{width:100%;border:0;border-radius:10px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--verde);color:#fff}button:disabled{background:#9aa4ae;cursor:not-allowed}.status{margin-top:14px;padding:12px;border-radius:9px;display:none}.ok{display:block;background:#e7f7ee;color:#145b37}.erro{display:block;background:#fdeaea;color:#8b1d1d}.rodape{text-align:center;color:#6b7280;font-size:13px;padding:20px}.check{display:flex;gap:10px;align-items:flex-start;margin:14px 0}.check input{width:auto;margin-top:4px}@media(max-width:650px){.grid{grid-template-columns:1fr}h1{font-size:24px}}
 </style>
 </head>
 <body>
@@ -32,6 +35,7 @@
 </div>
 <div class="card">
 <h2>Envio do arquivo</h2>
+<div class="liberado">ENVIO LIBERADO PELO PROFESSOR</div>
 <form id="formEnvio">
 <div class="grid">
 <div><label for="nome">Nome completo</label><input id="nome" required autocomplete="name"></div>
@@ -46,7 +50,7 @@
 </main>
 <div class="rodape">TIAA • ATD2 — Simulado de Prova • Prof. Dr. Junior Pedro Colombo</div>
 <script>
-const ENDPOINT='https://script.google.com/macros/s/AKfycbw3uiLENo0yQvyeNb3M3VaOWPtMt48pQbhmXM-IY-_7QeRziNBrCrW28j6viG55RFr0dQ/exec';
+const ENDPOINT='https://script.google.com/macros/s/AKfycbw3uiLENo0yQvyeNb3M3VaOWPtMt48pQbhmXM-IY-_7QeRziNBrCrW28j6viG55RFr0dQ/exec?v=20260911-2210';
 const form=document.getElementById('formEnvio'),btn=document.getElementById('btnEnviar'),statusBox=document.getElementById('status');
 function mostrar(msg,tipo){statusBox.textContent=msg;statusBox.className='status '+tipo}
 function toBase64(file){return new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result).split(',')[1]);r.onerror=reject;r.readAsDataURL(file)})}
@@ -59,7 +63,7 @@ form.addEventListener('submit',async e=>{
   if(file.size>20*1024*1024) throw new Error('O arquivo ultrapassa 20 MB.');
   btn.disabled=true;btn.textContent='ENVIANDO...';mostrar('Aguarde. Enviando o arquivo...','ok');
   const payload={nome:document.getElementById('nome').value.trim(),email:document.getElementById('email').value.trim(),fileName:file.name,mimeType:file.type||'application/vnd.ms-excel.sheet.macroEnabled.12',fileBase64:await toBase64(file)};
-  const r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+  const r=await fetch(ENDPOINT,{method:'POST',cache:'no-store',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
   const j=await r.json();
   if(!j.ok) throw new Error(j.erro||'Não foi possível concluir o envio.');
   mostrar('Arquivo enviado com sucesso. Protocolo: '+j.protocolo+' • '+j.horario,'ok');
