@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   patch:
-    if: github.event.head_commit.message == 'Executa ajuste PORA prova'
+    if: github.event.head_commit.message == 'Executa ajuste PORA prova 2'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,31 +18,33 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import re
 
           p = Path('pora/index.html')
           s = p.read_text(encoding='utf-8')
 
-          pattern = re.compile(r'(Aula 08 — DIA DA 1ª PROVA.*?</div>\s*</div>\s*<span class="proof-label">\s*AVALIAÇÃO\s*</span>\s*</div>)', re.S)
-          m = pattern.search(s)
-          if not m:
-              raise SystemExit('Bloco da Aula 08 não encontrado; abortando.')
+          ini = s.find('<!-- AULA 08 — 1ª PROVA -->')
+          if ini == -1:
+              raise SystemExit('Início da Aula 08 não encontrado; abortando.')
+          fim = s.find('<!-- AULA 09', ini)
+          if fim == -1:
+              raise SystemExit('Fim do bloco da Aula 08 não encontrado; abortando.')
 
-          bloco = m.group(1)
+          bloco = s[ini:fim]
           bloco2 = bloco.replace('17/09/2026','22/09/2026',1)
 
-          if 'Prova objetiva' not in bloco2:
-              alvo = '1ª Avaliação de\n                Processos Organizacionais\n                e Rotinas Administrativas.'
-              novo = alvo + '\n\n                <br>\n                <strong>Prova objetiva.</strong>'
-              if alvo not in bloco2:
+          if 'Prova objetiva.' not in bloco2:
+              alvo = 'e Rotinas Administrativas.'
+              pos = bloco2.find(alvo)
+              if pos == -1:
                   raise SystemExit('Descrição da prova não encontrada; abortando.')
-              bloco2 = bloco2.replace(alvo, novo, 1)
+              pos += len(alvo)
+              bloco2 = bloco2[:pos] + '\n\n                <br>\n                <strong>Prova objetiva.</strong>' + bloco2[pos:]
 
-          if bloco2 == bloco:
-              raise SystemExit('Nenhuma alteração necessária.')
+          if 'Prova às 19h30' not in bloco2:
+              raise SystemExit('Horário esperado da prova não encontrado; abortando.')
 
-          s = s[:m.start(1)] + bloco2 + s[m.end(1):]
-          p.write_text(s, encoding='utf-8')
+          s2 = s[:ini] + bloco2 + s[fim:]
+          p.write_text(s2, encoding='utf-8')
           PY
       - name: Commit
         shell: bash
@@ -50,5 +52,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pora/index.html
-          git commit -m "Ajusta data e formato da prova da Aula 08 de PORA [skip ci]"
+          git commit -m "Ajusta Aula 08 de PORA para prova objetiva em 22-09 às 19h30 [skip ci]"
           git push
