@@ -18,20 +18,22 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           p = Path('em/index.html')
           s = p.read_text(encoding='utf-8')
-          old = '''                <strong>
-                  Prova às 19h30 —
-                  jantar servido às 19h.
-                </strong>'''
-          new = old + '''
+          if 'Observação: Prova será realizada no dia 22/09 (Prova objetiva).' in s:
+              raise SystemExit('Observação já existe; nada a fazer.')
+          pattern = re.compile(r'(Aula 08 — DIA DA 1ª PROVA.*?Prova às 19h30 —\s*jantar servido às 19h\.\s*</strong>)', re.S)
+          m = pattern.search(s)
+          if not m:
+              raise SystemExit('Trecho da Aula 08 não encontrado; abortando para não alterar conteúdo indevido.')
+          insert = m.group(1) + '''
                 <br>
                 <strong>
                   Observação: Prova será realizada no dia 22/09 (Prova objetiva).
                 </strong>'''
-          if s.count(old) != 1:
-              raise SystemExit(f'Trecho-alvo encontrado {s.count(old)} vez(es); abortando para não alterar conteúdo indevido.')
-          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          s = s[:m.start(1)] + insert + s[m.end(1):]
+          p.write_text(s, encoding='utf-8')
           PY
       - name: Commit
         shell: bash
