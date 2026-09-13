@@ -1,0 +1,43 @@
+name: Temp patch EM Aula 08
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.head_commit.message == 'Temp patch Aula 08'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inserir observacao sem alterar o restante
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('em/index.html')
+          s = p.read_text(encoding='utf-8')
+          old = '''                <strong>
+                  Prova às 19h30 —
+                  jantar servido às 19h.
+                </strong>'''
+          new = old + '''
+                <br>
+                <strong>
+                  Observação: Prova será realizada no dia 22/09 (Prova objetiva).
+                </strong>'''
+          if s.count(old) != 1:
+              raise SystemExit(f'Trecho-alvo encontrado {s.count(old)} vez(es); abortando para não alterar conteúdo indevido.')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add em/index.html
+          git commit -m "Adiciona observação da prova objetiva na Aula 08 [skip ci]"
+          git push
