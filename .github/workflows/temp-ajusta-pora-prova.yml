@@ -1,0 +1,54 @@
+name: Ajusta PORA Prova
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.head_commit.message == 'Executa ajuste PORA prova'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ajustar somente Aula 08 de PORA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path('pora/index.html')
+          s = p.read_text(encoding='utf-8')
+
+          pattern = re.compile(r'(Aula 08 — DIA DA 1ª PROVA.*?</div>\s*</div>\s*<span class="proof-label">\s*AVALIAÇÃO\s*</span>\s*</div>)', re.S)
+          m = pattern.search(s)
+          if not m:
+              raise SystemExit('Bloco da Aula 08 não encontrado; abortando.')
+
+          bloco = m.group(1)
+          bloco2 = bloco.replace('17/09/2026','22/09/2026',1)
+
+          if 'Prova objetiva' not in bloco2:
+              alvo = '1ª Avaliação de\n                Processos Organizacionais\n                e Rotinas Administrativas.'
+              novo = alvo + '\n\n                <br>\n                <strong>Prova objetiva.</strong>'
+              if alvo not in bloco2:
+                  raise SystemExit('Descrição da prova não encontrada; abortando.')
+              bloco2 = bloco2.replace(alvo, novo, 1)
+
+          if bloco2 == bloco:
+              raise SystemExit('Nenhuma alteração necessária.')
+
+          s = s[:m.start(1)] + bloco2 + s[m.end(1):]
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pora/index.html
+          git commit -m "Ajusta data e formato da prova da Aula 08 de PORA [skip ci]"
+          git push
