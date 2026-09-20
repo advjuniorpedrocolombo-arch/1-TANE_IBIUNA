@@ -92,7 +92,7 @@ function listarMateriais(componente){
 }
 
 function salvarMaterial(d){
-  if(!d||!d.titulo||!d.url)throw new Error('Título e URL são obrigatórios');
+  if(!d||!d.titulo)throw new Error('Título é obrigatório');
   const c=comp_(d.componente),sh=sh_('MATERIAIS'),v=sh.getDataRange().getValues(),h=v[0].map(String),idx=h.indexOf('ID_MATERIAL');
   ensureColumn_(sh,'TURMA');
   const h2=sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0].map(String);
