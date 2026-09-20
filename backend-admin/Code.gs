@@ -1,4 +1,4 @@
-const SHEET_ID='COLE_AQUI_O_ID_DA_PLANILHA_1_TANE';
+const SHEET_ID='1TmsiHct_EdfPvUTjHyUV7O3GZJ_y6lVQgPRmMHf_edI';
 const TURMA='1º TANE - Extensão Ibiúna';
 const COMPONENTES=['AI','EM','CFE','PORA'];
 
