@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Provas - 1º TANE</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}header{background:#142f52;color:#fff;padding:24px}.wrap{max-width:1100px;margin:auto;padding:0 18px}.card{background:#fff;border:1px solid #dde6f0;border-radius:16px;padding:20px;margin:20px 0;box-shadow:0 8px 22px rgba(20,45,80,.06)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.kpi{background:#eef4fb;border-radius:12px;padding:14px}.kpi span{display:block;color:#65748b;font-size:12px}.kpi strong{font-size:24px}.btn{background:#193b67;color:#fff;border:0;border-radius:9px;padding:11px 14px;font-weight:700;cursor:pointer}.btn-danger{background:#b42318}.btn-light{background:#eef4fb;color:#193b67}.acoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.ok{background:#e8f6ef;border:1px solid #9fd3b8;padding:12px;border-radius:10px;margin-top:12px}.warn{background:#fff6dc;border:1px solid #ead27a;padding:12px;border-radius:10px;margin-top:12px}.item{border:1px solid #dfe7f1;border-radius:12px;padding:14px;margin:10px 0}.tag{display:inline-block;background:#eef4fb;border-radius:999px;padding:4px 8px;font-size:12px;margin-right:6px}.muted{color:#65748b}.i{color:#b42318;font-weight:700}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #e4eaf1;text-align:left;font-size:14px}@media(max-width:700px){table{display:block;overflow:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Controle da Prova — EM</h1><div>1º TANE • Extensão Ibiúna</div></div></header>
+<main class="wrap">
+<section class="card">
+<h2>1ª Prova — Economia e Mercado</h2>
+<p class="muted">A correção individual permanece bloqueada até sua liberação. Depois disso, você pode enviar o gabarito e as respostas escolhidas por e-mail.</p>
+<div class="grid"><div class="kpi"><span>Total de tentativas</span><strong id="total">0</strong></div><div class="kpi"><span>Em andamento</span><strong id="andamento">0</strong></div><div class="kpi"><span>Finalizadas</span><strong id="finalizadas">0</strong></div><div class="kpi"><span>E-mails enviados</span><strong id="emails">0</strong></div></div>
+<div id="statusCorrecao" class="warn">Carregando status...</div>
+<div class="acoes"><button id="btnLiberar" class="btn">Liberar visualização da correção</button><button id="btnBloquear" class="btn btn-danger">Bloquear correção</button><button id="btnEmail" class="btn btn-light">Enviar correções por e-mail</button><button id="btnAtualizar" class="btn btn-light">Atualizar dados</button></div>
+<div id="msg"></div>
+</section>
+<section class="card"><h2>Tentativas dos alunos</h2><div id="lista" class="muted">Carregando...</div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s);const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+function render(st){$('#total').textContent=st.total||0;$('#andamento').textContent=st.emAndamento||0;$('#finalizadas').textContent=st.finalizadas||0;$('#emails').textContent=st.emailsEnviados||0;$('#statusCorrecao').className=st.correcaoLiberada?'ok':'warn';$('#statusCorrecao').innerHTML=st.correcaoLiberada?'<strong>Correção LIBERADA.</strong> Os alunos podem receber/consultar a correção.':'<strong>Correção BLOQUEADA.</strong> Os alunos ainda não têm acesso ao gabarito.';const t=st.tentativas||[];$('#lista').innerHTML=t.length?`<table><thead><tr><th>Aluno</th><th>E-mail</th><th>Status</th><th>Resultado</th><th>Menção</th><th>Finalização</th><th>Correção enviada</th></tr></thead><tbody>${t.map(r=>`<tr><td>${esc(r.aluno)}</td><td>${esc(r.email)}</td><td>${esc(r.status)}</td><td>${r.status==='FINALIZADA'?esc(r.acertos)+'/20':'—'}</td><td class="${r.mencao==='I'?'i':''}">${esc(r.mencao||'—')}</td><td>${esc(r.fim||'—')}</td><td>${esc(r.emailEnviado||'—')}</td></tr>`).join('')}</tbody></table>`:'Nenhuma tentativa registrada ainda.'}
+function carregar(){google.script.run.withSuccessHandler(render).withFailureHandler(e=>{$('#msg').className='warn';$('#msg').textContent='Erro: '+e.message}).statusProvaEm()}
+$('#btnLiberar').onclick=()=>{if(!confirm('Liberar a correção individual para os alunos?'))return;google.script.run.withSuccessHandler(()=>{carregar();$('#msg').className='ok';$('#msg').textContent='Correção liberada.'}).withFailureHandler(e=>{$('#msg').className='warn';$('#msg').textContent='Erro: '+e.message}).definirCorrecaoProvaEm(true)};
+$('#btnBloquear').onclick=()=>{if(!confirm('Bloquear novamente a visualização da correção?'))return;google.script.run.withSuccessHandler(()=>{carregar();$('#msg').className='ok';$('#msg').textContent='Correção bloqueada.'}).withFailureHandler(e=>{$('#msg').className='warn';$('#msg').textContent='Erro: '+e.message}).definirCorrecaoProvaEm(false)};
+$('#btnEmail').onclick=()=>{if(!confirm('Enviar agora a correção individual para todos os alunos finalizados que ainda não receberam e-mail?'))return;$('#msg').className='warn';$('#msg').textContent='Enviando e-mails...';google.script.run.withSuccessHandler(r=>{carregar();$('#msg').className='ok';$('#msg').textContent=`Envio concluído. Enviados: ${r.enviados}. Pulados: ${r.pulados}.`}).withFailureHandler(e=>{$('#msg').className='warn';$('#msg').textContent='Erro: '+e.message}).enviarCorrecoesProvaEm()};
+$('#btnAtualizar').onclick=carregar;carregar();
+</script>
+</body></html>
