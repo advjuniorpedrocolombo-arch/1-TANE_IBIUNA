@@ -46,7 +46,7 @@ function listarAtividades(componente){
   const c=comp_(componente);
   return rows_('ATIVIDADES').filter(x=>String(x.TURMA||'')===TURMA&&String(x.COMPONENTE||'').toUpperCase()===c).map(a=>({
     id:a.ID_ATIVIDADE,titulo:a.TITULO,descricao:a.DESCRICAO,tipoEnvio:a.TIPO_ENVIO,
-    extensoes:a.EXTENSOES,maxArquivos:a.MAX_ARQUIVOS,liberacao:dateTimeInput_(a.LIBERACAO),prazo:dateTimeInput_(a.PRAZO),
+    extensoes:a.EXTENSOES,maxArquivos:a.MAX_ARQUIVOS,maxAlunosGrupo:Number(a.MAX_ALUNOS_GRUPO||1),liberacao:dateTimeInput_(a.LIBERACAO),prazo:dateTimeInput_(a.PRAZO),
     materialUrl:a.MATERIAL_APOIO_URL,correcaoIA:a.CORRECAO_IA,criterios:a.GABARITO_CRITERIOS,
     status:a.STATUS,ordem:a.ORDEM,componente:c
   })).sort((a,b)=>(Number(a.ordem)||999)-(Number(b.ordem)||999));
@@ -57,11 +57,12 @@ function salvarAtividade(d){
   const c=comp_(d.componente);
   const sh=sh_('ATIVIDADES');
   ensureColumn_(sh,'LIBERACAO');
+  ensureColumn_(sh,'MAX_ALUNOS_GRUPO');
   const v=sh.getDataRange().getValues(),h=v[0].map(String),idx=h.indexOf('ID_ATIVIDADE'),idxTurma=h.indexOf('TURMA'),idxComp=h.indexOf('COMPONENTE');
   const now=new Date();
   const map={
     ID_ATIVIDADE:String(d.id).trim(),TURMA:TURMA,COMPONENTE:c,TITULO:String(d.titulo).trim(),DESCRICAO:d.descricao||'',
-    TIPO_ENVIO:d.tipoEnvio||'SEM_ENVIO',EXTENSOES:d.extensoes||'',MAX_ARQUIVOS:Number(d.maxArquivos||0),
+    TIPO_ENVIO:d.tipoEnvio||'SEM_ENVIO',EXTENSOES:d.extensoes||'',MAX_ARQUIVOS:Number(d.maxArquivos||0),MAX_ALUNOS_GRUPO:Number(d.maxAlunosGrupo||1),
     LIBERACAO:d.liberacao||'',PRAZO:d.prazo||'',MATERIAL_APOIO_URL:d.materialUrl||'',CORRECAO_IA:d.correcaoIA||'NAO',
     GABARITO_CRITERIOS:d.criterios||'',STATUS:d.status||'RASCUNHO',ORDEM:Number(d.ordem||999),CRIADO_EM:now,ATUALIZADO_EM:now
   };
