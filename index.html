@@ -681,6 +681,43 @@
     }
 
 
+    .exam-notice-content {
+      padding: 34px 28px;
+      text-align: center;
+      background: linear-gradient(135deg, #fff8f8, #ffffff);
+    }
+
+    .exam-notice-kicker {
+      display: inline-block;
+      color: #8f0d14;
+      font-size: .85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .exam-notice-content h2 {
+      margin: 12px 0;
+      color: #8f0d14;
+      font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+      line-height: 1.2;
+    }
+
+    .exam-notice-dates {
+      margin: 0 0 12px;
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      font-weight: 750;
+      color: #303641;
+    }
+
+    .exam-notice-warning {
+      margin: 0 auto;
+      max-width: 670px;
+      color: #555b66;
+      line-height: 1.65;
+      font-size: .95rem;
+    }
+
     .exam-notice-label {
 
       display: flex;
@@ -1763,36 +1800,25 @@
 
     <!-- =====================================
          AVISO IMPORTANTE
-         SEMANA DE PROVAS
+         PROVA FINAL DO SEMESTRE
     ====================================== -->
 
-    <section class="exam-notice-section">
-
-
+    <section class="exam-notice-section" aria-labelledby="titulo-prova-final">
       <div class="shell">
-
-
         <div class="exam-notice">
-
-
-          <img
-            src="aviso-provas.png"
-            alt="Aviso importante. 1ª Semana de Provas de 17 a 23 de setembro de 2026">
-
-
-          <div class="exam-notice-label">
-
-            📅 1ª Semana de Provas • 17 a 23 de setembro de 2026
-
+          <div class="exam-notice-content">
+            <span class="exam-notice-kicker">📅 Atenção, 1º TANE</span>
+            <h2 id="titulo-prova-final">Prova Final do Semestre</h2>
+            <p class="exam-notice-dates">Previsão: 23 a 27 de novembro de 2026</p>
+            <p class="exam-notice-warning">
+              <strong>Datas sujeitas à confirmação pela coordenação.</strong>
+              O cronograma definitivo será informado após a confirmação oficial.
+            </p>
           </div>
-
-
+          <div class="exam-notice-label">Período previsto • Aguardando confirmação</div>
         </div>
-
       </div>
-
     </section>
-
 
 
     <!-- =====================================
@@ -2323,44 +2349,18 @@
 
 
 
-            <!-- AVISO PROVAS -->
-
+            <!-- AVISO PROVA FINAL -->
             <div class="notice">
-
-
-              <div
-                class="notice-badge"
-                aria-hidden="true">
-
-                📅
-
-              </div>
-
-
+              <div class="notice-badge" aria-hidden="true">📅</div>
               <div>
-
-
-                <strong>
-
-                  1ª Semana de Provas
-
-                </strong>
-
-
+                <strong>Prova Final do Semestre — 1º TANE</strong>
                 <p>
-
-                  De quinta-feira,
-                  17/09,
-                  até quarta-feira,
-                  23/09/2026.
-
+                  Previsão de realização entre 23 e 27/11/2026.
+                  Período sujeito à confirmação pela coordenação.
+                  Aguarde a divulgação do cronograma definitivo.
                 </p>
-
-
               </div>
-
             </div>
-
 
 
             <!-- AVISO COMPONENTES -->
