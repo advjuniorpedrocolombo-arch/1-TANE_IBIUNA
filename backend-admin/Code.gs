@@ -6,6 +6,7 @@ const GABARITO_EM_01={q01:'b',q02:'a',q03:'b',q04:'c',q05:'b',q06:'c',q07:'b',q0
 
 function doGet(e){
   const page=String((e&&e.parameter&&e.parameter.page)||'').toLowerCase();
+  if(page==='correcoes')return iaPainelHtml_();
   return HtmlService.createHtmlOutputFromFile(page==='provas'?'AdminProvas':'Admin')
     .setTitle(page==='provas'?'Provas - 1º TANE':'Painel do Professor - 1º TANE')
     .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.DEFAULT);
