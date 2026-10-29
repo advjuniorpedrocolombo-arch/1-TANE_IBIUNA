@@ -102,7 +102,7 @@ function iaAprovarCorrecao(idEntrega){
   sh.getRange(r.__row,col).setValue('APROVADA');
   return {ok:true,idEntrega};
 }
-function iaAbrirPainel(){
+function iaPainelHtml_(){
   const html=HtmlService.createHtmlOutput(`<!doctype html><html><head><meta charset="utf-8"><style>
     body{font:14px Arial;padding:14px;color:#192d49}button,select{padding:9px;margin:3px;border:1px solid #bbb;border-radius:7px}
     button{cursor:pointer;background:#173e69;color:white}.item{border:1px solid #ddd;border-radius:9px;padding:12px;margin:9px 0}
@@ -131,9 +131,5 @@ function iaAbrirPainel(){
        google.script.run.withSuccessHandler(()=>carregar()).withFailureHandler(e=>status('Erro: '+e.message)).iaAprovarCorrecao(id);}
     carregar();
     <\/script></body></html>`).setWidth(880).setHeight(650);
-  SpreadsheetApp.getUi().showModalDialog(html,'Correção de atividades por IA');
-}
-function onOpen(){
-  SpreadsheetApp.getUi().createMenu('Correção por IA')
-    .addItem('Abrir painel de correções','iaAbrirPainel').addToUi();
+  return html.setTitle('Correção por IA — 1º TANE');
 }
