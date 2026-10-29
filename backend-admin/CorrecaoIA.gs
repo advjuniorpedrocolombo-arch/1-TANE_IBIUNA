@@ -11,6 +11,12 @@ const IA_MAX_ARQUIVOS = 5;
 const IA_MAX_BYTES = 12 * 1024 * 1024;
 const IA_HEADERS = ['ID_CORRECAO','ID_ENTREGA','ID_ATIVIDADE','ALUNO','COMPONENTE','RESULTADO_IA','MENCAO','FEEDBACK','STATUS','CORRIGIDO_EM'];
 
+function iaExigirAdmin_(){
+  const emailPermitido=String(PropertiesService.getScriptProperties().getProperty('IA_ADMIN_EMAIL')||'').trim().toLowerCase();
+  const emailAtual=String(Session.getActiveUser().getEmail()||'').trim().toLowerCase();
+  if(!emailPermitido || !emailAtual || emailAtual!==emailPermitido)
+    throw Error('Acesso negado. Configure IA_ADMIN_EMAIL e implante o painel com acesso restrito à conta docente.');
+}
 function iaSS_(){ return SpreadsheetApp.openById(IA_SHEET_ID); }
 function iaSheet_(name){const sh=iaSS_().getSheetByName(name);if(!sh)throw Error('Aba ausente: '+name);return sh;}
 function iaRows_(name){
@@ -33,6 +39,7 @@ function iaValidarEntrega_(id){
   return {entrega,atividade,urls};
 }
 function iaCorrigirEntrega(idEntrega){
+  iaExigirAdmin_();
   const lock=LockService.getScriptLock();if(!lock.tryLock(20000))throw Error('Outra correção está sendo processada');
   try{
     const v=iaValidarEntrega_(idEntrega);
@@ -87,6 +94,7 @@ function iaCorrigirEntrega(idEntrega){
   }finally{lock.releaseLock();}
 }
 function iaListarPendentes(componente){
+  iaExigirAdmin_();
   const c=String(componente||'CFE').toUpperCase();
   const aprovadas=new Set(iaRows_('CORRECOES').filter(r=>String(r.STATUS)==='APROVADA').map(r=>String(r.ID_ENTREGA)));
   const atividades=new Map(iaRows_('ATIVIDADES').filter(r=>String(r.COMPONENTE).toUpperCase()===c&&String(r.CORRECAO_IA).toUpperCase()==='SIM').map(r=>[String(r.ID_ATIVIDADE),r]));
@@ -96,6 +104,7 @@ function iaListarPendentes(componente){
       correcao:iaRows_('CORRECOES').find(x=>String(x.ID_ENTREGA)===String(r.ID_ENTREGA))||null}));
 }
 function iaAprovarCorrecao(idEntrega){
+  iaExigirAdmin_();
   const sh=iaSheet_('CORRECOES'),rows=iaRows_('CORRECOES'),r=rows.find(x=>String(x.ID_ENTREGA)===String(idEntrega));
   if(!r)throw Error('Correção não encontrada');if(String(r.STATUS)==='APROVADA')return {ok:true};
   const col=sh.getRange(1,1,1,sh.getLastColumn()).getValues()[0].indexOf('STATUS')+1;
@@ -103,6 +112,7 @@ function iaAprovarCorrecao(idEntrega){
   return {ok:true,idEntrega};
 }
 function iaPainelHtml_(){
+  iaExigirAdmin_();
   const html=HtmlService.createHtmlOutput(`<!doctype html><html><head><meta charset="utf-8"><style>
     body{font:14px Arial;padding:14px;color:#192d49}button,select{padding:9px;margin:3px;border:1px solid #bbb;border-radius:7px}
     button{cursor:pointer;background:#173e69;color:white}.item{border:1px solid #ddd;border-radius:9px;padding:12px;margin:9px 0}
