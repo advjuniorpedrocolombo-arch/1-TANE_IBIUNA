@@ -101,7 +101,7 @@ function iaListarPendentes(componente){
   return iaRows_('ENTREGAS').filter(r=>atividades.has(String(r.ID_ATIVIDADE)))
     .map(r=>({idEntrega:String(r.ID_ENTREGA),aluno:String(r.ALUNO),atividade:String(r.ID_ATIVIDADE),
       arquivos:iaLinks_(r.ARQUIVOS_URL).length,aprovada:aprovadas.has(String(r.ID_ENTREGA)),
-      correcao:iaRows_('CORRECOES').find(x=>String(x.ID_ENTREGA)===String(r.ID_ENTREGA))||null}));
+      correcao:(()=>{const x=iaRows_('CORRECOES').find(x=>String(x.ID_ENTREGA)===String(r.ID_ENTREGA));return x?{STATUS:String(x.STATUS||''),MENCAO:String(x.MENCAO||''),FEEDBACK:String(x.FEEDBACK||'')}:null;})()}));
 }
 function iaAprovarCorrecao(idEntrega){
   iaExigirAdmin_();
